@@ -70,12 +70,11 @@
 
             <div class="input-group mb-3">
                 <input type="text" class="form-control" name="address"  value="{{ old('address') }}" class="@error('address') is-invalid @enderror" placeholder="address">
+
                 @error('address')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-check"></i></span>
-                </div>
+
             </div>
 
             <div class="input-group mb-3">

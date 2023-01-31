@@ -1,6 +1,8 @@
 <?php
 
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\NuersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::post('/login',[\App\Http\Controllers\Api\AuthController::class,'login']);
-Route::post('/logout',[\App\Http\Controllers\Api\AuthController::class,'logout']);
+Route::post('/login',[AuthController::class,'login']);
 
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout',[AuthController::class,'logout']);
+    Route::get('/nuers',[NuersController::class,'index']);
+});

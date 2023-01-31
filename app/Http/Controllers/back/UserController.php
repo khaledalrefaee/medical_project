@@ -43,6 +43,10 @@ class UserController extends Controller
         toastr()->success('success');
         return redirect()->route('all_user');
 
-//        return redirect()->route('all_user')
+    }
+    public function edit($id){
+
+        $user = User::find($id);
+        return view('backend.category.edit',compact('user'));
     }
 }

@@ -52,6 +52,7 @@
                                                     <td style="">
 
                                                         <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                        <a href="{{route('edit_user',u->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                         <a href="">  <button type="button" class="btn btn btn-outline-info">show</button></a>
                                                     </td>
 

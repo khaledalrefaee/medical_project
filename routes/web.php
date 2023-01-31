@@ -32,3 +32,4 @@ Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/all_users',[UserController::class,'index'])->name('all_user');
 Route::get('/create/Users',[UserController::class,'create'])->name('create_user');
 Route::post('/User/store',[UserController::class,'store'])->name('store_user');
+Route::get('/edit/user/{id}',[UserController::class,'edit'])->name('edit_user');

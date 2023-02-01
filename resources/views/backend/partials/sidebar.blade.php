@@ -23,9 +23,9 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="" class="nav-link">
+                        <a href="{{route('all.Clincs')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Categories</p>
+                            <p>clinics</p>
                         </a>
                     </li>
 

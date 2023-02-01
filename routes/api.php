@@ -31,4 +31,8 @@ Route::get('/nuers',[NuersController::class,'index']);
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout',[AuthController::class,'logout']);
+
+    Route::get('/doctor',[NuersController::class,'doctor']);
+
+    Route::get('/show/doctor/{id}',[NuersController::class,'showdoctor']);
 });

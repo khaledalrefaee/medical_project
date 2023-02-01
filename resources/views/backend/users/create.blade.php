@@ -8,6 +8,17 @@
         <div class="card-header">
             <h3 class="card-title">Add user</h3>
         </div>
+        <br>
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="card-body">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
@@ -57,9 +68,9 @@
 
             <select name="gender" id="inputStatus" class="form-control custom-select" >
                 <option selected="" disabled=""  value="{{ old('gender') }}" class="@error('gender') is-invalid @enderror">gender</option>
+                <option  value="Male">Male</option>
 
-                <option >Male</option>
-                <option >female</option>
+                <option  value="female">female</option>
                 @error('gender')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
@@ -87,14 +98,14 @@
                 </div>
             </div>
 
-            <select name="role_name" id="inputStatus" class="form-control custom-select">
-                <option selected="" disabled=""  value="{{ old('role_name') }}" class="@error('role_name') is-invalid @enderror">Role</option>
-                @error('role_name')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <option >Admin</option>
-                <option >Receptionist</option>
-                <option >User</option>
+            <select name="role_name" id="inputStatus" class="form-control custom-select" >
+                <option selected="" disabled=""   >Role</option>
+
+                <option value="Admin">Admin </option>
+                <option value="Receptionist">Receptionist</option>
+                <option value="User">User</option>
+
+
             </select>
 
             <br>

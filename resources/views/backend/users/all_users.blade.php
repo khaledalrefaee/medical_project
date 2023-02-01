@@ -21,7 +21,7 @@
                         <div class="card-body">
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
-                                            <a href="{{route('create_user')}}"> <button class="btn btn-primary">create Book</button></a>
+                                            <a href="{{route('create_user')}}"> <button class="btn btn-primary">create User</button></a>
                                             <thead>
                                             <tr>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">id</th>
@@ -51,9 +51,9 @@
                                                         <td style="">{{$user->role_name}}</td>
                                                     <td style="">
 
-                                                        <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        <a href="{{route('edit_user',u->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        <a href="{{route('delet_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                        <a href="{{route('edit_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                        <a href="{{route('show_user',$user->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
                                                     </td>
 
                                                 </tr>

@@ -1,19 +1,31 @@
 @extends('backend.index')
 @section('content')
 
-    <form action="{{route('store_user')}}" method="POST">
+
+    <form action="{{route('update_user',$user->id)}}" method="POST">
         @csrf
 
         <div class="card card-info">
             <div class="card-header">
                 <h3 class="card-title">Add user</h3>
             </div>
+            <br>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <div class="card-body">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                         <span class="input-group-text">@</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Username"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" name="name">
+                    <input type="text" class="form-control" placeholder="Username"  value="{{$user->name}}" class="@error('name') is-invalid @enderror" name="name">
 
                 </div>  @error('name')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -25,7 +37,7 @@
                         <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                     </div>
 
-                    <input type="email" class="form-control" name="email"  value="{{ old('email') }}" class="@error('email') is-invalid @enderror" placeholder="Email">
+                    <input type="email" class="form-control" name="email"  value="{{$user->email}}" class="@error('email') is-invalid @enderror" placeholder="Email">
                 </div>
                 @error('email')
                 <div class="alert alert-danger">{{ $message }}
@@ -37,7 +49,7 @@
 
                     </div>
 
-                    <input type="password" class="form-control" name="password"  value="{{ old('password') }}" class="@error('password') is-invalid @enderror" placeholder="password">
+                    <input type="password" class="form-control" name="password"  value="{{$user->password}}" class="@error('password') is-invalid @enderror" placeholder="password">
                 </div>
                 @error('password')
                 <div class="alert alert-danger">{{ $message }}
@@ -48,28 +60,26 @@
                     <div class="input-group-append">
                         <span class="input-group-text" >00963</span>
                     </div>
-                    <input type="number" class="form-control" name="phone"  value="{{ old('phone') }}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
+                    <input type="number" class="form-control" name="phone" value="{{$user->phone}}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
                 </div>
                 @error('phone')
                 <div class="alert alert-danger">{{ $message }}
                     @enderror
                 </div>
 
-                <select name="gender" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled=""  value="{{ old('gender') }}" class="@error('gender') is-invalid @enderror">gender</option>
+                <select name="gender" id="inputStatus" class="form-control custom-select" value="{{$user->gender}}">
+                    <option selected="" disabled=""   >gender</option>
 
-                    <option >Male</option>
-                    <option >female</option>
-                    @error('gender')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                    <option  value="Male">Male</option>
+                    <option  value="female">female</option>
+
                 </select>
 
                 <br>
                 <br>
 
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="address"  value="{{ old('address') }}" class="@error('address') is-invalid @enderror" placeholder="address">
+                    <input type="text" class="form-control" name="address"  value="{{$user->address}}" class="@error('address') is-invalid @enderror" placeholder="address">
 
                     @error('address')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -78,7 +88,7 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="date" class="form-control" name="age"  value="{{ old('age') }}" class="@error('age') is-invalid @enderror" placeholder="Birthday">
+                    <input type="date" class="form-control" name="age"  value="{{$user->age}}" class="@error('age') is-invalid @enderror" placeholder="Birthday">
                     @error('age')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
@@ -87,14 +97,11 @@
                     </div>
                 </div>
 
-                <select name="role_name" id="inputStatus" class="form-control custom-select">
-                    <option selected="" disabled=""  value="{{ old('role_name') }}" class="@error('role_name') is-invalid @enderror">Role</option>
-                    @error('role_name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <option >Admin</option>
-                    <option >Receptionist</option>
-                    <option >User</option>
+                <select name="role_name" id="inputStatus" class="form-control custom-select" >
+                    <option selected="" disabled="" > Role </option>
+                    <option value="Admin">Admin </option>
+                    <option value="Receptionist">Receptionist</option>
+                    <option value="User">User</option>
                 </select>
 
                 <br>

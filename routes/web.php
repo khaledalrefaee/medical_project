@@ -41,4 +41,7 @@ Route::get('delete/user/{id}',[UserController::class,'destroy'])->name('delet_us
 
 //clinics
 Route::get('/all/Clincs',[ClinicsController::class,'index'])->name('all.Clincs');
-
+Route::get('/create/Clincs',[ClinicsController::class,'create'])->name('create.clincs');
+Route::post('/stror/Clincs',[ClinicsController::class,'store'])->name('store.clincs');
+Route::get('/show/Clincs/{id}',[ClinicsController::class,'show'])->name('show.clincs');
+Route::get('/Retreat',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');

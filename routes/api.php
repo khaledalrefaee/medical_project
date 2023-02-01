@@ -25,7 +25,10 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login',[AuthController::class,'login']);
 
 
+
+Route::get('/nuers',[NuersController::class,'index']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
+
     Route::post('/logout',[AuthController::class,'logout']);
-    Route::get('/nuers',[NuersController::class,'index']);
 });

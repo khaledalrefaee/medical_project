@@ -53,7 +53,7 @@
 
                                                         <a href="{{route('delet_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                         <a href="{{route('edit_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="{{route('show_user',$user->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        <a href="{{url('/user/show',$user->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
                                                     </td>
 
                                                 </tr>

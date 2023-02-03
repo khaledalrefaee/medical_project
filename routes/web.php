@@ -29,6 +29,7 @@ Route::get('/login',function (){
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
+
 //Users
 Route::get('/all_users',[UserController::class,'index'])->name('all_user');
 Route::get('/create/Users',[UserController::class,'create'])->name('create_user');
@@ -39,9 +40,13 @@ Route::get('/edit/user/{id}',[UserController::class,'edit'])->name('edit_user');
 Route::post('/update/user/{id}',[UserController::class,'update'])->name('update_user');
 Route::get('delete/user/{id}',[UserController::class,'destroy'])->name('delet_user');
 
+
 //clinics
 Route::get('/all/Clincs',[ClinicsController::class,'index'])->name('all.Clincs');
 Route::get('/create/Clincs',[ClinicsController::class,'create'])->name('create.clincs');
 Route::post('/stror/Clincs',[ClinicsController::class,'store'])->name('store.clincs');
 Route::get('/show/Clincs/{id}',[ClinicsController::class,'show'])->name('show.clincs');
-Route::get('/Retreat',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');
+Route::get('/Retreat/Clincs',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');
+Route::get('/edit/Clincs/{id}',[ClinicsController::class,'edit'])->name('edit.Clincs');
+Route::post('/update/Clincs/{id}',[ClinicsController::class,'update'])->name('update.Clincs');
+Route::get('delete/Clincs/{id}',[ClinicsController::class,'destroy'])->name('delet.Clincs');

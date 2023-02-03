@@ -33,13 +33,44 @@ class ClinicsController extends Controller
     }
 
     public function show($id){
-        $clinics = Clinics::findOrFail($id)->first();
+        $clinic = Clinics::findOrFail($id);
         toastr()->info('You are show User');
-        return view('backend.clinics.show',compact('clinics'));
+        return view('backend.clinics.show',compact('clinic'));
     }
 
     public function Retreat(){
-        return view('backend.clinics.show');
+        return redirect()->route('all.Clincs');
+    }
+
+    public function edit($id){
+
+        $clinic = Clinics::findorFail($id);
+        return view('backend.clinics.edit',compact('clinic'));
+    }
+
+
+    public function update(Request $request,$id){
+        $clinic =Clinics::findOrFail($id);
+        $request->validate([
+            'name'      =>   'required',
+            'description'   => 'required',
+        ]);
+        $clinic->update([
+            'name'              =>  $request->name,
+            'description'       =>   $request->description,
+        ]);
+
+        toastr()->warning('You are edit Clinics');
+        return redirect()->route('all.Clincs');
+    }
+
+
+    public function destroy(Request $request)
+    {
+        $clinic = Clinics::findOrfail($request->id);
+        $clinic->delete();
+        toastr()->error('you are delete clinic');
+        return redirect()->route('all.Clincs');
     }
 
 }

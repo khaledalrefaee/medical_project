@@ -45,28 +45,30 @@ class UserController extends Controller
 
     }
     public function show($id){
-        $user = User::findOrFail($id)->first();
+        $user = User::findOrFail($id);
+
         toastr()->info('You are show User');
         return view('backend.users.show',compact('user'));
     }
 
 
-    public function edit($id){
 
-        $user = User::find($id);
-        return view('backend.users.edit',compact('user'));
-    }
 
     public function Retreat(){
         return redirect()->route('all_user');
     }
 
+    public function edit($id){
+        $user = User::findOrFail($id);
+        return view('backend.users.edit', compact('user'));
+
+    }
 
     public function update(Request $request , $id){
-        $user =User::findOrFail($id)->first();
-        $request->validate([
+        $user =User::findOrFail($id);
+        $validatedData =$request->validate([
             'name'               =>  'required',
-            'email'              =>  'required|string',
+            'email'              =>  'required|string|unique:Users',
             'password'           =>  'required',
             'phone'              =>  'required',
             'gender'             =>  'required|in:Male,female',
@@ -74,16 +76,16 @@ class UserController extends Controller
             'age'                =>  'required',
             'role_name'          =>  'required|in:Admin,Receptionist,User',
         ]);
-        $user->update([
-            'name'              =>  $request->name,
-            'email'             =>  $request->email,
-            'password'          => bcrypt( $request->password),
-            'phone'             =>  $request->phone,
-            'gender'            =>  $request->gender,
-            'address'           =>  $request->address,
-            'age'               =>  $request->age,
-            'role_name'         =>  $request->role_name,
-        ]);
+        $user->update( $validatedData
+//            'name'              =>  $request->name,
+//            'email'             =>  $request->email,
+//            'password'          => bcrypt( $request->password),
+//            'phone'             =>  $request->phone,
+//            'gender'            =>  $request->gender,
+//            'address'           =>  $request->address,
+//            'age'               =>  $request->age,
+//            'role_name'         =>  $request->role_name,
+        );
         toastr()->warning('You are edit User');
         return redirect()->route('all_user');
     }

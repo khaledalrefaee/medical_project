@@ -11,12 +11,7 @@ class NuersController extends Controller
 {
     public function index(){
         $nuers = Nurses::get();
-        $arrya = [
-              'data'=>$nuers,
-            'maseg'=>'ok',
-            'status'=>200
-            ];
-        return response($arrya ,200);
+        return response($nuers ,200);
     }
 
     public function doctor(){

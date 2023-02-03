@@ -49,7 +49,7 @@
                                                     <td style="">{{$user->age}}</td>
                                                     <td style="">{{$user->role_name}}</td>
                                                     <td style="">
-                                                        <a href="{{route('Retreat_User')}}"> <button class="btn btn-primary">Retreat</button></a>
+                                                        <a href="{{url('Retreat')}}"> <button class="btn btn-primary">Retreat</button></a>
 
 
                                                     </td>

@@ -33,7 +33,7 @@
                                                 <tr class="odd">
                                                     <td>{{$clinic->name}}</td>
 
-                                                    <td>{{$clinic->description}}"></td>
+                                                    <td>{{$clinic->description}}</td>
                                                     <td style="">
                                                         <a href="{{route('Retreat.clincs')}}"> <button class="btn btn-primary">Retreat</button></a>
 

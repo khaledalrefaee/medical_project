@@ -8,19 +8,19 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form id="quickForm" novalidate="novalidate" action="{{route('store.clincs')}}" method="POST">
+            <form novalidate="novalidate" action="{{route('update.Clincs',$clinic->id)}}" method="POST">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">name clincs</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
+                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{$clinic->name}}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
                     </div>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <div class="form-group">
                         <label for="exampleInputPassword1">description</label>
-                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="description">
+                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{$clinic->description}}" class="@error('description') is-invalid @enderror" placeholder="description">
                     </div>
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -31,7 +31,7 @@
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">GO!</button>
+                    <button type="submit" class="btn btn-primary">Go!</button>
                 </div>
             </form>
         </div>

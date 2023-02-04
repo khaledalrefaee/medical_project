@@ -89,8 +89,8 @@
             </div>
 
             <div class="input-group mb-3">
-                <input type="date" class="form-control" name="age"  value="{{ old('age') }}" class="@error('age') is-invalid @enderror" placeholder="Birthday">
-                @error('age')
+                <input type="date" class="form-control" name="birthday"  value="{{ old('birthday') }}" class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
+                @error('birthday')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
                 <div class="input-group-append">
@@ -98,13 +98,11 @@
                 </div>
             </div>
 
-            <select name="role_name" id="inputStatus" class="form-control custom-select" >
+            <select name="role_id" id="inputStatus" class="form-control custom-select" >
                 <option selected="" disabled=""   >Role</option>
-
-                <option value="Admin">Admin </option>
-                <option value="Receptionist">Receptionist</option>
-                <option value="User">User</option>
-
+                @foreach($role as $item)
+                <option value="{{$item->id}}">{{$item->name}} </option>
+                @endforeach
 
             </select>
 

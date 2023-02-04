@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -15,7 +16,8 @@ class UserController extends Controller
 
     }
     public function create(){
-        return view('backend.users.create');
+        $role=Role::all();
+        return view('backend.users.create',compact('role'));
     }
 
     public  function store(Request $request){
@@ -27,8 +29,8 @@ class UserController extends Controller
                 'phone'              =>  'required',
                 'gender'             =>  'required|in:Male,female',
                 'address'            =>  'required',
-                'age'                =>  'required',
-                'role_name'          =>  'required|in:Admin,Receptionist,User',
+                'birthday'           =>  'required',
+                'role_id'            =>  'required',
             ]);
         User::create([
             'name'              =>  $request->name,
@@ -37,8 +39,8 @@ class UserController extends Controller
             'phone'             =>  $request->phone,
             'gender'            =>  $request->gender,
             'address'           =>  $request->address,
-            'age'               =>  $request->age,
-            'role_name'         =>  $request->role_name,
+            'birthday'          =>  $request->birthday,
+            'role_id'           =>  $request->role_id,
         ]);
         toastr()->success('success');
         return redirect()->route('all_user');
@@ -60,7 +62,8 @@ class UserController extends Controller
 
     public function edit($id){
         $user = User::findOrFail($id);
-        return view('backend.users.edit', compact('user'));
+        $role=Role::all();
+        return view('backend.users.edit', compact('user','role'));
 
     }
 
@@ -74,7 +77,7 @@ class UserController extends Controller
             'gender'             =>  'required|in:Male,female',
             'address'            =>  'required',
             'age'                =>  'required',
-            'role_name'          =>  'required|in:Admin,Receptionist,User',
+            'role_id'          =>  'required',
         ]);
         $user->update( $validatedData
 //            'name'              =>  $request->name,

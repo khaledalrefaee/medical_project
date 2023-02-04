@@ -16,6 +16,12 @@
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">
+                        <a href="{{route('all.role')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                                <p>Role</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{route('all_user')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Users</p>

@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nurses extends Model
+class Detail extends Model
 {
     use HasFactory;
 
-    protected $fillable =['name','phone','description'];
+    protected $fillable = ['doctors_id','specialization','phone','email'];
 }

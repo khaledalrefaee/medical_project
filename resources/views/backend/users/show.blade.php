@@ -46,8 +46,8 @@
                                                     <td style="">{{$user->phone}}</td>
                                                     <td style="">{{$user->gender}}</td>
                                                     <td style="">{{$user->address}}</td>
-                                                    <td style="">{{$user->age}}</td>
-                                                    <td style="">{{$user->role_name}}</td>
+                                                    <td style="">{{$user->birthday}}</td>
+                                                    <td style="">{{$user->Role->name}}</td>
                                                     <td style="">
                                                         <a href="{{url('Retreat')}}"> <button class="btn btn-primary">Retreat</button></a>
 

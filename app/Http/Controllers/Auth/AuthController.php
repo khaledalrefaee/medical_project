@@ -17,7 +17,7 @@ class AuthController extends Controller
                 'password' => 'required|string',
             ]);
 
-            if (Auth::attempt(['email' => $request->email, 'password' => $request->password,'role_name'=>'Admin'])) {
+            if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
                 return view('backend.index');
             }
             return view('error.error');

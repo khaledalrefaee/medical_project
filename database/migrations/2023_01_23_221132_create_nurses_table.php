@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('nurses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->string('description');
             $table->timestamps();
         });

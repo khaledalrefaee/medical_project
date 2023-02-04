@@ -20,8 +20,8 @@ return new class extends Migration
             $table->bigInteger('phone');
             $table->string('gender');
             $table->string('address');
-            $table->date('age');
-            $table->string('role_name');
+            $table->date('birthday');
+            $table->foreignId('role_id')->constrained('roles')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

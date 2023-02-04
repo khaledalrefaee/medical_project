@@ -5,9 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nurses extends Model
+class Role extends Model
 {
     use HasFactory;
+    protected $fillable = ['name'];
 
-    protected $fillable =['name','phone','description'];
+    public function user(){
+        return $this->hasMany(User::class, );
+    }
 }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\back\ClinicsController;
+use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,17 @@ Route::get('/login',function (){
 
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
+
+//Role
+Route::get('/all/role',[RoleController::class,'index'])->name('all.role');
+Route::get('/create/role',[RoleController::class,'create'])->name('create.role');
+Route::post('/role/store',[RoleController::class,'store'])->name('store.role');
+Route::get('/role/show/{id}',[RoleController::class,'show'])->name('show.role');
+Route::get('/Retreat/role',[RoleController::class,'Retreat'])->name('Retreat.role');
+Route::get('/edit/role/{id}',[RoleController::class,'edit'])->name('edit.role');
+Route::post('/update/role/{id}',[RoleController::class,'update'])->name('update.role');
+Route::get('delete/role/{id}',[RoleController::class,'destroy'])->name('delete.role');
 
 
 //Users

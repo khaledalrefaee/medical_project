@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NuersController;
+use App\Http\Controllers\Api\ProfileContoller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::post('/login',[AuthController::class,'login']);
 Route::get('/nuers',[NuersController::class,'index']);
 
 Route::get('/doctor',[NuersController::class,'doctor']);
+
+Route::get('/profile/{id}', [ProfileContoller::class,'index']);
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {

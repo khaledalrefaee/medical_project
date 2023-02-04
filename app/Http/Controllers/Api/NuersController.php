@@ -15,16 +15,16 @@ class NuersController extends Controller
     }
 
     public function doctor(){
-        return Doctor::with('clinics')->get();
-        return [
-          'msg'=>'ok'
-        ];
+        $doctoer= Doctor::with(['clinics','detail'])->get();
+       return response($doctoer ,200);
     }
-    public function showdoctor($id){
-        return Doctor::with('clinics')->find($id);
-        return [
-            'msg'=>'ok'
-        ];
-    }
+
+
+//    public function showdoctor($id){
+//        return Doctor::with('clinics')->find($id);
+//        return [
+//            'msg'=>'ok'
+//        ];
+//    }
 }
 

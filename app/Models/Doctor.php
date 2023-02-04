@@ -16,4 +16,11 @@ class Doctor extends Model
     public function clinics(){
         return $this->belongsTo(Clinics::class);
     }
+    public function detail(){
+        return $this->hasOne(Detail::class);
+    }
+
+    public function reservation(){
+        return $this->hasMany(Reservation::class);
+    }
 }

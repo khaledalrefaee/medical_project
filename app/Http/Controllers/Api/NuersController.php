@@ -14,17 +14,12 @@ class NuersController extends Controller
         return response($nuers ,200);
     }
 
-    public function doctor(){
-        $doctoer= Doctor::with(['clinics','detail'])->get();
-       return response($doctoer ,200);
+    public function doctoer(){
+        $doctors = Doctor::with(['detail', 'clinic'])->get();
+        return response($doctors ,200);
+
+
     }
 
-
-//    public function showdoctor($id){
-//        return Doctor::with('clinics')->find($id);
-//        return [
-//            'msg'=>'ok'
-//        ];
-//    }
 }
 

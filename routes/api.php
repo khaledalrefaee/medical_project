@@ -27,10 +27,11 @@ Route::post('/login',[AuthController::class,'login']);
 
 Route::get('/nuers',[NuersController::class,'index']);
 
-Route::get('/doctor',[NuersController::class,'doctor']);
+
 
 Route::get('/profile/{id}', [ProfileContoller::class,'index']);
 
+Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

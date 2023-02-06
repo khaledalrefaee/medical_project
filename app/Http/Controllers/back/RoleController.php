@@ -4,6 +4,7 @@ namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use App\Models\Role;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -63,9 +64,18 @@ class RoleController extends Controller
 
     public function destroy(Request $request)
     {
-        $role = Role::findOrfail($request->id);
-        $role->delete();
-        toastr()->error('you are delete clinic');
-        return redirect()->route('all.role');
+        $MyUser_id = User::where('role_id', $request->id)->pluck('role_id');
+
+        if ($MyUser_id->count() == 0) {
+
+            $role = Role::findOrFail($request->id)->delete();
+            toastr()->error('messages Delete role');
+            return redirect()->route('all.role');
+        } else {
+
+            toastr()->error('There is a relationship with another table User');
+            return redirect()->route('all.role');
+
+        }
     }
 }

@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\back\ClinicsController;
+use App\Http\Controllers\back\DoctorController;
+use App\Http\Controllers\back\NuersController;
 use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +32,10 @@ Route::get('/login',function (){
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
+Route::get('/home' ,function (){
+    return view('backend.index');
+});
+
 
 //Role
 Route::get('/all/role',[RoleController::class,'index'])->name('all.role');
@@ -53,6 +59,17 @@ Route::post('/update/user/{id}',[UserController::class,'update'])->name('update_
 Route::get('delete/user/{id}',[UserController::class,'destroy'])->name('delet_user');
 
 
+//nuers
+Route::get('/all/nuers',[NuersController::class,'index'])->name('all.nuers');
+Route::get('/create/nuers',[NuersController::class,'create'])->name('create.nuers');
+Route::post('/stror/nuers',[NuersController::class,'store'])->name('store.nuers');
+Route::get('/show/nuers/{id}',[NuersController::class,'show'])->name('show.nuers');
+Route::get('/Retreat/nuers',[NuersController::class,'Retreat'])->name('Retreat.nuers');
+Route::get('/edit/nuers/{id}',[NuersController::class,'edit'])->name('edit.nuers');
+Route::post('/update/nuers/{id}',[NuersController::class,'update'])->name('update.nuers');
+Route::get('/delete/nuers/{id}',[NuersController::class,'destroy'])->name('delet.nuers');
+
+
 //clinics
 Route::get('/all/Clincs',[ClinicsController::class,'index'])->name('all.Clincs');
 Route::get('/create/Clincs',[ClinicsController::class,'create'])->name('create.clincs');
@@ -61,4 +78,15 @@ Route::get('/show/Clincs/{id}',[ClinicsController::class,'show'])->name('show.cl
 Route::get('/Retreat/Clincs',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');
 Route::get('/edit/Clincs/{id}',[ClinicsController::class,'edit'])->name('edit.Clincs');
 Route::post('/update/Clincs/{id}',[ClinicsController::class,'update'])->name('update.Clincs');
-Route::get('delete/Clincs/{id}',[ClinicsController::class,'destroy'])->name('delet.Clincs');
+Route::get('/delete/Clincs/{id}',[ClinicsController::class,'destroy'])->name('delete.Clincs');
+
+
+//Doctoer
+Route::get('/all/doctoer',[DoctorController::class,'index'])->name('all_doctoer');
+Route::get('/create/doctoer',[DoctorController::class,'create'])->name('create.doctoer');
+Route::post('/stror/doctoer',[DoctorController::class,'store'])->name('store.doctoer');
+Route::get('/show/doctoer/{id}',[DoctorController::class,'show'])->name('show.doctoer');
+Route::get('/Retreat/doctoer',[DoctorController::class,'Retreat'])->name('Retreat.doctoer');
+Route::get('/edit/doctoer/{id}',[DoctorController::class,'edit'])->name('edit.doctoer');
+Route::post('/update/doctoer/{id}',[DoctorController::class,'update'])->name('update.doctoer');
+Route::get('/delete/doctoer/{id}',[DoctorController::class,'destroy'])->name('delete.doctoer');

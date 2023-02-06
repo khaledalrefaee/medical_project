@@ -13,9 +13,10 @@ class Doctor extends Model
         'name' , 'clinic_id'
     ];
 
-    public function clinics(){
+    public function clinic(){
         return $this->belongsTo(Clinics::class);
     }
+
     public function detail(){
         return $this->hasOne(Detail::class);
     }

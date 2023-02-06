@@ -4,6 +4,7 @@ namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
 use App\Models\Clinics;
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class ClinicsController extends Controller
@@ -67,10 +68,19 @@ class ClinicsController extends Controller
 
     public function destroy(Request $request)
     {
-        $clinic = Clinics::findOrfail($request->id);
-        $clinic->delete();
-        toastr()->error('you are delete clinic');
-        return redirect()->route('all.Clincs');
+        $MyDoter_id = Doctor::where('clinic_id', $request->id)->pluck('clinic_id');
+
+        if ($MyDoter_id->count() == 0) {
+
+            $clinic = Clinics::findOrFail($request->id)->delete();
+            toastr()->error('messages Delete Clinic');
+            return redirect()->route('all.Clincs');
+        } else {
+
+            toastr()->error('There is a relationship with another table Doctoer');
+            return redirect()->route('all.Clincs');
+
+        }
     }
 
 }

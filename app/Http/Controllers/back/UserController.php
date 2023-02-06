@@ -11,7 +11,8 @@ use Yoeunes\Toastr\Facades\Toastr;
 class UserController extends Controller
 {
     public function index(){
-        $Users = User::all();
+
+        $Users = User::paginate(10);
         return view('backend.users.all_users',compact('Users'));
 
     }

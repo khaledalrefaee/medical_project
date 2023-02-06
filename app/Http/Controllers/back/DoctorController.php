@@ -10,68 +10,69 @@ use Illuminate\Http\Request;
 class DoctorController extends Controller
 {
     public function index(){
-        $clinics = Clinics::all();
-        $doctoer = Doctor::all();
-        return view('backend.Doctoer.all_doctoer',compact('clinics'));
+        $doctoers = Doctor::all();
+        return view('backend.Doctoer.all_doctoer',compact('doctoers'));
     }
 
     public function create(){
-        return view('backend.clinics.create');
+        $clinic = Clinics::all();
+        return view('backend.Doctoer.create',compact('clinic'));
     }
 
     public function store(Request $request){
 
         $request->validate([
-            'name'      =>   'required',
-            'description'   => 'required',
+            'clinic_id'      =>     'required',
+            'name'           =>     'required',
         ]);
-        Clinics::create([
-            'name'              => $request->name,
-            'description'      => $request->description,
+        Doctor::create([
+            'clinic_id'         =>      $request->clinic_id ,
+            'name'              =>      $request->name,
         ]);
 
         toastr()->success('success');
-        return redirect()->route('all.Clincs');
+        return redirect()->route('all_doctoer');
     }
 
     public function show($id){
-        $clinic = Clinics::findOrFail($id);
-        toastr()->info('You are show User');
-        return view('backend.clinics.show',compact('clinic'));
+        $doctoer = Doctor::findOrFail($id);
+        toastr()->info('You are show Doctoer');
+        return view('backend.Doctoer.show',compact('doctoer'));
     }
 
     public function Retreat(){
-        return redirect()->route('all.Clincs');
+        return redirect()->route('all_doctoer');
     }
 
     public function edit($id){
 
-        $clinic = Clinics::findorFail($id);
-        return view('backend.clinics.edit',compact('clinic'));
+        $clinc = Clinics::all();
+        $doctoer = Doctor::findorFail($id);
+        return view('backend.Doctoer.edit',compact('doctoer','clinc'));
     }
 
 
     public function update(Request $request,$id){
-        $clinic =Clinics::findOrFail($id);
+        $doctoer =Doctor::findOrFail($id);
         $request->validate([
-            'name'      =>   'required',
-            'description'   => 'required',
+            'clinic_id'      =>           'required',
+            'name'           =>           'required',
         ]);
-        $clinic->update([
-            'name'              =>  $request->name,
-            'description'       =>   $request->description,
+        $doctoer->update([
+            'clinic_id'         =>      $request->clinic_id ,
+            'name'              =>       $request->name,
         ]);
 
-        toastr()->warning('You are edit Clinics');
-        return redirect()->route('all.Clincs');
+        toastr()->warning('You are edit Doctoer');
+        return redirect()->route('all_doctoer');
     }
 
 
     public function destroy(Request $request)
     {
-        $clinic = Clinics::findOrfail($request->id);
-        $clinic->delete();
-        toastr()->error('you are delete clinic');
-        return redirect()->route('all.Clincs');
+        $doctoer = Doctor::findOrfail($request->id);
+        $doctoer->delete();
+        toastr()->error('you are delete Doctoer');
+        return redirect()->route('all_doctoer');
     }
 }

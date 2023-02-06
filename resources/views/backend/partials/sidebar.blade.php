@@ -29,9 +29,22 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{route('all.nuers')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Nuers</p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{route('all.Clincs')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>clinics</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('all_doctoer')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Doctoer</p>
                         </a>
                     </li>
 

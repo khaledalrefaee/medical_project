@@ -39,7 +39,7 @@
                                                     <td style="">
 
 
-                                                        <a href="{{route('delet.Clincs'  , $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                        <a href="{{route('delete.Clincs'  , $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                         <a href="{{route('edit.Clincs', $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                         <a href="{{route('show.clincs' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
                                                         &nbsp;

@@ -12,7 +12,7 @@ class ProfileContoller extends Controller
     {
         $user = User::findOrFail($id);
 
-        return response($user ,200);
+        return response([$user] ,200);
 
     }
 }

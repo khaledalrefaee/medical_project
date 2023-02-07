@@ -29,10 +29,12 @@
                                             </thead>
                                             <tbody>
 
-                                            @foreach($doctoers as $doctoer)
+                                            @foreach( $doctors as $doctoer)
                                                 <tr class="odd">
                                                     <td>{{$doctoer->clinic->name}}</td>
                                                     <td>{{$doctoer->name}}</td>
+
+
 
 
 

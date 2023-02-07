@@ -9,9 +9,9 @@ class Detail extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['doctors_id','specialization','phone','email'];
+    protected $fillable = ['doctor_id','specialization','phone','email'];
 
-    public function doctoer(){
+    public function doctor(){
         return $this->belongsTo(Doctor::class);
     }
 

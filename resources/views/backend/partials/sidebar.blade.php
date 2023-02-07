@@ -47,7 +47,12 @@
                             <p>Doctoer</p>
                         </a>
                     </li>
-
+                    <li class="nav-item">
+                        <a href="{{route('all_Details')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Details Doctoer</p>
+                        </a>
+                    </li>
 
 
 

@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class DoctorController extends Controller
 {
     public function index(){
-        $doctoers = Doctor::all();
-        return view('backend.Doctoer.all_doctoer',compact('doctoers'));
+        $doctors = Doctor::all();
+        return view('backend.Doctoer.all_doctoer',compact('doctors'));
     }
 
     public function create(){

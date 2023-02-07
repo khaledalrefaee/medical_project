@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Clinics;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Yoeunes\Toastr\Facades\Toastr;
+
 
 class ClinicsController extends Controller
 {
@@ -21,21 +23,21 @@ class ClinicsController extends Controller
     public function store(Request $request){
 
          $request->validate([
-                'name'      =>   'required',
-                'description'   => 'required',
+                'name'      =>   'required|unique:Clinics',
+
         ]);
         Clinics::create([
             'name'              => $request->name,
              'description'      => $request->description,
         ]);
 
-        toastr()->success('success');
+        toastr()->success('success create clince','success');
         return redirect()->route('all.Clincs');
     }
 
     public function show($id){
         $clinic = Clinics::findOrFail($id);
-        toastr()->info('You are show User');
+        toastr()->info('you are show clince','show');
         return view('backend.clinics.show',compact('clinic'));
     }
 
@@ -54,14 +56,13 @@ class ClinicsController extends Controller
         $clinic =Clinics::findOrFail($id);
         $request->validate([
             'name'      =>   'required',
-            'description'   => 'required',
         ]);
         $clinic->update([
             'name'              =>  $request->name,
             'description'       =>   $request->description,
         ]);
 
-        toastr()->warning('You are edit Clinics');
+        toastr()->warning('You are edit Clinics','worning');
         return redirect()->route('all.Clincs');
     }
 
@@ -73,14 +74,15 @@ class ClinicsController extends Controller
         if ($MyDoter_id->count() == 0) {
 
             $clinic = Clinics::findOrFail($request->id)->delete();
-            toastr()->error('messages Delete Clinic');
+            toastr ()->error('messages Delete Clinic','success');
             return redirect()->route('all.Clincs');
         } else {
 
-            toastr()->error('There is a relationship with another table Doctoer');
+            toastr()->error('There is a relationship with another table Doctoer' ,'worning');
             return redirect()->route('all.Clincs');
 
         }
+
     }
 
 }

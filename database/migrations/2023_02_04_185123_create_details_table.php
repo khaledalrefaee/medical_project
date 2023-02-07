@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('doctors_id')->constrained('doctors')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('doctor_id')->constrained('doctors')->cascadeOnUpdate()->cascadeOnDelete();
             $table->text('specialization');
             $table->bigInteger('phone');
             $table->string('email');

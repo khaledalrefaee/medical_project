@@ -12,12 +12,13 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clincs</label>
+                        <label for="exampleInputEmail1">name docter</label>
                         <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
                     </div>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
+
 
                     <select name="clinic_id" id="inputStatus" class="form-control custom-select" >
                         <option selected="" disabled=""   >Clinic</option>

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\back\ClinicsController;
+use App\Http\Controllers\back\DetilsControler;
 use App\Http\Controllers\back\DoctorController;
 use App\Http\Controllers\back\NuersController;
 use App\Http\Controllers\back\RoleController;
@@ -90,3 +91,8 @@ Route::get('/Retreat/doctoer',[DoctorController::class,'Retreat'])->name('Retrea
 Route::get('/edit/doctoer/{id}',[DoctorController::class,'edit'])->name('edit.doctoer');
 Route::post('/update/doctoer/{id}',[DoctorController::class,'update'])->name('update.doctoer');
 Route::get('/delete/doctoer/{id}',[DoctorController::class,'destroy'])->name('delete.doctoer');
+
+//Details_Doctoer
+Route::get('/all/Details',[DetilsControler::class,'index'])->name('all_Details');
+Route::get('/create/details',[DetilsControler::class,'create'])->name('create.details');
+Route::post('/stror/details',[DetilsControler::class,'store'])->name('store.details');

@@ -110,8 +110,21 @@
 <script src="{{asset('back/dist/js/pages/dashboard2.js')}}"></script>
 <script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+<script>
+    function CheckAll(className, elem) {
+        var elements = document.getElementsByClassName(className);
+        var l = elements.length;
+        if (elem.checked) {
+            for (var i = 0; i < l; i++) {
+                elements[i].checked = true;
+            }
+        } else {
+            for (var i = 0; i < l; i++) {
+                elements[i].checked = false;
+            }
+        }
+    }
+</script>
 </body>
 </html>

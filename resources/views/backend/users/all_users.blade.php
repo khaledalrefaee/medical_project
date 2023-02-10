@@ -27,8 +27,35 @@
 
 
 
+                                        <div class="modal fade" id="delete_all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                                             aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                                                            {{ trans('My_Classes_trans.delete_class') }}
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
 
+                                                    <form action="" method="POST">
+                                                        {{ csrf_field() }}
+                                                        <div class="modal-body">
+                                                            {{ trans('My_Classes_trans.Warning_Grade') }}
+                                                            <input class="text" type="hidden" id="delete_all_id" name="delete_all_id" value=''>
+                                                        </div>
 
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
+                                                            <button type="submit" class="btn btn-danger">{{ trans('My_Classes_trans.submit') }}</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <a href="{{route('create_user')}}"> <button class="btn btn-primary">create User</button></a>
@@ -52,8 +79,9 @@
                                             @foreach($Users as $user)
                                                 <tr class="odd">
                                                     <?php $i++; ?>
-                                                        <td><input type="checkbox"  value="{{$user->id }}" class="box1" ></td>
-                                                    <td>{{ $i }}</td>
+                                                        <td> <input type="checkbox"   value="{{$user->id }}" class="box1" id="checkbox">
+                                                        </td>
+                                                        <td>{{ $i }}</td>
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td style="">{{$user->phone}}</td>
@@ -71,14 +99,14 @@
                                                 </tr>
 
                                             @endforeach
+
                                             </tbody>
 
                                         </table>
 
+
+
                                         {{$Users ->links('pagination::bootstrap-4')}}
-
-
-
 
 
                         </div>
@@ -97,20 +125,9 @@
         <!-- /.container-fluid -->
     </section>
 
-    <script>
-        function CheckAll(className, elem) {
-            var elements = document.getElementsByClassName(className);
-            var l = elements.length;
-            if (elem.checked) {
-                for (var i = 0; i < l; i++) {
-                    elements[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < l; i++) {
-                    elements[i].checked = false;
-                }
-            }
-        }
-    </script>
+
 
 @endsection
+
+
+

@@ -15,7 +15,7 @@
 
                     <div class="input-group mb-3">
                         <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
-                            <option selected="" disabled=""   > Docter </option>
+                            <option selected="" disabled="" > Docter </option>
                             @foreach($Docter as $item)
                                 <option value="{{$item->id}}">{{$item->name}} </option>
                             @endforeach

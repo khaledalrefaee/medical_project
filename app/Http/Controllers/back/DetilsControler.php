@@ -14,10 +14,12 @@ class DetilsControler extends Controller
         $details = Detail::all();
         return view ('backend.Detail.allDetail',compact('details'));
     }
-    public function create(){
-        $Docter = Doctor::with(['detail'])->get();
+
+    public function create(Request $request){
+        $Docter = Doctor::get();
         return view('backend.Detail.create',compact('Docter'));
     }
+
     public function store(Request $request){
         $request->validate([
              'doctor_id'                 =>     'required',

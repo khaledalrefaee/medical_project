@@ -16,6 +16,24 @@
                         <div class="card-header">
                             <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
                         </div>
+                        <div class="container-fluid">
+                            <h2 class="text-center display-4">Search</h2>
+                            <div class="row">
+                                <div class="col-md-8 offset-md-2">
+                                    <form action="{{url('/doctoer/search/{name}')}}" methood="get">
+                                        @csrf
+                                        <div class="input-group">
+                                            <input type="search" class="form-control form-control-lg" placeholder="Type your keywords here" name="name">
+                                            <div class="input-group-append">
+                                                <button type="submit" class="btn btn-lg btn-default">
+                                                    <i class="fa fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
@@ -29,7 +47,15 @@
                                             </thead>
                                             <tbody>
 
-                                            @foreach( $doctors as $doctoer)
+                                            @if (isset($details))
+
+                                                <?php $doctors = $details; ?>
+                                            @else
+
+                                                <?php   $doctors = $doctorss; ?>
+                                            @endif
+
+                                            @foreach( $doctorss as $doctoer)
                                                 <tr class="odd">
                                                     <td>{{$doctoer->clinic->name}}</td>
                                                     <td>{{$doctoer->name}}</td>

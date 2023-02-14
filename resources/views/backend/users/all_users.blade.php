@@ -88,7 +88,7 @@
                                                         <td style="">{{$user->gender}}</td>
                                                         <td style="">{{$user->address}}</td>
                                                         <td style="">{{$user->birthday}}</td>
-                                                        <td style="">{{$user->Role->name}}</td>
+                                                        <td style="">{{$user->Role->name ??'nonn'}} </td>
                                                     <td style="">
 
                                                         <a href="{{route('delet_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>

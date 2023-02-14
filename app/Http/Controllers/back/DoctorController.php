@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class DoctorController extends Controller
 {
     public function index(){
-        $doctors = Doctor::all();
-        return view('backend.Doctoer.all_doctoer',compact('doctors'));
+        $doctorss = Doctor::all();
+        return view('backend.Doctoer.all_doctoer',compact('doctorss'));
     }
 
     public function create(){
@@ -74,5 +74,12 @@ class DoctorController extends Controller
         $doctoer->delete();
         toastr()->error('you are delete Doctoer');
         return redirect()->route('all_doctoer');
+    }
+
+
+    public function search($name){
+        return 'ww';
+//        $search= Doctor::where('name','like','%'.$name.'%');
+//        return view('backend.Doctoer.all_doctoer',compact('search'));
     }
 }

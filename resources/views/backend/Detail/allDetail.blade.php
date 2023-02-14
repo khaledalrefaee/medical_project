@@ -8,6 +8,7 @@
         </div><!-- /.container-fluid -->
     </div>
 
+
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -24,6 +25,17 @@
 
                             </div>
                         </div>
+
+                        <form action="{{route('Filter_Doctoer')}}" method="POST">
+                            @csrf
+                            <select class="selectpicker" data-style="btn-info" name="doctor_id" required
+                                    onchange="this.form.submit()">
+                                <option value="" selected disabled>Search By Doctoer</option>
+                                @foreach ($Doctoers as $Doctoer)
+                                    <option value="{{ $Doctoer->id }}">{{ $Doctoer->name }}</option>
+                                @endforeach
+                            </select>
+                        </form>
                         <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
                                     <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                         <thead>
@@ -35,6 +47,17 @@
                                             <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
                                         </thead>
                                         <tbody>
+
+                                            @if (isset($details))
+
+                                            <?php $details = $details; ?>
+                                        @else
+
+                                            <?php   $details = $details; ?>
+                                        @endif
+
+
+
 
                                         @foreach($details as $detail)
                                             <tr class="odd">

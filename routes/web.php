@@ -91,8 +91,11 @@ Route::get('/Retreat/doctoer',[DoctorController::class,'Retreat'])->name('Retrea
 Route::get('/edit/doctoer/{id}',[DoctorController::class,'edit'])->name('edit.doctoer');
 Route::post('/update/doctoer/{id}',[DoctorController::class,'update'])->name('update.doctoer');
 Route::get('/delete/doctoer/{id}',[DoctorController::class,'destroy'])->name('delete.doctoer');
+Route::get('/doctoer/search/{name}',[DoctorController::class,'search'])->name('search{name}');
+
 
 //Details_Doctoer
 Route::get('/all/Details',[DetilsControler::class,'index'])->name('all_Details');
 Route::get('/create/details',[DetilsControler::class,'create'])->name('create.details');
 Route::post('/stror/details',[DetilsControler::class,'store'])->name('store.details');
+Route::post('/Filter/Doctoer',[DetilsControler::class,'Filter_Doctoer'])->name('Filter_Doctoer');

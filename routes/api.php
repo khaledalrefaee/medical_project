@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NuersController;
 use App\Http\Controllers\Api\PharmiseController;
 use App\Http\Controllers\Api\ProfileContoller;
+use App\Http\Controllers\Api\TimeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,8 +31,9 @@ Route::get('/nuers',[NuersController::class,'index']);
 
 Route::get('/pharmise',[PharmiseController::class,'index']);
 
+Route::get('/time',[TimeController::class,'index']);
 
-Route::get('/profile/{id}', [ProfileContoller::class,'index']);
+
 
 Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 
@@ -39,4 +41,5 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout',[AuthController::class,'logout']);
 
+    Route::get('/profile', [ProfileContoller::class,'index']);
 });

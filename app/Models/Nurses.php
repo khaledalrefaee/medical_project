@@ -9,5 +9,5 @@ class Nurses extends Model
 {
     use HasFactory;
 
-    protected $fillable =['name','phone','description'];
+    protected $fillable =['name','phone','description','image'];
 }

@@ -31,6 +31,7 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone nuers</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">description</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">image</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
                                             </thead>
                                             <tbody>
@@ -40,6 +41,7 @@
                                                     <td>{{$nuer->name}}</td>
                                                     <td>{{$nuer->phone}}</td>
                                                     <td>{{$nuer->description}}</td>
+                                                    <td>  <img src="{{asset($nuer->image)}}" style="width: 100px;height: 100px"></td>
 
 
                                                     <td style="">

@@ -8,7 +8,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form id="quickForm" novalidate="novalidate" action="{{route('store.nuers')}}" method="POST">
+            <form id="quickForm" novalidate="novalidate" action="{{route('store.nuers')}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -37,9 +37,19 @@
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="form-group mb-0">
-
-                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">image book</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input  type="file" id="image" name="image"  value="{{ old('image') }}" class="@error('image') is-invalid @enderror">
+                                @error('image')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+{{--                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>--}}
+                            <div class="input-group-append">
+                                <span class="input-group-text">Upload</span>
+                            </div>
+                        </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use App\Models\Nurses;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class NuersController extends Controller
 {
@@ -20,14 +21,21 @@ class NuersController extends Controller
     public function store(Request $request){
 
         $request->validate([
-            'name'      =>   'required',
-            'phone'     =>      'required',
+            'name'          =>   'required',
+            'phone'         =>      'required',
             'description'   => 'required',
+            'image'         => 'required|mimes:jpeg,jpg,png|unique:Nurses',
         ]);
-        Nurses::create([
+        $file = $request->file('image') ;
+        $name_gen=hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
+        Image::make ($file)->resize(100,100)->save('uploads/nuers_images'.$name_gen);
+        $save_url = 'uploads/nuers_images'.$name_gen;
+
+        Nurses::insertGetId([
             'name'              => $request->name,
             'phone'             =>$request ->phone,
             'description'      => $request->description,
+            'image'            =>  $save_url
         ]);
 
         toastr()->success('success');
@@ -54,26 +62,35 @@ class NuersController extends Controller
     public function update(Request $request,$id){
         $nuers =Nurses::findOrFail($id);
         $request->validate([
-            'name'      =>   'required',
-            'phone'     =>      'required',
-            'description'   => 'required',
+            'name'           =>   'required',
+            'phone'          =>      'required',
+            'description'    => 'required',
+            'image'          => 'required|mimes:jpeg,jpg,png|unique:Nurses',
         ]);
+        $file = $request->file('image') ;
+        $name_gen=hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
+        Image::make ($file)->resize(100,100)->save('uploads/nuers_images'.$name_gen);
+        $save_url = 'uploads/nuers_images'.$name_gen;
+
         $nuers->update([
-            'name'              =>  $request->name,
-            'phone'             =>$request ->phone,
-            'description'       =>   $request->description,
+            'name'              =>      $request->name,
+            'phone'             =>      $request ->phone,
+            'description'       =>      $request->description,
+            'image'             =>      $save_url,
         ]);
 
-        toastr()->warning('You are edit Clinics');
+        toastr()->warning('You are edit nuers');
         return redirect()->route('all.nuers');
     }
+
+
 
 
     public function destroy(Request $request)
     {
         $nuer = Nurses::findOrfail($request->id);
         $nuer->delete();
-        toastr()->error('you are delete clinic');
+        toastr()->error('you are delete nuers');
         return redirect()->route('all.nuers');
     }
 

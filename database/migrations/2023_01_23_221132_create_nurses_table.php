@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->bigInteger('phone');
             $table->string('description');
+            $table->string('image')->unique();
             $table->timestamps();
         });
     }

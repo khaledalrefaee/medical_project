@@ -22,7 +22,7 @@ class User extends Authenticatable
         'email',
         'password',
         'phone',
-        'gender',
+        'gender_id',
         'address',
         'birthday',
         'role_id',
@@ -52,5 +52,8 @@ class User extends Authenticatable
 
     public function role(){
         return $this->belongsTo(Role::class );
+    }
+    public function gender(){
+        return $this->belongsTo(Gender::class );
     }
 }

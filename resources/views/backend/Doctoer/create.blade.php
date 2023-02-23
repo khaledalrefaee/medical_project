@@ -21,12 +21,15 @@
 
 
                     <select name="clinic_id" id="inputStatus" class="form-control custom-select" >
-                        <option selected="" disabled=""   >Clinic</option>
+                        <option selected="" disabled="" >Clinic</option>
                         @foreach($clinic as $item)
                             <option value="{{$item->id}}">{{$item->name}} </option>
                         @endforeach
-
                     </select>
+                    @error('clinic_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
+
                     <div class="form-group mb-0">
 
                     </div>

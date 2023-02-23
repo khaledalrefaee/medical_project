@@ -85,7 +85,7 @@
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td style="">{{$user->phone}}</td>
-                                                        <td style="">{{$user->gender}}</td>
+                                                        <td style="">{{$user->gender->name}}</td>
                                                         <td style="">{{$user->address}}</td>
                                                         <td style="">{{$user->birthday}}</td>
                                                         <td style="">{{$user->Role->name ??'nonn'}} </td>

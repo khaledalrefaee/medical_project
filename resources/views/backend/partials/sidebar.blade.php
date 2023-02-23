@@ -53,8 +53,19 @@
                             <p>Details Doctoer</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('all.pharmese')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> pharmese </p>
+                        </a>
+                    </li>
 
-
+                    <li class="nav-item">
+                        <a href="{{url('add_User')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> user livewier </p>
+                        </a>
+                    </li>
 
 
                 </ul>

@@ -8,7 +8,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form id="quickForm" novalidate="novalidate" action="{{route('store.details')}}" method="POST">
+            <form id="quickForm" novalidate="novalidate" action="{{route('update.details', $detail->id)}}" method="POST">
                 @csrf
                 <div class="card-body">
 
@@ -22,14 +22,14 @@
                         </select>
 
                         @error('doctor_id')
-                        <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="alert alert-danger" >{{ $message }}</div>
                         @enderror
     
                         <div class="input-group-prepend">
                             <span class="input-group-text"><i class="fas fa-envelope"></i></span>
                         </div>
 
-                        <input type="email" class="form-control" name="email"  value="{{ old('email') }}" class="@error('email') is-invalid @enderror" placeholder="Email">
+                        <input type="email" class="form-control" name="email"   class="@error('email') is-invalid @enderror" placeholder="Email" value="{{$detail->email}}">
                         @error('email')
                         <div class="alert alert-danger">{{ $message }}
                             @enderror
@@ -41,7 +41,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text" >00963</span>
                         </div>
-                        <input type="number" class="form-control" name="phone"  value="{{ old('phone') }}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
+                        <input type="number" class="form-control" name="phone"   value="{{$detail->phone}}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
                     </div>
 
                     @error('phone')
@@ -51,7 +51,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">specialization</label>
-                        <input type="text" name="specialization" class="form-control" id="exampleInputPassword1"  value="{{ old('specialization') }}" class="@error('specialization') is-invalid @enderror" placeholder="specialization">
+                        <input type="text" name="specialization"  value="{{$detail->specialization}}"   class="form-control" id="exampleInputPassword1"  value="{{ old('specialization') }}" class="@error('specialization') is-invalid @enderror" placeholder="specialization">
                     </div>
                     @error('specialization')
                     <div class="alert alert-danger">{{ $message }}</div>

@@ -18,7 +18,7 @@ class ProfileContoller extends Controller
             'name' => $user->name,
             'email' => $user->email,
             'phone' => $user->phone,
-            'gender' => $user->gender,
+          //  'gender' => $user->gender,
             'address' => $user->address,
             'birthday' => $user->birthday,
 

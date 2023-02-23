@@ -3,35 +3,34 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDoctoer;
 use App\Models\Clinics;
 use App\Models\Doctor;
+use App\Repository\DoctoerRepositoryInterface;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
 {
+
+    protected $Doctoer;
+
+    public function __construct(DoctoerRepositoryInterface $Doctoer)
+    {
+        $this->Doctoer = $Doctoer;
+    }
+
+
+
     public function index(){
-        $doctorss = Doctor::all();
-        return view('backend.Doctoer.all_doctoer',compact('doctorss'));
+        return $this->Doctoer->get_all_Doctoer();
     }
 
     public function create(){
-        $clinic = Clinics::all();
-        return view('backend.Doctoer.create',compact('clinic'));
+     return $this->Doctoer->create_Doctoer();
     }
 
-    public function store(Request $request){
-
-        $request->validate([
-            'clinic_id'      =>     'required',
-            'name'           =>     'required',
-        ]);
-        Doctor::create([
-            'clinic_id'         =>      $request->clinic_id ,
-            'name'              =>      $request->name,
-        ]);
-
-        toastr()->success('success');
-        return redirect()->route('all_doctoer');
+    public function store(StoreDoctoer $request){
+        return $this->Doctoer->store_Doctoer($request);
     }
 
     public function show($id){
@@ -45,41 +44,19 @@ class DoctorController extends Controller
     }
 
     public function edit($id){
-
-        $clinc = Clinics::all();
-        $doctoer = Doctor::findorFail($id);
-        return view('backend.Doctoer.edit',compact('doctoer','clinc'));
+        return $this->Doctoer->edit_doctoer($id);
     }
 
 
-    public function update(Request $request,$id){
-        $doctoer =Doctor::findOrFail($id);
-        $request->validate([
-            'clinic_id'      =>           'required',
-            'name'           =>           'required',
-        ]);
-        $doctoer->update([
-            'clinic_id'         =>      $request->clinic_id ,
-            'name'              =>       $request->name,
-        ]);
-
-        toastr()->warning('You are edit Doctoer');
-        return redirect()->route('all_doctoer');
+    public function update(StoreDoctoer $request,$id){
+       return $this->Doctoer->update_doctoer($request);
     }
 
 
     public function destroy(Request $request)
     {
-        $doctoer = Doctor::findOrfail($request->id);
-        $doctoer->delete();
-        toastr()->error('you are delete Doctoer');
-        return redirect()->route('all_doctoer');
+        return $this->Doctoer->DeleteDoctoer($request);
     }
 
 
-    public function search($name){
-        return 'ww';
-//        $search= Doctor::where('name','like','%'.$name.'%');
-//        return view('backend.Doctoer.all_doctoer',compact('search'));
-    }
 }

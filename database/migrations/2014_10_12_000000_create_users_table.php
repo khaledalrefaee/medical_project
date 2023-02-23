@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->bigInteger('phone');
-            $table->string('gender');
+            $table->foreignId('gender_id')->constrained('genders')->onDelete('cascade')->onUpdate('cascade');
             $table->string('address');
             $table->date('birthday');
-            $table->foreignId('role_id')->constrained('roles')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->foreignId('role_id')->constrained('roles')->onDelete('cascade')->onUpdate('cascade');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

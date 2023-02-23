@@ -32,10 +32,10 @@ class NuersController extends Controller
         $save_url = 'uploads/nuers_images'.$name_gen;
 
         Nurses::insertGetId([
-            'name'              => $request->name,
-            'phone'             =>$request ->phone,
-            'description'      => $request->description,
-            'image'            =>  $save_url
+            'name'              =>       $request->name,
+            'phone'             =>       $request ->phone,
+            'description'       =>       $request->description,
+            'image'             =>       $save_url
         ]);
 
         toastr()->success('success');
@@ -62,10 +62,10 @@ class NuersController extends Controller
     public function update(Request $request,$id){
         $nuers =Nurses::findOrFail($id);
         $request->validate([
-            'name'           =>   'required',
-            'phone'          =>      'required',
-            'description'    => 'required',
-            'image'          => 'required|mimes:jpeg,jpg,png|unique:Nurses',
+            'name'           =>         'required',
+            'phone'          =>         'required',
+            'description'    =>         'required',
+            'image'          =>         'required|mimes:jpeg,jpg,png|unique:Nurses',
         ]);
         $file = $request->file('image') ;
         $name_gen=hexdec(uniqid()).'.'. $file->getClientOriginalExtension();

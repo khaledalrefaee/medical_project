@@ -22,20 +22,22 @@
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name nuers</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone nuers</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">description</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name doctoer</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">email nuers</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">specialization</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
                                             </thead>
                                             <tbody>
 
 
                                             <tr class="odd">
-                                                <td>{{$nuer->name}}</td>
-                                                <td>{{$nuer->phone}}</td>
-                                                <td>{{$nuer->description}}</td>
+                                                <td>{{$detail->doctor->name}}</td>
+                                                <td>{{$detail->email}}</td>
+                                                <td>{{$detail->specialization}}</td>
+                                                <td>{{$detail->phone}}</td>
                                                 <td style="">
-                                                    <a href="{{route('Retreat.nuers')}}"> <button class="btn btn-primary">Retreat</button></a>
+                                                    <a href="{{route('Retreat.details')}}"> <button class="btn btn-primary">Retreat</button></a>
 
 
                                                     &nbsp;
@@ -50,10 +52,11 @@
                                             </tfoot>
                                             <br>
                                             <div></div>
-                                            <a href="">   <button type="button" class="btn btn btn-primary">create</button></a>
+                                           
 
 
-                                        </table>                        </div>
+                                        </table>
+                        </div>
                         <!-- /.card-body -->
                     </div>
                     <!-- /.card -->

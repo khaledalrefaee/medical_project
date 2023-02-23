@@ -5,6 +5,7 @@ use App\Http\Controllers\back\ClinicsController;
 use App\Http\Controllers\back\DetilsControler;
 use App\Http\Controllers\back\DoctorController;
 use App\Http\Controllers\back\NuersController;
+use App\Http\Controllers\back\PharmieseController;
 use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
 use Illuminate\Support\Facades\Route;
@@ -98,4 +99,21 @@ Route::get('/doctoer/search/{name}',[DoctorController::class,'search'])->name('s
 Route::get('/all/Details',[DetilsControler::class,'index'])->name('all_Details');
 Route::get('/create/details',[DetilsControler::class,'create'])->name('create.details');
 Route::post('/stror/details',[DetilsControler::class,'store'])->name('store.details');
+Route::get('/show/details/{id}',[DetilsControler::class,'show'])->name('show.details');
+Route::get('/Retreat/details',[DetilsControler::class,'Retreat'])->name('Retreat.details');
+Route::get('/edit/Details/{id}',[DetilsControler::class,'edit'])->name('edit.details');
+Route::post('/update/Details/{id}',[DetilsControler::class,'update'])->name('update.details');
+Route::get('/delete/Details/{id}',[DetilsControler::class,'destroy'])->name('delete.details');
 Route::post('/Filter/Doctoer',[DetilsControler::class,'Filter_Doctoer'])->name('Filter_Doctoer');
+
+//pharmese
+Route::get('all/pharmese',[PharmieseController::class,'index'])->name('all.pharmese');
+Route::get('/create/pharmese',[PharmieseController::class,'create'])->name('create.pharmese');
+Route::post('/stror/pharmese',[PharmieseController::class,'store'])->name('store.pharmese');
+Route::get('/edit/pharmese/{id}',[PharmieseController::class,'edit'])->name('edit.pharmese');
+Route::post('/update/pharmese/{id}',[PharmieseController::class,'update'])->name('update.pharmese');
+Route::get('/delete/pharmese/{id}',[PharmieseController::class,'destroy'])->name('delete.pharmese');
+
+
+//
+Route::view('add_User','livewire.Show_Form');

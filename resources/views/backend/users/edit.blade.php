@@ -11,15 +11,7 @@
             </div>
             <br>
 
-            @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
             <div class="card-body">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
@@ -67,13 +59,16 @@
                     @enderror
                 </div>
 
-                <select name="gender" id="inputStatus" class="form-control custom-select" value="{{$user->gender}}">
-                    <option selected="" disabled=""   >gender</option>
-
-                    <option  value="Male">Male</option>
-                    <option  value="female">female</option>
+                <select name="gender_id" id="inputStatus" class="form-control custom-select" >
+                    <option selected="" disabled="" >gender </option>
+                    @foreach($gender as $item)
+                        <option value="{{$item->id}}">{{$item->name}} </option>
+                    @endforeach
 
                 </select>
+                @error('gender_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <br>
                 <br>
@@ -103,6 +98,9 @@
                         <option value="{{$item->id}}">{{$item->name}} </option>
                     @endforeach
                 </select>
+                @error('role_id')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <br>
                 <br>

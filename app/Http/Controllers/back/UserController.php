@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Models\Gender;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -18,7 +19,8 @@ class UserController extends Controller
     }
     public function create(){
         $role=Role::all();
-        return view('backend.users.create',compact('role'));
+        $gender=Gender::all();
+        return view('backend.users.create',compact('role','gender'));
     }
 
     public  function store(Request $request){
@@ -28,7 +30,7 @@ class UserController extends Controller
                 'email'              =>  'required|string|unique:Users',
                 'password'           =>  'required',
                 'phone'              =>  'required',
-                'gender'             =>  'required|in:Male,female',
+                'gender_id'             =>  'required',
                 'address'            =>  'required',
                 'birthday'           =>  'required',
                 'role_id'            =>  'required',
@@ -38,7 +40,7 @@ class UserController extends Controller
             'email'             =>  $request->email,
             'password'          => bcrypt( $request->password),
             'phone'             =>  $request->phone,
-            'gender'            =>  $request->gender,
+            'gender_id'         =>  $request->gender_id,
             'address'           =>  $request->address,
             'birthday'          =>  $request->birthday,
             'role_id'           =>  $request->role_id,
@@ -64,7 +66,8 @@ class UserController extends Controller
     public function edit($id){
         $user = User::findOrFail($id);
         $role=Role::all();
-        return view('backend.users.edit', compact('user','role'));
+        $gender=Gender::all();
+        return view('backend.users.edit', compact('user','role','gender'));
 
     }
 
@@ -72,10 +75,10 @@ class UserController extends Controller
         $user =User::findOrFail($id);
         $validatedData =$request->validate([
             'name'               =>  'required',
-            'email'              =>  'required|string|unique:Users',
+            'email'              =>  'required|string',
             'password'           =>  'required',
             'phone'              =>  'required',
-            'gender'             =>  'required|in:Male,female',
+            'gender_id'             =>  'required',
             'address'            =>  'required',
             'age'                =>  'required',
             'role_id'          =>  'required',

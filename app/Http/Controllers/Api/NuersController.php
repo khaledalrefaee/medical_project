@@ -14,10 +14,11 @@ class NuersController extends Controller
         return response($nuers ,200);
     }
 
+
+
     public function doctoer(){
         $doctors = Doctor::with(['detail', 'clinic'])->get();
         return response($doctors ,200);
-
 
     }
 

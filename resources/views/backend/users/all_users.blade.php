@@ -1,5 +1,8 @@
 @extends('backend.index')
 @section('content')
+
+
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -57,7 +60,7 @@
                                             </div>
                                         </div>
 
-                                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                        <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <a href="{{route('create_user')}}"> <button class="btn btn-primary">create User</button></a>
                                             <thead>
                                             <tr>
@@ -66,9 +69,6 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">email</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">phone</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">gender</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">address</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">birthday</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">Role</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
                                             </thead>
@@ -81,14 +81,11 @@
                                                     <?php $i++; ?>
                                                         <td> <input type="checkbox"   value="{{$user->id }}" class="box1" id="checkbox">
                                                         </td>
-                                                        <td>{{ $i }}</td>
+                                                    <td>{{ $i }}</td>
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td style="">{{$user->phone}}</td>
-                                                        <td style="">{{$user->gender->name}}</td>
-                                                        <td style="">{{$user->address}}</td>
-                                                        <td style="">{{$user->birthday}}</td>
-                                                        <td style="">{{$user->Role->name ??'nonn'}} </td>
+                                                    <td style="">{{$user->Role->name ??'nonn'}} </td>
                                                     <td style="">
 
                                                         <a href="{{route('delet_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
@@ -127,6 +124,11 @@
 
 
 
+    <script>
+        $(document).ready(function() {
+            $('#myTable').DataTable();
+        });
+    </script>
 @endsection
 
 

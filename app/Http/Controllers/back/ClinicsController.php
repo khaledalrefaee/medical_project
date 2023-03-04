@@ -78,7 +78,7 @@ class ClinicsController extends Controller
             return redirect()->route('all.Clincs');
         } else {
 
-            toastr()->error('There is a relationship with another table Doctoer' ,'worning');
+            toastr()->error('There is a relationship with another table Doctor' ,'worning');
             return redirect()->route('all.Clincs');
 
         }

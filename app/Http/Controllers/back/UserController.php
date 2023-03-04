@@ -7,7 +7,10 @@ use App\Models\Gender;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 use Yoeunes\Toastr\Facades\Toastr;
+use Illuminate\Encryption\Encrypter;
+
 
 class UserController extends Controller
 {
@@ -35,9 +38,11 @@ class UserController extends Controller
                 'birthday'           =>  'required',
                 'role_id'            =>  'required',
             ]);
+
         User::create([
             'name'              =>  $request->name,
             'email'             =>  $request->email,
+
             'password'          => bcrypt( $request->password),
             'phone'             =>  $request->phone,
             'gender_id'         =>  $request->gender_id,
@@ -49,8 +54,9 @@ class UserController extends Controller
         return redirect()->route('all_user');
 
     }
-    public function show($id){
+    public function show($id, ){
         $user = User::findOrFail($id);
+
 
         toastr()->info('You are show User');
         return view('backend.users.show',compact('user'));
@@ -67,7 +73,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $role=Role::all();
         $gender=Gender::all();
-        return view('backend.users.edit', compact('user','role','gender'));
+
+
+        return view('backend.users.edit',
+            compact('user','role','gender'));
 
     }
 

@@ -42,21 +42,22 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="{{route('all_doctoer')}}" class="nav-link">
+                        <a href="{{route('all_doctor')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Doctoer</p>
+                            <p>Doctor</p>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{route('all_Details')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Details Doctoer</p>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{route('all.pharmese')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p> pharmese </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> Reservations </p>
                         </a>
                     </li>
 
@@ -66,6 +67,8 @@
                             <p> user livewier </p>
                         </a>
                     </li>
+
+
 
 
                 </ul>

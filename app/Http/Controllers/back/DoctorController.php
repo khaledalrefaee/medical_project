@@ -5,6 +5,7 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDoctoer;
 use App\Models\Clinics;
+use App\Models\Detail;
 use App\Models\Doctor;
 use App\Repository\DoctoerRepositoryInterface;
 use Illuminate\Http\Request;
@@ -34,13 +35,11 @@ class DoctorController extends Controller
     }
 
     public function show($id){
-        $doctoer = Doctor::findOrFail($id);
-        toastr()->info('You are show Doctoer');
-        return view('backend.Doctoer.show',compact('doctoer'));
+        return $this->Doctoer->show($id);
     }
 
     public function Retreat(){
-        return redirect()->route('all_doctoer');
+        return redirect()->route('all_doctor');
     }
 
     public function edit($id){
@@ -49,13 +48,13 @@ class DoctorController extends Controller
 
 
     public function update(StoreDoctoer $request,$id){
-       return $this->Doctoer->update_doctoer($request);
+       return $this->Doctoer->update_doctoer($request ,$id);
     }
 
 
     public function destroy(Request $request)
     {
-        return $this->Doctoer->DeleteDoctoer($request);
+        return $this->Doctoer->delete($request);
     }
 
 

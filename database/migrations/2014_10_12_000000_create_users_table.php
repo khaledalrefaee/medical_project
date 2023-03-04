@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\ForeignKeyDefinition;
 
 return new class extends Migration
 {
@@ -18,7 +19,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->bigInteger('phone');
-            $table->foreignId('gender_id')->constrained('genders')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('gender_id')->references('id')->on('genders')->onDelete('cascade');
             $table->string('address');
             $table->date('birthday');
             $table->foreignId('role_id')->constrained('roles')->onDelete('cascade')->onUpdate('cascade');

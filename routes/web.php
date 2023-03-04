@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
+
 use App\Http\Controllers\back\ClinicsController;
 use App\Http\Controllers\back\DetilsControler;
 use App\Http\Controllers\back\DoctorController;
 use App\Http\Controllers\back\NuersController;
 use App\Http\Controllers\back\PharmieseController;
+use App\Http\Controllers\back\ReservationsController;
 use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
+use App\Http\Controllers\WatingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,15 +26,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/login',function (){
-    return view('login');
-})->name('view_login');
 
 
-//login and logout
 
-Route::post('/login',[AuthController::class,'login'])->name('login');
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+
 
 Route::get('/home' ,function (){
     return view('backend.index');
@@ -83,16 +80,17 @@ Route::post('/update/Clincs/{id}',[ClinicsController::class,'update'])->name('up
 Route::get('/delete/Clincs/{id}',[ClinicsController::class,'destroy'])->name('delete.Clincs');
 
 
-//Doctoer
-Route::get('/all/doctoer',[DoctorController::class,'index'])->name('all_doctoer');
-Route::get('/create/doctoer',[DoctorController::class,'create'])->name('create.doctoer');
-Route::post('/stror/doctoer',[DoctorController::class,'store'])->name('store.doctoer');
-Route::get('/show/doctoer/{id}',[DoctorController::class,'show'])->name('show.doctoer');
-Route::get('/Retreat/doctoer',[DoctorController::class,'Retreat'])->name('Retreat.doctoer');
-Route::get('/edit/doctoer/{id}',[DoctorController::class,'edit'])->name('edit.doctoer');
-Route::post('/update/doctoer/{id}',[DoctorController::class,'update'])->name('update.doctoer');
-Route::get('/delete/doctoer/{id}',[DoctorController::class,'destroy'])->name('delete.doctoer');
-Route::get('/doctoer/search/{name}',[DoctorController::class,'search'])->name('search{name}');
+//Doctor
+
+Route::get('/all/doctor',[DoctorController::class,'index'])->name('all_doctor');
+Route::get('/create/doctor',[DoctorController::class,'create'])->name('create.doctor');
+Route::post('/store/doctor',[DoctorController::class,'store'])->name('store.doctor');
+Route::get('/show/doctor/{id}',[DoctorController::class,'show'])->name('show.doctor');
+Route::get('/Retreat/doctor',[DoctorController::class,'Retreat'])->name('Retreat.doctor');
+Route::get('/edit/doctor/{id}',[DoctorController::class,'edit'])->name('edit.doctor');
+Route::post('/update/doctor/{id}',[DoctorController::class,'update'])->name('update.doctor');
+Route::get('/delete/doctor/{id}',[DoctorController::class,'destroy'])->name('delete.doctor');
+
 
 
 //Details_Doctoer
@@ -104,7 +102,7 @@ Route::get('/Retreat/details',[DetilsControler::class,'Retreat'])->name('Retreat
 Route::get('/edit/Details/{id}',[DetilsControler::class,'edit'])->name('edit.details');
 Route::post('/update/Details/{id}',[DetilsControler::class,'update'])->name('update.details');
 Route::get('/delete/Details/{id}',[DetilsControler::class,'destroy'])->name('delete.details');
-Route::post('/Filter/Doctoer',[DetilsControler::class,'Filter_Doctoer'])->name('Filter_Doctoer');
+Route::post('/Filter/Doctor',[DetilsControler::class,'Filter_Doctoer'])->name('Filter_Doctoer');
 
 //pharmese
 Route::get('all/pharmese',[PharmieseController::class,'index'])->name('all.pharmese');
@@ -114,6 +112,9 @@ Route::get('/edit/pharmese/{id}',[PharmieseController::class,'edit'])->name('edi
 Route::post('/update/pharmese/{id}',[PharmieseController::class,'update'])->name('update.pharmese');
 Route::get('/delete/pharmese/{id}',[PharmieseController::class,'destroy'])->name('delete.pharmese');
 
-
-//
+//live-wire
 Route::view('add_User','livewire.Show_Form');
+//Reservations
+Route::resource('/Reservations',ReservationsController::class);
+
+

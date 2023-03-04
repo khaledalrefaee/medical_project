@@ -7,8 +7,8 @@ use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
-
-
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
 class AddUser extends Component
 {
 
@@ -17,21 +17,9 @@ class AddUser extends Component
     $address,$birthday,$role_id;
 
 
-    public function rules()
-    {
-        return [
-            'name' => 'required|string|min:6',
-            'email' => 'required|email',
-            'password' => 'required|min:6',
-            'phone' => 'required|min:9',
 
-        ];
-    }
 
-    public function updated($propertyName)
-    {
-        $this->validateOnly($propertyName);
-    }
+
 
 
 
@@ -44,51 +32,50 @@ class AddUser extends Component
         'role'=>Role::all(),
             ]);
     }
-
-    public function saveContact()
+    public function toArray()
     {
-        $validatedData = $this->validate([
-//            'name' => 'required|min:6',
-//            'email' => 'required|email',
-//            'password'=>'required|min:6',
-//            'phone' => 'required|min:9',
-//            'gender_id'=>'required',
-//            'address'=>'required',
-//            'birthday'=>'required',
-//            'role_id'=>'required'
+        return [
+            'name' => $this->name,
+            'email' => $this->email,
+            'password' => $this->password,
+            'address' => $this->address,
+            'birthday' => $this->birthday,
+            'gender_id' => $this->gender_id,
+            'role_id' => $this->role_id,
+        ];
+    }
+    public function store()
+    {
+        $this->validate([
+            'name' => 'required|string|max:255',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')],
+            'phone' => ['required', 'string', 'max:20', Rule::unique('users')],
+            'password' => 'required|string|min:8',
+            'gender_id' => ['required', Rule::in(gender::pluck('id')->toArray())],
+            'role_id' => ['required', Rule::in(Role::pluck('id')->toArray())],
+            'address' => 'required|string|max:255',
+            'birthday'=>'required',
         ]);
-            $Add_User =new User();
-        $Add_User ->name             =   $this->name;
-        $Add_User->email             =   $this->email;
-        $Add_User->password          =   Hash::make($this->password);
-        $Add_User->gender_id         =   $this->gender_id;
-        $Add_User->phone             =   $this->phone;
-        $Add_User->address           =   $this->address;
-        $Add_User->birthday          =   $this->birthday;
-        $Add_User->role_id           =   $this->role_id;
+
+        // Create the user in the database
+        $user = User::create([
+            'name' => $this->name,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'password' => bcrypt($this->password),
+            'gender_id' => $this->gender_id,
+            'role_id' => $this->role_id,
+            'address' => $this->address,
+            'birthday'=>$this->birthday,
+        ]);
+
+        session()->flash('message', 'User registered successfully.');
+
+        return redirect()->route('home');
 
 
-        $Add_User->save();
-
-
-        $this->successMessage = ('messages.success');
     }
 
-//    public function saveContact()
-//    {
 
-//             $this->validate([
-//                    'gender_id'=>'required',
-//                    'address'=>'required',
-//                    'birthday'=>'required',
-//                    'role_id'=>'required',
-//                    'email' => 'required|unique:users,email',
-//                    'password' => 'required',
-//                    'name'=>'required',
-//                    'phone'=>'required|min:9|max:9',
-//                ]);
-
-
-  //  }
 
 }

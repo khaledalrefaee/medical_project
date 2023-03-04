@@ -11,10 +11,11 @@ interface DoctoerRepositoryInterface
 
   public function store_Doctoer($request);
 
+    public function show($id);
   public function edit_doctoer($id);
 
-  public function update_doctoer($request);
+  public function update_doctoer($request ,$id);
 
-  public function DeleteDoctoer($request);
+  public function delete($id);
 
 }

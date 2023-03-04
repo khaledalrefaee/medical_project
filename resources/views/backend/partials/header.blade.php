@@ -11,7 +11,7 @@
             <a href="#" class="nav-link">Contact</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{route('logout')}}" class="nav-link">logout</a>
+            <a href="" class="nav-link">logout</a>
         </li>
 
     </ul>

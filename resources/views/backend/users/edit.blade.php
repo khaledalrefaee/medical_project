@@ -41,7 +41,7 @@
 
                     </div>
 
-                    <input type="password" class="form-control" name="password"  value="{{$user->password}}" class="@error('password') is-invalid @enderror" placeholder="password">
+                    <input type="password" class="form-control" name="password"  value="{{ $user->password }}" class="@error('password') is-invalid @enderror" placeholder="password">
                 </div>
                 @error('password')
                 <div class="alert alert-danger">{{ $message }}
@@ -62,7 +62,7 @@
                 <select name="gender_id" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" >gender </option>
                     @foreach($gender as $item)
-                        <option value="{{$item->id}}">{{$item->name}} </option>
+                        <option value="{{$item->id}}" {{$item->id == $user->gender_id ? 'selected' : ""}}>{{$item->name}} </option>
                     @endforeach
 
                 </select>
@@ -95,7 +95,7 @@
                 <select name="role_id" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" > Role </option>
                     @foreach($role as $item)
-                        <option value="{{$item->id}}">{{$item->name}} </option>
+                        <option value="{{$item->id}}" {{$item->id == $user->role_id ? 'selected' : ""}}>{{$item->name}} </option>
                     @endforeach
                 </select>
                 @error('role_id')

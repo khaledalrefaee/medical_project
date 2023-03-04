@@ -19,9 +19,7 @@ class PharmieseController extends Controller
 
 
     public  function index(){
-        $phamiese =$this->Pharmese->getAllPharmiese();
-        return view('backend.pharmiese.index',compact('phamiese'));
-
+       return  $this->Pharmese->getAllPharmiese();
     }
 
     public function create(){
@@ -34,8 +32,7 @@ class PharmieseController extends Controller
     }
 
     public function edit($id){
-        $phamies =$this->Pharmese->editPharmiese($id);
-        return view('backend.pharmiese.edit',compact('phamies'));
+        return $this->Pharmese->editPharmiese($id);
     }
 
     public function update(StorePharmiese $request){

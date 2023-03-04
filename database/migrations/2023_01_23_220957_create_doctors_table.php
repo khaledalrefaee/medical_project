@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('doctors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('clinic_id')->constrained('clinics')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('clinic_id');
+            $table->foreign('clinic_id')->references('id')->on('clinics')->onDelete('cascade');
+
             $table->timestamps();
         });
     }

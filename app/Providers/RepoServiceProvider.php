@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Repository\DoctoerRepositoryInterface;
+use App\Repository\NuerseRepositoryInterface;
 use App\Repository\PharmieseRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -23,7 +24,13 @@ class RepoServiceProvider extends ServiceProvider
             'App\Repository\DoctoerRepositoryInterface',
             'App\Repository\DoctorRepository');
 
+        $this->app->bind(
+            'App\Repository\NuerseRepositoryInterface',
+            'App\Repository\NuerseRepository');
 
+        $this->app->bind(
+            'App\Repository\ClinceRepositoryInterface',
+            'App\Repository\ClinceRepository');
     }
 
     /**

@@ -104,8 +104,9 @@ class DoctorRepository implements DoctoerRepositoryInterface
             // Commit the transaction
             DB::commit();
 
+            toastr()->warning('done editing');
             // Return a success message or redirect to a success page
-            return redirect()->back()->with('success', 'Record updated successfully!');
+            return redirect()->route('all_doctor');
         } catch (\Exception $e) {
             // Roll back the transaction
             DB::rollback();
@@ -129,9 +130,10 @@ class DoctorRepository implements DoctoerRepositoryInterface
 
             // Commit the transaction
             DB::commit();
+            toastr()->error('Deleted');
 
-            // Return a success message or redirect to a success page
-            return redirect()->back()->with('success', 'Doctor and details deleted successfully!');
+
+            return redirect()->back();
         } catch (\Exception $e) {
             // Roll back the transaction
             DB::rollback();

@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('doctor_id')->constrained('doctors')->cascadeOnUpdate()->cascadeOnDelete();
+            $table->unsignedBigInteger('doctor_id');
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade');
             $table->text('specialization');
             $table->bigInteger('phone');
             $table->string('email');

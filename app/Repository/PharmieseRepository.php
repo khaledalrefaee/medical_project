@@ -8,7 +8,8 @@ use App\Models\Pharmise;
 class PharmieseRepository implements PharmieseRepositoryInterface{
 
     public function getAllPharmiese(){
-        return Pharmise::all();
+       $phamiese = Pharmise::all();
+        return view('backend.pharmiese.index',compact('phamiese'));
     }
 
     public function StorePharmiese($request)
@@ -31,7 +32,8 @@ class PharmieseRepository implements PharmieseRepositoryInterface{
 
     public function editPharmiese($id)
     {
-        return Pharmise::findOrFail($id);
+        $phamies = Pharmise::findOrFail($id);
+        return view('backend.pharmiese.edit',compact('phamies'));
     }
 
     public function updatePharmiese($request)
@@ -42,7 +44,7 @@ class PharmieseRepository implements PharmieseRepositoryInterface{
             $Pharmiese->prise = $request->prise;
             $Pharmiese->description = $request->description;
             $Pharmiese->save();
-            toastr()->success(trans('messages.Update'));
+            toastr()->warning('messages.Update','Update');
             return redirect()->route('all.pharmese');
         } catch (Exception $e) {
             return redirect()->back()->with(['error' => $e->getMessage()]);

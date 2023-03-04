@@ -13,6 +13,6 @@ class Clinics extends Model
     ];
 
     public function doctor(){
-        return $this->hasMany(Doctor::class);
+        return $this->hasMany(Doctor::class,'clinic_id');
     }
 }

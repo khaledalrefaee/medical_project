@@ -3,49 +3,36 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreNuerse;
 use App\Models\Nurses;
+use App\Repository\NuerseRepositoryInterface;
 use Illuminate\Http\Request;
-use Intervention\Image\Facades\Image;
+
 
 class NuersController extends Controller
 {
+
+    protected $Nuerse;
+
+    public function __construct(NuerseRepositoryInterface $Nuerse)
+    {
+        $this->Nuerse = $Nuerse;
+    }
+
     public function index(){
-        $nuers = Nurses::all();
-        return view('backend.Nuers.all_Nuers',compact('nuers'));
+        return $this->Nuerse->index();
     }
 
     public function create(){
-        return view('backend.Nuers.create');
+       return $this->Nuerse->cretae();
     }
 
-    public function store(Request $request){
-
-        $request->validate([
-            'name'          =>   'required',
-            'phone'         =>      'required',
-            'description'   => 'required',
-            'image'         => 'required|mimes:jpeg,jpg,png|unique:Nurses',
-        ]);
-        $file = $request->file('image') ;
-        $name_gen=hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
-        Image::make ($file)->resize(100,100)->save('uploads/nuers_images'.$name_gen);
-        $save_url = 'uploads/nuers_images'.$name_gen;
-
-        Nurses::insertGetId([
-            'name'              =>       $request->name,
-            'phone'             =>       $request ->phone,
-            'description'       =>       $request->description,
-            'image'             =>       $save_url
-        ]);
-
-        toastr()->success('success');
-        return redirect()->route('all.nuers');
+    public function store(StoreNuerse $request){
+        return $this->Nuerse->store($request);
     }
 
     public function show($id){
-        $nuer = Nurses::findOrFail($id);
-        toastr()->info('You are show User');
-        return view('backend.Nuers.show',compact('nuer'));
+       return $this->Nuerse->show($id);
     }
 
     public function Retreat(){
@@ -53,45 +40,45 @@ class NuersController extends Controller
     }
 
     public function edit($id){
-
-        $nuer = Nurses::findorFail($id);
-        return view('backend.Nuers.edit',compact('nuer'));
+        return $this->Nuerse->edit($id);
     }
 
 
-    public function update(Request $request,$id){
-        $nuers =Nurses::findOrFail($id);
-        $request->validate([
-            'name'           =>         'required',
-            'phone'          =>         'required',
-            'description'    =>         'required',
-            'image'          =>         'required|mimes:jpeg,jpg,png|unique:Nurses',
-        ]);
-        $file = $request->file('image') ;
-        $name_gen=hexdec(uniqid()).'.'. $file->getClientOriginalExtension();
-        Image::make ($file)->resize(100,100)->save('uploads/nuers_images'.$name_gen);
-        $save_url = 'uploads/nuers_images'.$name_gen;
+    public function update(StoreNuerse $request , $id){
+        $nurse = Nurses::findOrFail($id);
 
-        $nuers->update([
-            'name'              =>      $request->name,
-            'phone'             =>      $request ->phone,
-            'description'       =>      $request->description,
-            'image'             =>      $save_url,
-        ]);
+        if ($request->hasFile('image')) {
+            // Get the new image
+            $newImage = $request->file('image');
 
-        toastr()->warning('You are edit nuers');
+            // Get the old image
+            $oldImage = $nurse->image;
+
+            // Generate a new filename for the image
+            $filename = time() . '.' . $newImage->getClientOriginalExtension();
+
+            // Store the new image
+            $path = $newImage->storeAs('uploads', $filename, 'public');
+
+            // Update the nurse's information with the new image
+            $nurse->name = $request->name;
+            $nurse->phone = $request->phone;
+            $nurse->description = $request->description;
+            $nurse->image = $filename;
+
+        }
+
+        $nurse->save();
+        toastr()->warning('You are edit nuers','success');
         return redirect()->route('all.nuers');
     }
 
 
 
 
-    public function destroy(Request $request)
+    public function destroy(Request $request , $id)
     {
-        $nuer = Nurses::findOrfail($request->id);
-        $nuer->delete();
-        toastr()->error('you are delete nuers');
-        return redirect()->route('all.nuers');
+        return $this->Nuerse->Delete($id);
     }
 
 

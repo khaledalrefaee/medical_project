@@ -18,7 +18,7 @@ class Doctor extends Model
     }
 
     public function detail(){
-        return $this->hasOne(Detail::class);
+        return $this->hasOne(Detail::class,'doctor_id');
     }
 
     public function reservation(){

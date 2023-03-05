@@ -113,4 +113,8 @@ class UserController extends Controller
         toastr()->error('you are delete user');
         return redirect()->route('all_user');
     }
+
+    public function chart(){
+        $totalUsers = User::count();
+        return view('backend.Chart.Chart', compact('totalUsers'));    }
 }

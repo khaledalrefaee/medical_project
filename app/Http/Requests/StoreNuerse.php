@@ -25,7 +25,7 @@ class StoreNuerse extends FormRequest
     {
         return [
             'name'          =>'required',
-            'phone'         =>'regex:/^([0-9\s\-\+\(\)]*)$/|required|min:2|max:8|',
+            'phone'         =>'required||regex:/^09\d{8}$/',
             'description'   =>'required',
             'image'         => 'required|mimes:jpeg,png,jpg,gif|unique:Nurses',
         ];

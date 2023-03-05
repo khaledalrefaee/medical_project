@@ -58,6 +58,10 @@ Route::post('/update/user/{id}',[UserController::class,'update'])->name('update_
 Route::get('delete/user/{id}',[UserController::class,'destroy'])->name('delet_user');
 
 
+//Chart
+Route::get('/Chart/User',[UserController::class,'chart'])->name('chart');
+
+
 //nuers
 Route::get('/all/nuers',[NuersController::class,'index'])->name('all.nuers');
 Route::get('/create/nuers',[NuersController::class,'create'])->name('create.nuers');
@@ -93,17 +97,6 @@ Route::get('/delete/doctor/{id}',[DoctorController::class,'destroy'])->name('del
 
 
 
-//Details_Doctoer
-Route::get('/all/Details',[DetilsControler::class,'index'])->name('all_Details');
-Route::get('/create/details',[DetilsControler::class,'create'])->name('create.details');
-Route::post('/stror/details',[DetilsControler::class,'store'])->name('store.details');
-Route::get('/show/details/{id}',[DetilsControler::class,'show'])->name('show.details');
-Route::get('/Retreat/details',[DetilsControler::class,'Retreat'])->name('Retreat.details');
-Route::get('/edit/Details/{id}',[DetilsControler::class,'edit'])->name('edit.details');
-Route::post('/update/Details/{id}',[DetilsControler::class,'update'])->name('update.details');
-Route::get('/delete/Details/{id}',[DetilsControler::class,'destroy'])->name('delete.details');
-Route::post('/Filter/Doctor',[DetilsControler::class,'Filter_Doctoer'])->name('Filter_Doctoer');
-
 //pharmese
 Route::get('all/pharmese',[PharmieseController::class,'index'])->name('all.pharmese');
 Route::get('/create/pharmese',[PharmieseController::class,'create'])->name('create.pharmese');
@@ -114,7 +107,10 @@ Route::get('/delete/pharmese/{id}',[PharmieseController::class,'destroy'])->name
 
 //live-wire
 Route::view('add_User','livewire.Show_Form');
+
 //Reservations
-Route::resource('/Reservations',ReservationsController::class);
+
+
+//Chart
 
 

@@ -2,10 +2,7 @@
 
 namespace App\Repository;
 
-
-
 use App\Models\Nurses;
-
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -51,6 +48,27 @@ class NuerseRepository implements NuerseRepositoryInterface
     {
         $nuer = Nurses::findorFail($id);
         return view('backend.Nuers.edit',compact('nuer'));
+    }
+
+    public function update(){
+        return 'dsas';
+//
+//        $nuer = Nurses::findOrFail($request->id);
+//        $nuer->update($request->all());
+//
+//
+//
+//        if ($request->hasFile('image')) {
+//            $image = $request->file('image');
+//            $filename = time() . '.' . $image->getClientOriginalExtension();
+//            $path = $image->storeAs('uploads', $filename, 'public');
+//            $nuer->image = $filename;
+//        }
+//        $nuer->save();
+//
+//        toastr()->warning('success');
+//        return redirect()->route('all.nuers');
+
     }
 
     public function show($id){

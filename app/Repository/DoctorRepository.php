@@ -51,7 +51,7 @@ class DoctorRepository implements DoctoerRepositoryInterface
         }
 
         catch (Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error updating record: '.$e->getMessage());
         }
     }
 
@@ -77,7 +77,7 @@ class DoctorRepository implements DoctoerRepositoryInterface
         DB::beginTransaction();
 
         try {
-            // Retrieve the doctor and detail records to be updated
+            // استرجع الطبيب وسجلات التفاصيل لتحديثها
             $doctor = DB::table('doctors')->where('id', $id)->first();
             $detail = DB::table('details')->where('doctor_id', $id)->first();
 
@@ -87,6 +87,7 @@ class DoctorRepository implements DoctoerRepositoryInterface
                 ->update([
                     'name' => $request->name,
                     'clinic_id'=>$request->clinic_id,
+
                     // ... other fields to update
                 ]);
 
@@ -105,10 +106,12 @@ class DoctorRepository implements DoctoerRepositoryInterface
             DB::commit();
 
             toastr()->warning('done editing');
-            // Return a success message or redirect to a success page
+
             return redirect()->route('all_doctor');
         } catch (\Exception $e) {
+
             // Roll back the transaction
+
             DB::rollback();
 
             // Log the error or display an error message to the user
@@ -125,12 +128,12 @@ class DoctorRepository implements DoctoerRepositoryInterface
             // Delete the doctor record
             DB::table('doctors')->where('id', $id)->delete();
 
-            // Delete the corresponding detail record
+            // حذف سجل التفاصيل المقابل
             DB::table('details')->where('doctor_id', $id)->delete();
 
             // Commit the transaction
             DB::commit();
-            toastr()->error('Deleted');
+            toastr()->error('Deleted','Deleted Doctoer');
 
 
             return redirect()->back();

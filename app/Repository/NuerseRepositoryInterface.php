@@ -14,5 +14,7 @@ interface NuerseRepositoryInterface
 
     public function edit($id);
 
+    public function update();
+
     public function Delete($id);
 }

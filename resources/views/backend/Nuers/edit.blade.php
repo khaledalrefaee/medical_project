@@ -8,27 +8,16 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form novalidate="novalidate" action="{{route('update.nuers',$nuer->id)}}" method="POST">
+            <form novalidate="novalidate" action="{{url('update/nuers',$nuer->id)}}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name nuers</label>
+                        <label for="exampleInputEmail1">name clincs</label>
                         <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{$nuer->name}}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
                     </div>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text" >00963</span>
-                        </div>
-                        <input type="number" class="form-control" name="phone"  value="{{$nuer->phone}}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
-                    </div>
-                    @error('phone')
-                    <div class="alert alert-danger">{{ $message }}
-                        @enderror
-                    </div>
-
                     <div class="form-group">
                         <label for="exampleInputPassword1">description</label>
                         <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{$nuer->description}}" class="@error('description') is-invalid @enderror" placeholder="description">
@@ -36,19 +25,9 @@
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="form-group">
-                        <label for="exampleInputFile">image nuer</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input  type="file" id="image" name="image"  value="{{ old('image') }}" class="@error('image') is-invalid @enderror">
-                                @error('image')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
+                    <div class="form-group mb-0">
 
-                                <div class="input-group-append">
-
-                                </div>
-                            </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

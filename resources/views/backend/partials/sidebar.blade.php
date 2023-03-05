@@ -27,6 +27,13 @@
                             <p>Users</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('chart')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p> chart </p>
+                        </a>
+                    </li>
+
 
                     <li class="nav-item">
                         <a href="{{route('all.nuers')}}" class="nav-link">

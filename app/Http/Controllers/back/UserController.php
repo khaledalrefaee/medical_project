@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\back;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreUser;
+use App\Models\Clinics;
+use App\Models\Doctor;
 use App\Models\Gender;
+use App\Models\Nurses;
+use App\Models\Pharmise;
 use App\Models\Role;
 use App\Models\User;
+use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Yoeunes\Toastr\Facades\Toastr;
@@ -14,95 +20,38 @@ use Illuminate\Encryption\Encrypter;
 
 class UserController extends Controller
 {
+
+    protected $User;
+
+    public function __construct(UserRepositoryInterface $User)
+    {
+        $this->User = $User;
+    }
     public function index(){
-
-        $Users = User::paginate(5);
-        return view('backend.users.all_users',compact('Users'));
-
+        return $this->User->getAllUser();
     }
+
     public function create(){
-        $role=Role::all();
-        $gender=Gender::all();
-        return view('backend.users.create',compact('role','gender'));
+       return $this->User->createUser();
     }
 
-    public  function store(Request $request){
-
-            $request->validate([
-                'name'               =>  'required',
-                'email'              =>  'required|string|unique:Users',
-                'password'           =>  'required',
-                'phone'              =>  'required',
-                'gender_id'             =>  'required',
-                'address'            =>  'required',
-                'birthday'           =>  'required',
-                'role_id'            =>  'required',
-            ]);
-
-        User::create([
-            'name'              =>  $request->name,
-            'email'             =>  $request->email,
-            'password'          => bcrypt( $request->password),
-            'phone'             =>  $request->phone,
-            'gender_id'         =>  $request->gender_id,
-            'address'           =>  $request->address,
-            'birthday'          =>  $request->birthday,
-            'role_id'           =>  $request->role_id,
-        ]);
-        toastr()->success('success');
-        return redirect()->route('all_user');
-
+    public  function store(StoreUser $request){
+        return $this->User->StoreUser($request);
     }
     public function show($id, ){
-        $user = User::findOrFail($id);
-
-
-        toastr()->info('You are show User');
-        return view('backend.users.show',compact('user'));
+       return $this->User->showUser($id);
     }
-
-
-
 
     public function Retreat(){
         return redirect()->route('all_user');
     }
 
     public function edit($id){
-        $user = User::findOrFail($id);
-        $role=Role::all();
-        $gender=Gender::all();
-
-
-        return view('backend.users.edit',
-            compact('user','role','gender'));
-
+        return $this->User->editUser($id);
     }
 
-    public function update(Request $request , $id){
-        $user =User::findOrFail($id);
-        $validatedData =$request->validate([
-            'name'               =>  'required',
-            'email'              =>  'required|string',
-            'password'           =>  'required',
-            'phone'              =>  'required',
-            'gender_id'             =>  'required',
-            'address'            =>  'required',
-            'age'                =>  'required',
-            'role_id'          =>  'required',
-        ]);
-        $user->update( $validatedData
-//            'name'              =>  $request->name,
-//            'email'             =>  $request->email,
-//            'password'          => bcrypt( $request->password),
-//            'phone'             =>  $request->phone,
-//            'gender'            =>  $request->gender,
-//            'address'           =>  $request->address,
-//            'age'               =>  $request->age,
-//            'role_name'         =>  $request->role_name,
-        );
-        toastr()->warning('You are edit User');
-        return redirect()->route('all_user');
+    public function update(StoreUser $request ){
+
     }
 
 
@@ -114,7 +63,12 @@ class UserController extends Controller
         return redirect()->route('all_user');
     }
 
+
     public function chart(){
         $totalUsers = User::count();
-        return view('backend.Chart.Chart', compact('totalUsers'));    }
+        $totalClince=Clinics::count();
+        $totalDoctoer=Doctor::count();
+        $toutalNuers= Nurses::count();
+        $totalDrugs=Pharmise::count();
+        return view('backend.Chart.Chart', compact('totalUsers','totalClince','totalDoctoer','toutalNuers','totalDrugs'));    }
 }

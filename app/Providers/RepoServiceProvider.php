@@ -31,6 +31,10 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repository\ClinceRepositoryInterface',
             'App\Repository\ClinceRepository');
+
+        $this->app->bind(
+            'App\Repository\UserRepositoryInterface',
+            'App\Repository\UserRepository');
     }
 
     /**

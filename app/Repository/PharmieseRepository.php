@@ -24,7 +24,7 @@ class PharmieseRepository implements PharmieseRepositoryInterface{
             return redirect()->route('all.pharmese');
         }
         catch (Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
 
     }
@@ -47,7 +47,7 @@ class PharmieseRepository implements PharmieseRepositoryInterface{
             toastr()->warning('messages.Update','Update');
             return redirect()->route('all.pharmese');
         } catch (Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
     }
 

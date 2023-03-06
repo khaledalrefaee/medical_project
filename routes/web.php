@@ -9,7 +9,9 @@ use App\Http\Controllers\back\PharmieseController;
 use App\Http\Controllers\back\ReservationsController;
 use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\WatingController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,7 +61,8 @@ Route::get('delete/user/{id}',[UserController::class,'destroy'])->name('delet_us
 
 
 //Chart
-Route::get('/Chart/User',[UserController::class,'chart'])->name('chart');
+Route::get('/Chart',[UserController::class,'chart'])->name('chart');
+
 
 
 //nuers

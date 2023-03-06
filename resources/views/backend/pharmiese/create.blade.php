@@ -12,8 +12,8 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clincs</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
+                        <label for="exampleInputEmail1">name medicine</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name medicine">
                     </div>
                   @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -21,7 +21,7 @@
 
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control" name="prise"  value="{{ old('prise') }}" class="@error('prise') is-invalid @enderror" placeholder="enter phone">
+                        <input type="text" class="form-control" name="prise"  value="{{ old('prise') }}" class="@error('prise') is-invalid @enderror" placeholder="prise medicine">
                     </div>
                    @error('prise')
                     <div class="alert alert-danger">{{ $message }}
@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         <label for="exampleInputPassword1">description</label>
-                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="description">
+                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="description medicine">
                     </div>
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>

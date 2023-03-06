@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\NuersController;
 use App\Http\Controllers\Api\PharmiseController;
 use App\Http\Controllers\Api\ProfileContoller;
+use App\Http\Controllers\Api\ReservationController;
 use App\Http\Controllers\Api\TimeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -43,4 +44,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
 
     Route::get('/profile', [ProfileContoller::class,'index']);
+
+    Route::post('/store',[ReservationController::class,'store']);
 });

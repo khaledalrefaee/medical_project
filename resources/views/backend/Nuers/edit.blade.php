@@ -8,12 +8,12 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form novalidate="novalidate" action="{{url('update/nuers',$nuer->id)}}" method="POST" enctype="multipart/form-data">
+            <form novalidate="novalidate" action="{{route('update.nuers',$nuer->id)}}" method="POST" >
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clincs</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{$nuer->name}}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
+                        <label for="exampleInputEmail1">name nurse</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{$nuer->name}}" class="@error('name') is-invalid @enderror" placeholder="Enter name nurse">
                     </div>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -25,14 +25,23 @@
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="form-group mb-0">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text" >00963</span>
+                        </div>
+                        <input type="text" class="form-control" name="phone"  value="{{$nuer->phone}}" class="@error('phone') is-invalid @enderror" placeholder="number phone nurse">
+                    </div>
+                    @error('phone')
+                    <div class="alert alert-danger">{{ $message }}
+                        @enderror
+                    </div>
 
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-primary">Go!</button>
                     </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Go!</button>
-                </div>
+
             </form>
         </div>
         <!-- /.card -->

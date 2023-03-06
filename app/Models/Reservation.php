@@ -9,7 +9,9 @@ class Reservation extends Model
 {
 
     use HasFactory;
-    protected $fillable = ['time','date','status','name','phone','address','birthday','user_id','Doctor_id'];
+
+
+    protected $guarded =[];
 
 
     public function user(){

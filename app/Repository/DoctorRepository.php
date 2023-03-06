@@ -15,7 +15,8 @@ class DoctorRepository implements DoctoerRepositoryInterface
     public function get_all_Doctoer()
     {
         $doctors = Doctor::all();
-        return view('backend.Doctor.all_doctor', compact('doctors'));
+        $clinic=Clinics::all();
+        return view('backend.Doctor.all_doctor', compact('doctors','clinic'));
     }
 
     public function create_Doctoer()
@@ -144,6 +145,13 @@ class DoctorRepository implements DoctoerRepositoryInterface
             // Log the error or display an error message to the user
             return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
+    }
+
+    public function Filter_Clinces($request)
+    {
+        $clinic=Clinics::all();
+        $search=Doctor::select('*')->where('clinic_id','=',$request->clinic_id)->get();
+        return view('backend.Doctor.all_doctor',compact('clinic'))->withDetails($search);
     }
 
 }

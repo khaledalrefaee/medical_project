@@ -40,12 +40,7 @@
                                                 <td>{{$phamies->name}}</td>
                                                 <td>{{$phamies->prise}}</td>
                                                 <td>{{$phamies->description}}</td>
-
-
-
                                                 <td style="">
-
-
                                                     <a href="{{route('delete.pharmese',$phamies->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                     <a href="{{route('edit.pharmese',$phamies->id)}}"> <button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                     &nbsp;

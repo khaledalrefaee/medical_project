@@ -6,6 +6,7 @@ use App\Http\Controllers\back\DetilsControler;
 use App\Http\Controllers\back\DoctorController;
 use App\Http\Controllers\back\NuersController;
 use App\Http\Controllers\back\PharmieseController;
+use App\Http\Controllers\back\ReservationController;
 use App\Http\Controllers\back\ReservationsController;
 use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
@@ -98,7 +99,7 @@ Route::get('/edit/doctor/{id}',[DoctorController::class,'edit'])->name('edit.doc
 Route::post('/update/doctor/{id}',[DoctorController::class,'update'])->name('update.doctor');
 Route::get('/delete/doctor/{id}',[DoctorController::class,'destroy'])->name('delete.doctor');
 
-
+Route::post('Filter_Clinces', [DoctorController::class,'Filter_Clinces'])->name('Filter_Clinces');
 
 //pharmese
 Route::get('all/pharmese',[PharmieseController::class,'index'])->name('all.pharmese');
@@ -112,8 +113,8 @@ Route::get('/delete/pharmese/{id}',[PharmieseController::class,'destroy'])->name
 Route::view('add_User','livewire.Show_Form');
 
 //Reservations
-
-
-//Chart
+Route::get('/Reservations',[ReservationController::class,'index'])->name('Reservations.all');
+Route::get('/create/waiting',[ReservationController::class,'create_waiting'])->name('create.waiting');
+Route::get('/create/appointment',[ReservationController::class,'create_appointment'])->name('create.appointment');
 
 

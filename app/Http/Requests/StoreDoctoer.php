@@ -27,8 +27,8 @@ class StoreDoctoer extends FormRequest
             'clinic_id'      =>     'required',
             'name'           =>     'required',
             'email'         =>      'required||unique:details,email,'.$this->id,
-            'phone'         =>'required||regex:/^9\d{8}$/',
-            'specialization'         =>'required',
+            'phone'         =>      'required||regex:/^9\d{8}$/',
+            'specialization'  =>'required',
         ];
     }
 }

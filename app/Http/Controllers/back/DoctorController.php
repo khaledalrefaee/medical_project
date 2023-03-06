@@ -5,7 +5,6 @@ namespace App\Http\Controllers\back;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreDoctoer;
 use App\Models\Clinics;
-use App\Models\Detail;
 use App\Models\Doctor;
 use App\Repository\DoctoerRepositoryInterface;
 use Illuminate\Http\Request;
@@ -57,5 +56,8 @@ class DoctorController extends Controller
         return $this->Doctoer->delete($id);
     }
 
+    public function Filter_Clinces(Request $request){
 
+      return $this->Doctoer->Filter_Clinces($request);
+    }
 }

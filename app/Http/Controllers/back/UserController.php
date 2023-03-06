@@ -52,6 +52,7 @@ class UserController extends Controller
 
     public function update(StoreUser $request ){
 
+        return $this->User->UpdateUser($request);
     }
 
 

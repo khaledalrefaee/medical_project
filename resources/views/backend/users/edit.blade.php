@@ -83,8 +83,8 @@
                 </div>
 
                 <div class="input-group mb-3">
-                    <input type="date" class="form-control" name="age"  value="{{$user->birthday}}" class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
-                    @error('abirthday')
+                    <input type="date" class="form-control" name="birthday"  value="{{$user->birthday}}" class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
+                    @error('birthday')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
                     <div class="input-group-append">

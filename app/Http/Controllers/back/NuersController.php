@@ -45,34 +45,7 @@ class NuersController extends Controller
 
 
     public function update(StoreNuerse $request ){
-
-       // return $this->Nuerse->update();
-//        $nurse = Nurses::findOrFail($id);
-//
-//        if ($request->hasFile('image')) {
-//            // Get the new image
-//            $newImage = $request->file('image');
-//
-//            // Get the old image
-//            $oldImage = $nurse->image;
-//
-//            // Generate a new filename for the image
-//            $filename = time() . '.' . $newImage->getClientOriginalExtension();
-//
-//            // Store the new image
-//            $path = $newImage->storeAs('uploads', $filename, 'public');
-//
-//            // Update the nurse's information with the new image
-//            $nurse->name = $request->name;
-//            $nurse->phone = $request->phone;
-//            $nurse->description = $request->description;
-//            $nurse->image = $filename;
-//
-//        }
-//
-//        $nurse->save();
-//        toastr()->warning('You are edit nuers','success');
-//        return redirect()->route('all.nuers');
+        return $this->Nuerse->update($request);
     }
 
 

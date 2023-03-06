@@ -19,11 +19,24 @@
 
 
                         <!-- /.card-header -->
+
+
                         <div class="card-body">
+                            <form action="{{ route('Filter_Clinces') }}" method="POST">
+                                {{ csrf_field() }}
+                                <select class="selectpicker" data-style="btn-info" name="clinic_id" required
+                                        onchange="this.form.submit()">
+                                    <option value="" selected disabled>Search By Clinces</option>
+                                    @foreach ($clinic as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </form>
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">#</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Clinic</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name doctoer</th>
 
@@ -32,10 +45,21 @@
                                             <tbody>
 
 
+                                            @if (isset($details))
+
+                                                <?php $doctors = $details; ?>
+                                            @else
+
+                                                <?php   $doctors = $doctors; ?>
+                                            @endif
+
+
+
 
                                     @foreach( $doctors as $doctor)
 
                                                 <tr class="odd">
+                                                    <td>{{ $loop->index+1 }}</td>
                                                     <td>{{$doctor->clinic->name}}</td>
                                                     <td>{{$doctor->name}}</td>
 

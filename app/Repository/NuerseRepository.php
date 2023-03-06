@@ -50,24 +50,15 @@ class NuerseRepository implements NuerseRepositoryInterface
         return view('backend.Nuers.edit',compact('nuer'));
     }
 
-    public function update(){
-        return 'dsas';
-//
-//        $nuer = Nurses::findOrFail($request->id);
-//        $nuer->update($request->all());
-//
-//
-//
-//        if ($request->hasFile('image')) {
-//            $image = $request->file('image');
-//            $filename = time() . '.' . $image->getClientOriginalExtension();
-//            $path = $image->storeAs('uploads', $filename, 'public');
-//            $nuer->image = $filename;
-//        }
-//        $nuer->save();
-//
-//        toastr()->warning('success');
-//        return redirect()->route('all.nuers');
+    public function update($request){
+
+        $nuer = Nurses::findOrFail($request->id);
+        $nuer->update($request->all());
+
+        $nuer->save();
+
+        toastr()->warning('warning');
+        return redirect()->route('all.nuers');
 
     }
 

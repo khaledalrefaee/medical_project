@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('Doctor_id')->constrained('doctors')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->Time('time');
+            $table->time('time');
             $table->date('date');
             $table->string('name');
             $table->bigInteger('phone');

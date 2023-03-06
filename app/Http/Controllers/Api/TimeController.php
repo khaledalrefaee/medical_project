@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Doctor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -19,5 +20,10 @@ class TimeController extends Controller
         return response()->json([
             'times' => $times
         ]);
+    }
+
+    public function get_All(){
+        $All_Doctoer =Doctor::all();
+        return response($All_Doctoer,200);
     }
 }

@@ -34,7 +34,7 @@ Route::get('/pharmise',[PharmiseController::class,'index']);
 
 Route::get('/time',[TimeController::class,'index']);
 
-
+Route::get('get_All',[TimeController::class,'get_All']);
 
 Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 

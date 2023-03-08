@@ -8,7 +8,7 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form id="quickForm" novalidate="novalidate" action="" method="POST" >
+            <form id="quickForm" novalidate="novalidate" action="{{route('store.waiting')}}" method="POST" >
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
@@ -24,7 +24,6 @@
                         @foreach($gender as $item)
                             <option value="{{$item->id}}">{{$item->name}} </option>
                         @endforeach
-
                     </select>
                     @error('gender_id')
                     <div class="alert alert-danger">{{ $message }}</div>
@@ -40,14 +39,14 @@
                     </div>
                     <div class="input-group mb-3">
 
-                        <input type="text" class="form-control" name="birthday"  value="{{ old('birthday') }}" class="@error('birthday') is-invalid @enderror" placeholder="prise medicine">
+                        <input type="date" class="form-control" name="birthday"  value="{{ old('birthday') }}" class="@error('birthday') is-invalid @enderror" placeholder="birthday">
                     </div>
-                    @error('gender')
+                    @error('birthday')
                     <div class="alert alert-danger">{{ $message }}
                         @enderror
                     </div>
                 <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >Clinic</option>
+                    <option selected="" disabled="" >doctor</option>
                     @foreach($doctor as $item)
                         <option value="{{$item->id}}">{{$item->name}} </option>
                     @endforeach

@@ -41,7 +41,7 @@
                                                     <td>{{$nuer->name}}</td>
                                                     <td>{{$nuer->phone}}</td>
                                                     <td>{{$nuer->description}}</td>
-                                                    <td>  <img  src="{{ asset('storage/uploads/' . $nuer->image) }}" alt="Nurse Picture" style="width: 100px;height: 100px"></td>
+                                                    <td>  <img  src="{{ asset('storage/' . $nuer->image) }}" alt="{{ $nuer->name }}" style="width: 100px;height: 100px"></td>
 
 
                                                     <td style="">

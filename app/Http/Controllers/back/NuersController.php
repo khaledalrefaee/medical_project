@@ -7,6 +7,7 @@ use App\Http\Requests\StoreNuerse;
 use App\Models\Nurses;
 use App\Repository\NuerseRepositoryInterface;
 use Illuminate\Http\Request;
+use JetBrains\PhpStorm\NoReturn;
 
 
 class NuersController extends Controller
@@ -44,8 +45,8 @@ class NuersController extends Controller
     }
 
 
-    public function update(StoreNuerse $request ){
-        return $this->Nuerse->update($request);
+    public function update(Request $request,$id){
+        return $this->Nuerse->update($request,$id);
     }
 
 

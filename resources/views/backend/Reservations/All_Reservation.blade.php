@@ -31,39 +31,61 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">#</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">name docrtoer</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">status</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">date</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">status</th>
+
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
                                             </thead>
                                             <tbody>
 
                                             <?php $i = 0; ?>
 
-                                            @foreach($Reservations as $Reservation)
+                                            @foreach($waitings as $waiting)
                                                 <tr class="odd">
                                                     <?php $i++; ?>
                                                     </td>
                                                     <td>{{ $i }}</td>
-                                                        <td>{{$Reservation->name}}  </td>
-                                                    <td>{{$Reservation->doctor->name}} </td>
-                                                    <td style="">{{$Reservation->status}}</td>
-
-                                                    @foreach($waiting as $item)
-                                                    <?php $i++; ?>
-                                                    </td>
-                                                    <td>{{ $i }}</td>
-                                                    <td>{{$item->name}}  </td>
-                                                    <td>{{$item->doctor->name}} </td>
-
+                                                    <td>{{$waiting->name}}  </td>
+                                                    <td>{{$waiting->doctor->name}} </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                    <td> </td>
+                                                        <td>
 
                                                         <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                         <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                         <a href="">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+
                                                     </td>
-
+                                                    @endforeach
                                                 </tr>
-                                            @endforeach
 
-                                            @endforeach
+
+                                                <?php $i = 0; ?>
+
+                                                @foreach($Reservations as $Reservation)
+                                                    <tr class="odd">
+                                                        <?php $i++; ?>
+
+                                                        <td>{{ $i }}</td>
+                                                        <td>{{$Reservation->name}}  </td>
+                                                        <td> </td>
+                                                        <td>{{$Reservation->date}} | {{$Reservation->time}}</td>
+
+                                                           <td > <span class="badge badge-pill badge-warning">{{$Reservation->status}} </span> </td>
+
+                                                        <td>
+
+                                                            <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                            <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                            <a href="">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+
+                                                        </td>
+                                                        @endforeach
+                                                    </tr>
+
+
+
 
                                             </tbody>
 
@@ -71,7 +93,7 @@
 
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                Add an appointment
+                                                Add a request
                                             </button>
 
                                             <!-- Modal -->

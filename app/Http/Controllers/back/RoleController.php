@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class RoleController extends Controller
 {
+
     public function index(){
         $roles = Role::all();
         return view('backend.Role.All_Role',compact('roles'));

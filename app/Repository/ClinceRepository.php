@@ -68,6 +68,7 @@ class ClinceRepository implements ClinceRepositoryInterface
 
         // Delete the clinic itself
         $clinic->delete();
+
         toastr ()->error('messages Delete Clinic','success');
         return redirect()->route('all.Clincs');
 

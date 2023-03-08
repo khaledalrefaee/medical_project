@@ -24,7 +24,7 @@ class StoreClince extends FormRequest
     public function rules()
     {
         return [
-            'name'      =>   'required|unique:Clinics',
+            'name'      =>   'required|unique:Clinics,name,'.$this->id,
         ];
     }
 }

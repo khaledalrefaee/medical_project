@@ -4,8 +4,9 @@ namespace App\Repository;
 
 use App\Models\Nurses;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\File;
 class NuerseRepository implements NuerseRepositoryInterface
 {
     public function index()
@@ -31,8 +32,9 @@ class NuerseRepository implements NuerseRepositoryInterface
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
                 $filename = time() . '.' . $image->getClientOriginalExtension();
-                $path = $image->storeAs('uploads', $filename, 'public');
-                $nurse->image = $filename;
+                $folder = str_replace(' ', '_', $nurse->name); // Replace spaces in nurse name with underscores
+                $path = $image->storeAs('uploads/'.$folder, $filename, 'public');
+                $nurse->image = $path;
             }
             $nurse->save();
 
@@ -50,13 +52,19 @@ class NuerseRepository implements NuerseRepositoryInterface
         return view('backend.Nuers.edit',compact('nuer'));
     }
 
-    public function update($request){
+    public function update($request,$id){
+        $request->validate([
+            'name'          =>'required',
+            'phone'         =>'required||regex:/^9\d{8}$/',
+            'description'   =>'required',
+        ]);
 
-        $nuer = Nurses::findOrFail($request->id);
-        $nuer->update($request->all());
+        $nurse = Nurses::findOrFail($id);
+        $nurse->name = $request->name;
+        $nurse->phone = $request->phone;
+        $nurse->description = $request->description;
 
-        $nuer->save();
-
+        $nurse->save();
         toastr()->warning('warning');
         return redirect()->route('all.nuers');
 
@@ -75,7 +83,7 @@ class NuerseRepository implements NuerseRepositoryInterface
 
         // Delete the nurse's photo from storage
         if ($nuers->image) {
-            Storage::delete('public/uploads/' . $nuers->image);
+            Storage::delete('public/uploads/' . $nuers->name .$nuers->image);
         }
 
         // Delete the nurse from the database

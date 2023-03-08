@@ -13,6 +13,7 @@ use App\Models\Role;
 use App\Models\User;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Crypt;
 use Yoeunes\Toastr\Facades\Toastr;
 use Illuminate\Encryption\Encrypter;
@@ -63,6 +64,8 @@ class UserController extends Controller
         toastr()->error('you are delete user');
         return redirect()->route('all_user');
     }
+
+
 
 
     public function chart(){

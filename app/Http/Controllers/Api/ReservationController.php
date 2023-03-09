@@ -14,6 +14,8 @@ class ReservationController extends Controller
     }
 
     public function store(Request $request){
+
+
         $Reservation= new Reservation();
         $Reservation->user_id =  Auth::id();
         $Reservation->name = $request->name;
@@ -24,6 +26,7 @@ class ReservationController extends Controller
         $Reservation->address =   $request->address;
         $Reservation->Doctor_id =$request->Doctor_id;
         $Reservation->status =   'Available';
+
         $Reservation->save();
 
         return response($Reservation,200);

@@ -34,14 +34,15 @@ Route::get('/pharmise',[PharmiseController::class,'index']);
 
 Route::get('/time',[TimeController::class,'index']);
 
-Route::get('get_All',[TimeController::class,'get_All']);
+Route::get('get_All',[NuersController::class,'get_All']);
 
 Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
+
+
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/logout',[AuthController::class,'logout']);
-
 
     Route::get('/profile', [ProfileContoller::class,'index']);
 

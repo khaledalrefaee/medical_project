@@ -35,6 +35,11 @@ class RepoServiceProvider extends ServiceProvider
         $this->app->bind(
             'App\Repository\UserRepositoryInterface',
             'App\Repository\UserRepository');
+
+        $this->app->bind(
+            'App\Repository\WatingRepositoryInterface',
+            'App\Repository\WatingRepository');
+
     }
 
     /**

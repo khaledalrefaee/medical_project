@@ -45,17 +45,16 @@
                     <div class="alert alert-danger">{{ $message }}
                         @enderror
                     </div>
+
+
                 <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >doctor</option>
+                    <option selected="" disabled="" >Clice</option>
                     @foreach($doctor as $item)
                         <option value="{{$item->id}}">{{$item->name}} </option>
                     @endforeach
                 </select>
-                @error('doctor_id')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
 
-
+                <hr>
 
 
                     <!-- /.card-body -->
@@ -67,5 +66,7 @@
         </div>
         <!-- /.card -->
     </div>
+
+
 @endsection
 

@@ -48,20 +48,19 @@
                                                     <td>{{$waiting->name}}  </td>
                                                     <td>{{$waiting->doctor->name}} </td>
                                                     <td> </td>
-                                                    <td> </td>
-                                                    <td> </td>
+                                                    <td> <span class="badge badge-pill badge-warning">wating</span></td>
                                                         <td>
 
-                                                        <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></i></a>
+                                                        <a href="{{route('show.waitin',$waiting->id)}}" class="btn btn-info" title="show Data">  <i class="fa fa-eye"></i></i></a>
+                                                            <a href="{{route('edit.waitin',$waiting->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i> </a>
 
                                                     </td>
                                                     @endforeach
                                                 </tr>
 
 
-                                                <?php $i = 0; ?>
+
 
                                                 @foreach($Reservations as $Reservation)
                                                     <tr class="odd">
@@ -69,17 +68,31 @@
 
                                                         <td>{{ $i }}</td>
                                                         <td>{{$Reservation->name}}  </td>
-                                                        <td> </td>
+                                                            <td>{{$Reservation->doctor->name}} </td>
                                                         <td>{{$Reservation->date}} | {{$Reservation->time}}</td>
 
-                                                           <td > <span class="badge badge-pill badge-warning">{{$Reservation->status}} </span> </td>
+                                                            <td><span class="badge
+                                                                                    @if($Reservation->status === 'completed') badge-success
+                                                                                    @elseif($Reservation->status === 'Cancelling') badge-danger
+                                                                                    @elseif($Reservation->status === 'Pending') badge-warning
+                                                                                    @else badge-secondary
+                                                                                     @endif">
+                                                                                    @if($Reservation->status === 'completed')
+                                                                                    completed
+                                                                                    @elseif($Reservation->status === 'Cancelling')
+                                                                                    Cancelling
+                                                                                    @elseif($Reservation->status === 'Pending')
+                                                                                    Pending
+                                                                                    @endif
+                                                                                </span></td>
 
                                                         <td>
-
-                                                            <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                            <a href=""> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                            <a href="">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-
+                                                            <a href="{{route('delete.appointment',$Reservation->id)}}" class="btn btn-danger" title="Delete Data"> <i title=" Delete"  class="fa fa-trash"></i></a>
+                                                            <a href="{{route('show.appointment',$Reservation->id)}}" class="btn btn-info" title="show Data"><i class="fa fa-eye"></i> </a>
+                                                            <a href="{{route('edit.appointment',$Reservation->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i></i> </a>
+                                                           <a href="{{route('Chnge.Status',$Reservation->id)}}"> <button type="button" class="btn btn-outline-success">completed</button></a>
+                                                            <a href="{{route('Chnge.Cancelling',$Reservation->id)}}" ><button type="button" class="btn btn-outline-light">Cancelling</button></a>
+                                                            <a href="{{route('download.pdf',$Reservation->id)}}" class="btn btn-info"><i class="fas fa-download"></i> Download pdf</a>
                                                         </td>
                                                         @endforeach
                                                     </tr>
@@ -121,8 +134,10 @@
 
 
 
-
-
+{{--                                    Reservations--}}
+{{--                                {{$Reservations ->links('pagination::bootstrap-4')}}--}}
+{{--                                    waitings--}}
+{{--                                {{$waitings ->links('pagination::bootstrap-4')}}--}}
 
                                     </div>
                                     <!-- /.card-body -->

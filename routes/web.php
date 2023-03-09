@@ -115,7 +115,29 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Reservations',[ReservationController::class,'index'])->name('Reservations.all');
     Route::get('/create/waiting',[ReservationController::class,'create_waiting'])->name('create.waiting');
     Route::post('/store/waiting',[ReservationController::class,'storewaiting'])->name('store.waiting');
+    Route::get('/show/waiting/{id}',[ReservationController::class,'show_waiting'])->name('show.waitin');
+    Route::get('/Retreat/waiting',[ReservationController::class,'Retern_waiting'])->name('Retreat.waitin');
+    Route::get('/edit/waiting/{id}',[ReservationController::class,'edit_waiting'])->name('edit.waitin');
+    Route::post('/update/waiting/{id}',[ReservationController::class,'update_waiting'])->name('update.waiting');
+    Route::get('delete/wating/{id}',[ReservationController::class,'delete_wating'])->name('delete.wating');
+
+    Route::get('/Get_Doctoer/{division_id}', [ReservationController::class,'Get_Doctoer']);
+
+
+
     Route::get('/create/appointment',[ReservationController::class,'create_appointment'])->name('create.appointment');
+    Route::post('/store/appointment',[ReservationController::class,'store_appointment'])->name('store.appointment');
+    Route::get('/show/appointment/{id}',[ReservationController::class,'Show_appointment'])->name('show.appointment');
+    Route::get('/Retreat/appointment',[ReservationController::class,'Retern_appointment'])->name('Retreat.appointment');
+    Route::get('/edit/appointment/{id}',[ReservationController::class,'edit_appointment'])->name('edit.appointment');
+    Route::post('/update/appointment/{id}',[ReservationController::class,'update_appointment'])->name('update.appointment');
+    Route::get('delete/appointment/{id}',[ReservationController::class,'delete_appointment'])->name('delete.appointment');
+    Route::get('/Chnge/Status/{id}',[ReservationController::class,'ChngeStatus'])->name('Chnge.Status');
+    Route::get('/Cancelling/Status/{id}',[ReservationController::class,'ChngeCancelling'])->name('Chnge.Cancelling');
+    Route::get('/download/pdf/{id}',[ReservationController::class,'PdfInvoiceDownload'])->name('download.pdf');
+
+
+    Route::get('your/route/name',[\App\Http\Controllers\SearchController::class,'index'])->name('Search');
 });
 
 

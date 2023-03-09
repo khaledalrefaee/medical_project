@@ -26,7 +26,7 @@ class ClinceRepository implements ClinceRepositoryInterface
             toastr()->success('success create clince','success');
             return redirect()->route('all.Clincs');
         } catch (Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
     }
 
@@ -47,7 +47,7 @@ class ClinceRepository implements ClinceRepositoryInterface
             toastr()->warning('You are edit Clinics','worning');
             return redirect()->route('all.Clincs');
         } catch (Exception $e) {
-            return redirect()->back()->with(['error' => $e->getMessage()]);
+            return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
     }
     public function delete($id)

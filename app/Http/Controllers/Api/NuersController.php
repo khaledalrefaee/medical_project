@@ -22,5 +22,10 @@ class NuersController extends Controller
 
     }
 
+    public function get_All(){
+        $All_Doctoer =Doctor::all();
+        return response($All_Doctoer,200);
+    }
+
 }
 

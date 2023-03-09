@@ -11,6 +11,10 @@ class Waiting extends Model
 
     protected $fillable =['name','gender_id','address','birthday','doctor_id'];
 
+    public function gender(){
+        return $this->belongsTo(Gender::class);
+    }
+
     public function doctor(){
         return $this->belongsTo(Doctor::class);
     }

@@ -142,7 +142,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('mail',MailController::class);
     Route::get('/see/All',[MailController::class,'see_All'])->name('see');
-    Route::get('/notifications', [MailController::class, 'showNotifications'])->name('show-notifications');
+    Route::get('redirect',function (){
+       return redirect()->route('home');
+    });
+    //search
     Route::get('your/route/name',[\App\Http\Controllers\SearchController::class,'index'])->name('Search');
 });
 

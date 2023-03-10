@@ -1,3 +1,10 @@
+<style>
+    ul.list-group {
+        max-height: 400px;
+        overflow-y: scroll;
+    }
+</style>
+
 <nav class="main-header navbar navbar-expand navbar-dark">
     <!-- Left navbar links -->
     <ul class="navbar-nav">
@@ -42,58 +49,31 @@
                         <span class="float-right text-muted text-sm"> </span>
                     </a>
                 <hr>
+                    <a href="{{route('see')}}" class="dropdown-item dropdown-footer">See All Messages</a>
+<hr>
 
-
+                    <ul class="list-group">
                     <!-- Message Start -->
-                    @foreach (Auth::User()->unreadNotifications as $notifications  )
+                    @foreach (Auth::User()->notifications  as $notifications  )
                     <div class="media">
                         <img src="{{asset('back/dist/img/user3-128x128.jpg')}}" alt="User Avatar" class="img-size-50 img-circle mr-3">
                         <div class="media-body">
                             <h5 class="dropdown-item-title">
                                 {{ $notifications->data['message']}}  {{$notifications->data['user_created']}}
-                                <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
+                                <span class="float-right text-sm {{ $notifications->read_at ? 'text-muted' : 'text-danger' }}"><i class="fas fa-star"></i></span>
                             </h5>
                             <a href="{{route('mail.show',$notifications->data['mail_id'])}}" ><p class="text-sm">{{ $notifications->data['text']}}</p></a>
                             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>{{$notifications->created_at}}</p>
                         </div>
                     </div>
                         <hr>
+
                     @endforeach
-                    <a href="{{route('see')}}" class="dropdown-item dropdown-footer">See All Messages</a>
+                    </ul>
                     <!-- Message End -->
 
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-            <a class="nav-link" data-toggle="dropdown" href="{{url('notifications')}}">
-                <i class="far fa-bell"></i>
-                <span class="badge badge-warning navbar-badge"></span>
-            </a>
 
-
-            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">1</span>
-                <div class="dropdown-divider"></div>
-                <a href="{{route('mail.create')}}" class="dropdown-item">
-                    <i class="fas fa-envelope mr-2"></i>  send mail
-                    <span class="float-right text-muted text-sm"> </span>
-                </a>
-                <hr>
-                @foreach (Auth::User()->unreadNotifications as $notifications  )
-                    <i class="fas fa-file mr-2"></i> {{ $notifications->data['message']}} from {{$notifications->data['user_created']}}
-<hr>
-                    <a href="" class="dropdown-item">{{ $notifications->data['text']}}</a>
-
-                        <span class="float-right text-muted text-sm">{{$notifications->created_at}}</span>
-                    <hr>
-                @endforeach
-                <a href="#" class="dropdown-item">
-                    <span class="float-right text-muted text-sm"></span>
-                </a>
-                <div class="dropdown-divider"></div>
-
-                <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
-            </div>
-        </li>
         <li class="nav-item">
             <a class="nav-link" data-widget="fullscreen" href="#" role="button">
                 <i class="fas fa-expand-arrows-alt"></i>
@@ -102,4 +82,5 @@
 
     </ul>
 </nav>
+
 

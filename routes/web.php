@@ -12,6 +12,7 @@ use App\Http\Controllers\back\ReservationsController;
 use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
 use App\Http\Controllers\ChartController;
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\WatingController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -137,6 +138,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/download/pdf/{id}',[ReservationController::class,'PdfInvoiceDownload'])->name('download.pdf');
 
 
+    //Mail
+
+    Route::resource('mail',MailController::class);
+    Route::get('/see/All',[MailController::class,'see_All'])->name('see');
+    Route::get('/notifications', [MailController::class, 'showNotifications'])->name('show-notifications');
     Route::get('your/route/name',[\App\Http\Controllers\SearchController::class,'index'])->name('Search');
 });
 

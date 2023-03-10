@@ -48,7 +48,7 @@
 
 
                 <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >Clice</option>
+                    <option selected="" disabled="" >Doctoer</option>
                     @foreach($doctor as $item)
                         <option value="{{$item->id}}">{{$item->name}} </option>
                     @endforeach

@@ -30,7 +30,6 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">gender</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">address</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">age</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">Role</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
                                             </thead>
                                             <tbody>
@@ -46,10 +45,10 @@
 
 
                                                     <td style="">{{$user->phone}}</td>
-                                                    <td style="">{{$user->gender->name}}</td>
+                                                    <td style="">{{$user->gender->name ?? 'nono'}}</td>
                                                     <td style="">{{$user->address}}</td>
                                                     <td style="">{{$user->birthday}}</td>
-                                                    <td style="">{{$user->Role->name}}</td>
+
                                                     <td style="">
                                                         <a href="{{url('Retreat')}}"> <button class="btn btn-primary">Retreat</button></a>
 

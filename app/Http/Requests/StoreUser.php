@@ -31,7 +31,7 @@ class StoreUser extends FormRequest
             'gender_id'          =>  'required',
             'address'            =>  'required',
             'birthday'           =>  'required',
-            'role_id'            =>  'required',
+
         ];
     }
 }

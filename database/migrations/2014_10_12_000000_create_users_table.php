@@ -16,9 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->date('birthday')->nullable();
             $table->string('address')->nullable();
-            //$table->foreignId('gender_id')->constrained('genders')->nullable();
+           // $table->foreignId('gender_id')->constrained('genders');
             $table->integer('phone')->nullable();
-           // $table->foreignId('role_id')->constrained('roles')->nullable();
+            $table->text('role_name')->nullable();
+            $table->string('status');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Admin Meadicel</title>
 
+
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="{{asset('http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css')}}">
     <link rel="stylesheet" href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback')}}">
@@ -105,6 +106,24 @@
 <!-- ChartJS -->
 <script src="{{asset('back/plugins/chart.js/Chart.min.js')}}"></script>
 
+{{--<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>--}}
+{{--<script src="https://js.pusher.com/7.2/pusher.min.js"></script>--}}
+{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">--}}
+{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>--}}
+{{--<script>--}}
+
+{{--    // Enable pusher logging - don't include this in production--}}
+{{--    Pusher.logToConsole = true;--}}
+
+{{--    var pusher = new Pusher('0c6edec1fcc61215a213', {--}}
+{{--        cluster: 'ap2'--}}
+{{--    });--}}
+
+{{--    var channel = pusher.subscribe('my-channel');--}}
+{{--    channel.bind('my-event', function(data) {--}}
+{{--        toastr.info(JSON.stringify(data) +'you have a message ','success')--}}
+{{--    });--}}
+{{--</script>--}}
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('back/dist/js/demo.js')}}"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->

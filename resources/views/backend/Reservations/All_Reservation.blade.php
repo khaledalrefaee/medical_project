@@ -50,11 +50,17 @@
                                                     <td> </td>
                                                     <td> <span class="badge badge-pill badge-warning">wating</span></td>
                                                         <td>
+                                                             @can('waiting-delete')
+                                                            <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></i></a>
+                                                            @endcan
 
-                                                        <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></i></a>
-                                                        <a href="{{route('show.waitin',$waiting->id)}}" class="btn btn-info" title="show Data">  <i class="fa fa-eye"></i></i></a>
+                                                            @can('waiting-show')
+                                                            <a href="{{route('show.waitin',$waiting->id)}}" class="btn btn-info" title="show Data">  <i class="fa fa-eye"></i></i></a>
+                                                            @endcan
+
+                                                            @can('waiting-edit')
                                                             <a href="{{route('edit.waitin',$waiting->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i> </a>
-
+                                                            @endcan
                                                     </td>
                                                     @endforeach
                                                 </tr>
@@ -87,12 +93,29 @@
                                                                                 </span></td>
 
                                                         <td>
+                                                            @can('Reservations-delete')
                                                             <a href="{{route('delete.appointment',$Reservation->id)}}" class="btn btn-danger" title="Delete Data"> <i title=" Delete"  class="fa fa-trash"></i></a>
-                                                            <a href="{{route('show.appointment',$Reservation->id)}}" class="btn btn-info" title="show Data"><i class="fa fa-eye"></i> </a>
+                                                            @endcan
+
+
+                                                                <a href="{{route('show.appointment',$Reservation->id)}}" class="btn btn-info" title="show Data"><i class="fa fa-eye"></i> </a>
+
+
+                                                                @can('Reservations-edit')
                                                             <a href="{{route('edit.appointment',$Reservation->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i></i> </a>
+                                                                @endcan
+
+                                                                @can('Reservations-completed')
                                                            <a href="{{route('Chnge.Status',$Reservation->id)}}"> <button type="button" class="btn btn-outline-success">completed</button></a>
-                                                            <a href="{{route('Chnge.Cancelling',$Reservation->id)}}" ><button type="button" class="btn btn-outline-light">Cancelling</button></a>
-                                                            <a href="{{route('download.pdf',$Reservation->id)}}" class="btn btn-info"><i class="fas fa-download"></i> Download pdf</a>
+                                                                @endcan
+
+                                                                @can('Reservations-Cancelling')
+                                                                    <a href="{{route('Chnge.Cancelling',$Reservation->id)}}" ><button type="button" class="btn btn-outline-light">Cancelling</button></a>
+                                                                @endcan
+
+                                                                @can('Reservations-Download')
+                                                                    <a href="{{route('download.pdf',$Reservation->id)}}" class="btn btn-info"><i class="fas fa-download"></i> Download pdf</a>
+                                                                @endcan
                                                         </td>
                                                         @endforeach
                                                     </tr>
@@ -109,6 +132,7 @@
                                                 Add a request
                                             </button>
 
+
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
@@ -124,8 +148,13 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            @can('waiting-create')
                                                             <a href="{{route('create.waiting')}}" ><button type="button" class="btn btn-primary">waiting date</button></a>
+                                                            @endcan
+
+                                                            @can('Reservations-create')
                                                             <a href="{{route('create.appointment')}}"> <button type="button" class="btn btn-primary"> Reservation date</button></a>
+                                                            @endcan
                                                         </div>
                                                     </div>
                                                 </div>

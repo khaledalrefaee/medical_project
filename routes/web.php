@@ -141,6 +141,7 @@ Route::middleware(['auth'])->group(function () {
     //Mail
 
     Route::resource('mail',MailController::class);
+
     Route::get('/see/All',[MailController::class,'see_All'])->name('see');
     Route::get('redirect',function (){
        return redirect()->route('home');
@@ -150,12 +151,23 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    Route::resource('users', \App\Http\Controllers\UserController::class);
+
+});
 
 
 
 
 
 
+Route::group(['middleware' => ['auth']], function() {
+
+    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+    Route::resource('users', \App\Http\Controllers\UserController::class);
+
+});
 
 
 

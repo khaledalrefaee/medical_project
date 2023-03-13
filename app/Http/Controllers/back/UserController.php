@@ -9,7 +9,6 @@ use App\Models\Doctor;
 use App\Models\Gender;
 use App\Models\Nurses;
 use App\Models\Pharmise;
-use App\Models\Role;
 use App\Models\User;
 use App\Repository\UserRepositoryInterface;
 use Illuminate\Http\Request;
@@ -28,9 +27,12 @@ class UserController extends Controller
     {
         $this->User = $User;
     }
+
+
     public function index(){
         return $this->User->getAllUser();
     }
+
 
     public function create(){
        return $this->User->createUser();

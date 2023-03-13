@@ -1,5 +1,11 @@
 @extends('backend.index')
 @section('content')
+
+
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css"/>
+
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -14,7 +20,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+                            <h3 class="card-title">DataTable for Doctor</h3>
                         </div>
 
 
@@ -33,6 +39,7 @@
                                 </select>
                             </form>
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
+                                        <div class="main-content">
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
@@ -69,11 +76,16 @@
 
                                                     <td style="">
 
-
+                                                        @can('doctor-delete')
                                                         <a href="{{route('delete.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                        @endcan
+
+                                                        @can('doctor-edit')
                                                         <a href="{{route('edit.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="{{route('show.doctor', $doctor->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                        &nbsp;
+                                                            @endcan
+{{--                                                            @can('doctor-show')--}}
+                                                                <a href="{{route('show.doctor', $doctor->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+{{--                                                        &nbsp;@endcan--}}
                                                     </td>
                                                     @endforeach
                                                 </tr>
@@ -85,21 +97,21 @@
                                             </tfoot>
                                             <br>
                                             <div></div>
+                                            @can('doctor-create')
 
                                             <a href="{{route('create.doctor')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-
+                                            @endcan
                                         </table>
                                     </div>
-                                    <!-- /.card-body -->
+
                                 </div>
-                                <!-- /.card -->
+
 
 
                             </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
+
                     </div>
-                    <!-- /.container-fluid -->
-    </section>
+
+
 @endsection

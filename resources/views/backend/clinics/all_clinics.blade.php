@@ -38,11 +38,17 @@
 
                                                     <td style="">
 
-
+                                                        @can('Clincs-delete')
                                                         <a href="{{route('delete.Clincs'  , $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        <a href="{{route('edit.Clincs', $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="{{route('show.clincs' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                        &nbsp;
+                                                        @endcan
+
+                                                            @can('Clincs-edit')
+                                                            <a href="{{route('edit.Clincs', $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                            @endcan
+
+                                                            @can('Clincs-show')
+                                                                <a href="{{route('show.clincs' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        &nbsp;@endcan
                                                     </td>
 
                                                 </tr>
@@ -54,8 +60,9 @@
                                             </tfoot>
                                             <br>
                                             <div></div>
+                                            @can('Clincs-create')
                                             <a href="{{route('create.clincs')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-
+                                            @endcan
                                         </table>
                         </div>
                         <!-- /.card-body -->

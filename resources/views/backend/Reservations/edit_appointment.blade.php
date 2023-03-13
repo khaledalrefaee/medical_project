@@ -40,7 +40,7 @@
                 <select name="time" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" >time </option>
                     @foreach($times as $time)
-                        <option {{ $Reservation->time ? 'selected' : ""}} >{{$time}} </option>
+                    <option {{ $Reservation->time ? 'selected' : ""}} >{{$time}} </option>
                     @endforeach
 
                 </select>
@@ -75,8 +75,8 @@
                 </div>
                 <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" >Doctoer </option>
-                    @foreach($doctor as $time)
-                        <option value="{{$time->id}}" {{$time->id == $Reservation->doctor_id ? 'selected' : ""}}>{{$time->name}} </option>
+                    @foreach($doctor as $itme)
+                        <option value="{{$itme->id}}" {{$itme->id == $Reservation->doctor_id ? 'selected' : ""}}>{{$itme->name}} </option>
                     @endforeach
 
                 </select>

@@ -41,6 +41,10 @@ class MailController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name'      =>   'required|email',
+            'text'      =>   'required',
+        ]);
         $mail = Mail::create([
             'name' => $request->name,
             'text' => $request->text,
@@ -48,7 +52,7 @@ class MailController extends Controller
 
         $name = $request->input('name');
 
-        $user = User::where('email', $name)->firstOrFail();
+        $user = User::where('email', $name)->first();
         $user_created = auth()->user()->name;
         if ($user) {
             $notification = new Mailnotification($user_created ,$mail->text,$mail->id );
@@ -62,13 +66,7 @@ class MailController extends Controller
 
     }
 
-    public function showNotifications()
-    {
-        $user = Auth::user();
-        $notifications = $user->notifications;
 
-        return view('backend.partials.header', compact('notifications'));
-    }
 
     public function show($id)
     {
@@ -77,6 +75,8 @@ class MailController extends Controller
         DB ::table('notifications')->where('id', $getid)->update(['read_at'=>now()]);
         return view('backend.Mail.show',compact('mail'));
     }
+
+
     public function see_All(){
         $user = User::find(auth()->user()->id);
         foreach ($user->unreadNotifications as $notification ){

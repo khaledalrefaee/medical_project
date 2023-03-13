@@ -81,11 +81,6 @@ class NuerseRepository implements NuerseRepositoryInterface
         // Get the nurse
         $nuers = Nurses::findOrFail($id);
 
-        // Delete the nurse's photo from storage
-        if ($nuers->image) {
-            Storage::delete('public/uploads/' . $nuers->name .$nuers->image);
-        }
-
         // Delete the nurse from the database
         $nuers->delete();
         toastr ()->error('messages Delete Nurses','success');

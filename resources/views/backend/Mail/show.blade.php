@@ -7,4 +7,5 @@
     </div>
     <a href="{{url('redirect')}}"> <button type="submit" class="btn btn-dark">redirect</button></a>
 
+    <a href="{{route('mail.create')}}"> <button type="submit" class="btn btn-dark">redirect send massage</button></a>
 @endsection

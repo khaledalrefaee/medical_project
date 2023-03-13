@@ -3,7 +3,6 @@
 namespace App\Repository;
 
 use App\Models\Gender;
-use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -12,7 +11,7 @@ class UserRepository implements UserRepositoryInterface
 {
     public function getAllUser()
     {
-        $Users = User::paginate(5);
+        $Users = User::orderBy('id','DESC')->paginate(5);
         return view('backend.users.all_users',compact('Users'));
     }
 
@@ -25,9 +24,9 @@ class UserRepository implements UserRepositoryInterface
 
     public function createUser()
     {
-        $role=Role::all();
+
         $gender=Gender::all();
-        return view('backend.users.create',compact('role','gender'));
+        return view('backend.users.create',compact('gender'));
     }
 
     public function StoreUser($request)
@@ -41,7 +40,8 @@ class UserRepository implements UserRepositoryInterface
             $User->gender_id = $request->gender_id;
             $User->address = $request->address;
             $User->birthday = $request->birthday;
-            $User->role_id = $request->role_id;
+            $User->role_name = 'user';
+            $User->status = 'Active';
 
             $User->save();
 
@@ -56,9 +56,9 @@ class UserRepository implements UserRepositoryInterface
     public function editUser($id)
     {
         $user = User::findOrFail($id);
-        $role=Role::all();
+
         $gender=Gender::all();
-        return view('backend.users.edit', compact('user','role','gender'));
+        return view('backend.users.edit', compact('user','gender'));
     }
 
     public function UpdateUser($request)
@@ -72,7 +72,6 @@ class UserRepository implements UserRepositoryInterface
             $User->gender_id = $request->gender_id;
             $User->address = $request->address;
             $User->birthday = $request->birthday;
-            $User->role_id = $request->role_id;
 
             $User->save();
 

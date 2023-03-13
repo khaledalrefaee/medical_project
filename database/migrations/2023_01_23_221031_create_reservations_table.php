@@ -16,12 +16,13 @@ return new class extends Migration
         Schema::create('reservations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
-            $table->time('time');
-            $table->date('date');
+            $table->foreignId('doctor_id')->references('id')->on('doctors');
             $table->string('name');
             $table->bigInteger('phone');
-            $table->text('address')->nullable();
             $table->date('birthday');
+            $table->text('address')->nullable();
+            $table->time('time');
+            $table->date('date');
             $table->string('status');
             $table->string('diagnosis')->nullable();
             $table->timestamps();

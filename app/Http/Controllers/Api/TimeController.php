@@ -13,8 +13,8 @@ class TimeController extends Controller
     {
 
         $times = [];
-        for ($i = 0; $i < 96; $i++) {
-            $times[] = Carbon::parse("00:00")->addMinutes(15 * $i)->format('H:i');
+        for ($i = 0; $i <= 16; $i++) {
+            $times[] = Carbon::parse("09:00")->addMinutes(30 * $i)->format('H:i');
         }
 
         return response()->json([

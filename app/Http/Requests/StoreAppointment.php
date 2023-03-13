@@ -2,10 +2,14 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class StoreAppointment extends FormRequest
 {
+
+
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -21,15 +25,24 @@ class StoreAppointment extends FormRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules(Request $request)
     {
         return [
             'name'  =>  'required',
-            'time'  =>  'required',
-            'date'  =>  'required',
+            'doctor_id' => 'required|exists:doctors,id',
+            'date' => 'required|date_format:Y-m-d',
+
+            'time' => [
+                'required',
+                'date_format:H:i',
+                Rule::unique('reservations')->where(function ($query) {
+                    return $query->where('doctor_id', $this->doctor_id)
+                        ->where('date', $this->date);
+                }).$this->id
+            ],
             'phone'  =>  'required',
             'birthday'  =>  'required',
-            'doctor_id'  =>  'required',
+
         ];
     }
 }

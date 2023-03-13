@@ -38,7 +38,9 @@ Route::get('get_All',[NuersController::class,'get_All']);
 
 Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 
+Route::post('/Reservation/update/{id}',[ReservationController::class,'update']);
 
+Route::post('/Reservation/delete/{id}',[ReservationController::class,'destroy']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -47,4 +49,6 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', [ProfileContoller::class,'index']);
 
     Route::post('/store',[ReservationController::class,'store']);
+
+    Route::get('/My/Reservation',[ReservationController::class,'index']);
 });

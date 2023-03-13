@@ -93,17 +93,6 @@
                 </div>
             </div>
 
-            <select name="role_id" id="inputStatus" class="form-control custom-select" >
-                <option selected="" disabled="" >Role</option>
-                @foreach($role as $item)
-                <option value="{{$item->id}}">{{$item->name}} </option>
-                @endforeach
-
-            </select>
-            @error('role_id')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-
             <br>
             <br>
 

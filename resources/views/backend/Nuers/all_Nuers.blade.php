@@ -46,11 +46,17 @@
 
                                                     <td style="">
 
+                                                            @can('nuers-delete')
+                                                            <a href="{{route('delet.nuers'  , $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                            @endcan
 
-                                                        <a href="{{route('delet.nuers'  , $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        <a href="{{route('edit.nuers', $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="{{route('show.nuers' , $nuer->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                        &nbsp;
+                                                            @can('nuers-edit')
+                                                            <a href="{{route('edit.nuers', $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                            @endcan
+
+                                                            @can('nuers-show')
+                                                            <a href="{{route('show.nuers' , $nuer->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        &nbsp;  @endcan
                                                     </td>
 
                                                 </tr>
@@ -62,8 +68,9 @@
                                             </tfoot>
                                             <br>
                                             <div></div>
+                                            @can('Clincs-create')
                                             <a href="{{route('create.nuers')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-
+                                            @endcan
                                         </table>
                                     </div>
                                     <!-- /.card-body -->

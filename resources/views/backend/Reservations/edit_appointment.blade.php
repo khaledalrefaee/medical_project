@@ -40,7 +40,7 @@
                 <select name="time" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" >time </option>
                     @foreach($times as $time)
-                    <option {{ $Reservation->time ? 'selected' : ""}} >{{$time}} </option>
+                    <option >{{$time}} </option>
                     @endforeach
 
                 </select>

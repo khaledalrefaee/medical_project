@@ -41,13 +41,13 @@
                                                 <td>{{$phamies->prise}}</td>
                                                 <td>{{$phamies->description}}</td>
                                                 <td style="">
-                                                    @can('pharmese-delete')
-                                                    <a href="{{route('delete.pharmese',$phamies->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                    @endcan
 
-                                                    @can('pharmese-edit')
+                                                    <a href="{{route('delete.pharmese',$phamies->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+
+
+
                                                     <a href="{{route('edit.pharmese',$phamies->id)}}"> <button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                    &nbsp;@endcan
+
                                                 </td>
 
                                             </tr>
@@ -60,9 +60,9 @@
                                         <br>
                                         <div></div>
 
-                                        @can('pharmese-create')
+
                                         <a href="{{route('create.pharmese')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-                                        @endcan
+
                                     </table>
                                 </div>
                                 <!-- /.card-body -->

@@ -123,14 +123,23 @@ class DoctorRepository implements DoctoerRepositoryInterface
 
     public function delete($id)
     {
-        DB::beginTransaction();
+//        DB::beginTransaction();
 
         try {
+
+            $doctor = Doctor::findorFail($id);
+            $doctor->delete();
+            $doctor->detail()->delete();
+            $doctor->reservation()->delete();
+
             // Delete the doctor record
-            DB::table('doctors')->where('id', $id)->delete();
+//            DB::table('doctors')->where('id', $id)->delete();
 
             // حذف سجل التفاصيل المقابل
-            DB::table('details')->where('doctor_id', $id)->delete();
+//            DB::table('details')->where('doctor_id', $id)->delete();
+
+            // حذف سجل التفاصيل المقابل
+//            DB::table('reservations')->where('doctor_id', $id)->delete();
 
             // Commit the transaction
             DB::commit();
@@ -146,6 +155,21 @@ class DoctorRepository implements DoctoerRepositoryInterface
             return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
     }
+
+    public function show_destroy()
+    {
+        $doctors =Doctor::onlyTrashed()->get();
+        return view('backend.Doctor.show_Doctor_Delete',compact('doctors'));
+    }
+
+    public function showDeleted($id)
+    {
+        $doctor = Doctor::withTrashed()->where('id', $id)->firstOrFail();
+        $details = $doctor->detail()->withTrashed()->get();
+
+        return view('backend.Doctor.detail_deleted', compact('doctor','details'));
+    }
+
 
     public function Filter_Clinces($request)
     {

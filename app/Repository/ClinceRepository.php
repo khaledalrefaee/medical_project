@@ -74,4 +74,10 @@ class ClinceRepository implements ClinceRepositoryInterface
 
     }
 
+    public function show_delete(){
+        $clinics =Clinics::onlyTrashed()->get();
+        return view('backend.clinics.show_delete',compact('clinics'));
+    }
+
+
 }

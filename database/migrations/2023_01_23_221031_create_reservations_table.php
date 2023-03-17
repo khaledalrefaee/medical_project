@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('date');
             $table->string('status');
             $table->string('diagnosis')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

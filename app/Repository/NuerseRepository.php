@@ -11,7 +11,7 @@ class NuerseRepository implements NuerseRepositoryInterface
 {
     public function index()
     {
-        $nuers = Nurses::all();
+        $nuers = Nurses::paginate(2);
         return view('backend.Nuers.all_Nuers',compact('nuers'));
     }
 

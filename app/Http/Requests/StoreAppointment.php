@@ -38,7 +38,7 @@ class StoreAppointment extends FormRequest
                 Rule::unique('reservations')->where(function ($query) {
                     return $query->where('doctor_id', $this->doctor_id)
                         ->where('date', $this->date);
-                }).$this->id
+                })
             ],
             'phone'  =>  'required',
             'birthday'  =>  'required',

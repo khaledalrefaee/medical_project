@@ -25,7 +25,7 @@ class ReservationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'doctor_id' => 'required',
+            'doctor_id' => 'required|exists:doctors,id',
             'date' => 'required|date_format:Y-m-d',
             'time' => [
                 'required',

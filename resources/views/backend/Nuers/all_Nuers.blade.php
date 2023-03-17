@@ -20,7 +20,14 @@
                         <div class="card-body">
                             <div class="container-fluid">
 
-
+                                <form action="{{ route('Search.nuers') }}" method="GET">
+                                    <div class="form-group">
+                                        <label for="search">Search:</label>
+                                        <input type="text" name="search" class="form-control" placeholder="Search...">
+                                    </div>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary">Search</button>
+                                </form>
 
                                 </div>
                             </div>
@@ -46,17 +53,12 @@
 
                                                     <td style="">
 
-                                                            @can('nuers-delete')
                                                             <a href="{{route('delet.nuers'  , $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                            @endcan
 
-                                                            @can('nuers-edit')
                                                             <a href="{{route('edit.nuers', $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                            @endcan
 
-                                                            @can('nuers-show')
                                                             <a href="{{route('show.nuers' , $nuer->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                        &nbsp;  @endcan
+                                                        &nbsp;
                                                     </td>
 
                                                 </tr>
@@ -68,10 +70,10 @@
                                             </tfoot>
                                             <br>
                                             <div></div>
-                                            @can('Clincs-create')
                                             <a href="{{route('create.nuers')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-                                            @endcan
+
                                         </table>
+                                        {{$nuers ->links('pagination::bootstrap-4')}}
                                     </div>
                                     <!-- /.card-body -->
                                 </div>

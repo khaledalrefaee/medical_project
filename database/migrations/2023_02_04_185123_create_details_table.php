@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('specialization');
             $table->bigInteger('phone');
             $table->string('email');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

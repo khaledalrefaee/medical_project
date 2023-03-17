@@ -25,6 +25,7 @@ class AuthController extends Controller
         return response(['mesegag' => 'Error'], 401);
     }
 
+
     $token = $user->createToken('myappToken')->plainTextToken;
     $respons = [
         'user' => $user,

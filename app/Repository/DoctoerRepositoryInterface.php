@@ -11,7 +11,7 @@ interface DoctoerRepositoryInterface
 
   public function store_Doctoer($request);
 
-    public function show($id);
+  public function show($id);
 
   public function edit_doctoer($id);
 
@@ -19,5 +19,10 @@ interface DoctoerRepositoryInterface
 
   public function delete($id);
 
-   public function Filter_Clinces($request);
+  public function show_destroy();
+
+    public function showDeleted($id);
+
+  public function Filter_Clinces($request);
+
 }

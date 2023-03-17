@@ -105,16 +105,17 @@
         userChart.update();
 
         // Determine the direction of the arrow
+
         var direction = (totalUsers > prevValue) ? 'up' : 'down';
-        // var direction_2 = (totalDoctoer > prevValue) ? 'up' : 'down';
-        // var direction_3 = (toutalNuers > prevValue) ? 'up' : 'down';
+          var direction_2 = (totalDoctoer > prevValue) ? 'up' : 'down';
+          var direction_3 = (toutalNuers > prevValue) ? 'up' : 'down';
 
         // Update the arrow icon
         var arrowIcon = document.getElementById('arrow-icon');
         arrowIcon.classList.remove('fa-arrow-up', 'fa-arrow-down');
         arrowIcon.classList.add('fa-arrow-' + direction);
-        // arrowIcon.classList.add('fa-arrow-' + direction_2);
-        // arrowIcon.classList.add('fa-arrow-' + direction_3);
+         arrowIcon.classList.add('fa-arrow-' + direction_2);
+         arrowIcon.classList.add('fa-arrow-' + direction_3);
 
         arrowIcon.style.color = (direction === 'up') ? 'green' : 'red';
         arrowIcon.style.color = (direction_2 === 'up') ? 'green' : 'red';

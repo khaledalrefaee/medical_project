@@ -11,7 +11,7 @@ class ProfileContoller extends Controller
 {
     public function index(Request $request)
     {
-        $user = Auth::user()->load(['gender', 'role']);
+        $user = Auth::user()->load(['gender']);
 
         return response()->json([
             'name' => $user->name,
@@ -20,7 +20,6 @@ class ProfileContoller extends Controller
             'address' => $user->address,
             'birthday' => $user->birthday,
             'gender' => $user->gender->name,
-            'role' => $user->role->name,
         ]);
 
     }

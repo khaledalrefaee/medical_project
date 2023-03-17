@@ -10,9 +10,11 @@ use App\Models\Gender;
 use App\Models\Pharmise;
 use App\Models\Reservation;
 use App\Models\Waiting;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
 class WatingRepository implements WatingRepositoryInterface
 {
@@ -135,6 +137,22 @@ class WatingRepository implements WatingRepositoryInterface
         return view('backend.Reservations.edit_appointment',compact('Reservation','doctor','times'));
     }
     public function update_appointment($request){
+
+        $request->validate([
+            'name' => 'required',
+            'doctor_id' => 'required',
+            'date' => 'required|date_format:Y-m-d',
+            'time' => ['required', 'date_format:H:i',
+                Rule::unique('reservations')->where(function ($query) use ($request) {
+                    return $query->where('doctor_id', $request->doctor_id)
+                        ->where('date', $request->date)
+                        ->where('id', '<>', $request->id);
+                })
+            ],
+            'phone' => 'required',
+            'birthday' => 'required',
+        ]);
+
         try {
             $Reservation = Reservation::findOrFail($request->id);
 
@@ -160,6 +178,39 @@ class WatingRepository implements WatingRepositoryInterface
         $Reservation->delete();
         toastr()->error('messages.Delete.Reservation');
         return redirect()->route('Reservations.all');
+    }
+
+    public function show_destroy(){
+        $Reservations =Reservation::onlyTrashed()->get();
+        return view('backend.Reservations.show_delete_reservation',compact('Reservations'));
+    }
+
+
+    public function ChngeStatus($id){
+        $Reservation = Reservation::find($id);
+        $Reservation->status = 'completed';
+        $Reservation->save();
+        return redirect()->route('Reservations.all');
+    }
+
+
+    public function ChngeCancelling($id)
+    {
+        $Reservation = Reservation::find($id);
+        $Reservation->status = 'Cancelling';
+        $Reservation->save();
+        $Reservation->delete();
+        return redirect()->route('Reservations.all');
+    }
+
+    public function PdfInvoiceDownload($id)
+    {
+        $Reservation = Reservation::find($id);
+        $pdf = PDF::loadView('backend.Reservations.pdf', compact('Reservation'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('Reservations.pdf');
     }
 
 }

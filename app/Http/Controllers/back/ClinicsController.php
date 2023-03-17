@@ -57,6 +57,11 @@ class ClinicsController extends Controller
         return $this->Clince->delete($id);
     }
 
+    public function show_destroy()
+    {
+        return $this->Clince->show_delete();
+    }
+
 
 
 }

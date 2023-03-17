@@ -23,48 +23,48 @@
                                             <thead>
                                             <tr>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">description</th>
+
+                                                </tr>
                                             </thead>
                                             <tbody>
 
-                                            @foreach($roles as $role)
-                                                <tr class="odd">
-                                                    <td>{{$role->name}}</td>
 
 
+                                            @foreach($clinics as $clinic)
+                                                    <tr class="odd">
+                                                    <td>{{$clinic->name}}</td>
 
-                                                    <td style="">
+                                                    <td>{{$clinic->description}}</td>
+                                                    @endforeach
 
 
-                                                        <a href="{{route('delete.role'  , $role->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        <a href="{{route('edit.role', $role->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                        <a href="{{route('show.role' , $role->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                        &nbsp;
-                                                    </td>
+                                                    &nbsp;
+                                                </td>
 
-                                                </tr>
+                                            </tr>
 
-                                            @endforeach
+
                                             </tbody>
                                             <tfoot>
 
                                             </tfoot>
                                             <br>
                                             <div></div>
-                                            <a href="{{route('create.role')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-
-                                        </table>
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
+                                            <a href="{{route('all.Clincs')}}">   <button type="button" class="btn btn btn-primary">back</button></a>
 
 
-                            </div>
-                            <!-- /.col -->
                         </div>
-                        <!-- /.row -->
+                        <!-- /.card-body -->
                     </div>
-                    <!-- /.container-fluid -->
+                    <!-- /.card -->
+
+
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
     </section>
 @endsection

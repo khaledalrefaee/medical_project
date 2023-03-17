@@ -11,6 +11,7 @@ use App\Models\Reservation;
 
 use App\Repository\WatingRepositoryInterface;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Http\Request;
 
 class ReservationController extends Controller
 {
@@ -60,7 +61,7 @@ class ReservationController extends Controller
     }
 
     ////
-    ///
+
 
     public function create_appointment(){
       return $this->Wating->create_appointment();
@@ -79,7 +80,7 @@ class ReservationController extends Controller
     public function edit_appointment($id){
         return $this->Wating->edit_appointment($id);
     }
-    public function update_appointment(StoreAppointment $request){
+    public function update_appointment(Request $request){
         return $this->Wating->update_appointment($request);
     }
 
@@ -87,29 +88,21 @@ class ReservationController extends Controller
         return $this->Wating->delete_appointment($id);
     }
 
+
+    public function show_destroy(){
+        return $this->Wating->show_destroy();
+    }
+
     public function ChngeStatus($id){
-        $Reservation = Reservation::find($id);
-        $Reservation->status = 'completed';
-        $Reservation->save();
-        return redirect()->route('Reservations.all');
+    return $this->Wating->ChngeStatus($id);
     }
 
     public function ChngeCancelling($id){
-        $Reservation = Reservation::find($id);
-        $Reservation->status = 'Cancelling';
-        $Reservation->save();
-        return redirect()->route('Reservations.all');
+        return $this->Wating->ChngeCancelling($id);
     }
 
     public function PdfInvoiceDownload($id)
     {
-
-        $Reservation = Reservation::find($id);
-
-        $pdf = PDF::loadView('backend.Reservations.pdf', compact('Reservation'))->setPaper('a4')->setOptions([
-            'tempDir' => public_path(),
-            'chroot' => public_path(),
-        ]);
-        return $pdf->download('Reservations.pdf');
+        return $this->Wating->PdfInvoiceDownload($id);
     }
 }

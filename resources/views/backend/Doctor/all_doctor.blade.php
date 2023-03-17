@@ -26,6 +26,14 @@
 
                         <!-- /.card-header -->
 
+                        <form action="{{ route('Search.Doctoer') }}" method="GET">
+                            <div class="form-group">
+                                <label for="search">Search:</label>
+                                <input type="text" name="search" class="form-control" placeholder="Search Doctor...">
+                            </div>
+                            <br>
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
 
                         <div class="card-body">
                             <form action="{{ route('Filter_Clinces') }}" method="POST">
@@ -70,26 +78,14 @@
                                                     <td>{{$doctor->clinic->name}}</td>
                                                     <td>{{$doctor->name}}</td>
 
-
-
-
-
                                                     <td style="">
-
-                                                        @can('doctor-delete')
                                                         <a href="{{route('delete.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        @endcan
-
-                                                        @can('doctor-edit')
                                                         <a href="{{route('edit.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                            @endcan
-{{--                                                            @can('doctor-show')--}}
                                                                 <a href="{{route('show.doctor', $doctor->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-{{--                                                        &nbsp;@endcan--}}
                                                     </td>
-                                                    @endforeach
-                                                </tr>
 
+                                                </tr>
+                                    @endforeach
 
                                             </tbody>
                                             <tfoot>
@@ -97,10 +93,13 @@
                                             </tfoot>
                                             <br>
                                             <div></div>
-                                            @can('doctor-create')
+
 
                                             <a href="{{route('create.doctor')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-                                            @endcan
+
+
+                                            <a href="{{route('show.delete.doctor')}}">   <button type="button" class="btn btn btn-outline-danger">show delete</button></a>
+
                                         </table>
                                     </div>
 

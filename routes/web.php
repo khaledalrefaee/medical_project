@@ -13,6 +13,7 @@ use App\Http\Controllers\back\RoleController;
 use App\Http\Controllers\back\UserController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\WatingController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
@@ -51,15 +52,10 @@ Route::middleware(['auth'])->group(function () {
     //Chart
     Route::get('/Chart',[UserController::class,'chart'])->name('chart');
 
-    //Role
-    Route::get('/all/role',[RoleController::class,'index'])->name('all.role');
-    Route::get('/create/role',[RoleController::class,'create'])->name('create.role');
-    Route::post('/role/store',[RoleController::class,'store'])->name('store.role');
-    Route::get('/role/show/{id}',[RoleController::class,'show'])->name('show.role');
-    Route::get('/Retreat/role',[RoleController::class,'Retreat'])->name('Retreat.role');
-    Route::get('/edit/role/{id}',[RoleController::class,'edit'])->name('edit.role');
-    Route::post('/update/role/{id}',[RoleController::class,'update'])->name('update.role');
-    Route::get('delete/role/{id}',[RoleController::class,'destroy'])->name('delete.role');
+   //Map
+    Route::get('map',function (){
+        return view('backend.map.map');
+    });
 
     //Users
     Route::get('/all_users',[UserController::class,'index'])->name('all_user');
@@ -90,6 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/Clincs/{id}',[ClinicsController::class,'edit'])->name('edit.Clincs');
     Route::post('/update/Clincs/{id}',[ClinicsController::class,'update'])->name('update.Clincs');
     Route::get('/delete/Clincs/{id}',[ClinicsController::class,'destroy'])->name('delete.Clincs');
+    Route::get('/show/delete/Clincs',[ClinicsController::class,'show_destroy'])->name('show.delete.Clincs');
 
     //Doctor
 
@@ -101,6 +98,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/doctor/{id}',[DoctorController::class,'edit'])->name('edit.doctor');
     Route::post('/update/doctor/{id}',[DoctorController::class,'update'])->name('update.doctor');
     Route::get('/delete/doctor/{id}',[DoctorController::class,'destroy'])->name('delete.doctor');
+    Route::get('/show/delete/doctor',[DoctorController::class,'show_destroy'])->name('show.delete.doctor');
+    Route::get('/doctors/deleted/{id}', [DoctorController::class,'showDeleted'])->name('doctors.deleted.show');
 
     Route::post('Filter_Clinces', [DoctorController::class,'Filter_Clinces'])->name('Filter_Clinces');
 
@@ -138,6 +137,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/download/pdf/{id}',[ReservationController::class,'PdfInvoiceDownload'])->name('download.pdf');
 
 
+    Route::get('/show/delete/Reservation',[ReservationController::class,'show_destroy'])->name('show.delete.Reservation');
+
+
+
+//    //PsyPal
+//    Route::get('paypal',[PayPalController::class,'paypal'])->name('paypal');
+//    Route::get('cansel',[PayPalController::class,'cansel'])->name('cansel');
+//    Route::get('paypal/success',[PayPalController::class,'success'])->name('paypal.success');
+
+
     //Mail
 
     Route::resource('mail',MailController::class);
@@ -146,8 +155,16 @@ Route::middleware(['auth'])->group(function () {
     Route::get('redirect',function (){
        return redirect()->route('home');
     });
+
+
     //search
     Route::get('your/route/name',[\App\Http\Controllers\SearchController::class,'index'])->name('Search');
+    Route::get('search/nuerse',[\App\Http\Controllers\SearchController::class,'searchnuers'])->name('Search.nuers');
+    Route::get('search/user',[\App\Http\Controllers\SearchController::class,'searcuser'])->name('Search.user');
+    Route::get('search/Clinch',[\App\Http\Controllers\SearchController::class,'searchclince'])->name('Search.Clinch');
+    Route::get('search/Doctoer',[\App\Http\Controllers\SearchController::class,'searchdoctor'])->name('Search.Doctoer');
+
+
 });
 
 

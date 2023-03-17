@@ -33,5 +33,12 @@ interface WatingRepositoryInterface
 
      public function delete_appointment($id);
 
+    public function show_destroy();
 
+
+    public function ChngeStatus($id);
+
+    public function ChngeCancelling($id);
+
+    public function PdfInvoiceDownload($id);
 }

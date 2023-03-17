@@ -21,7 +21,7 @@ interface DoctoerRepositoryInterface
 
   public function show_destroy();
 
-    public function showDeleted($id);
+
 
   public function Filter_Clinces($request);
 

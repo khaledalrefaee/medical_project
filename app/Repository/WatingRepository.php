@@ -181,7 +181,12 @@ class WatingRepository implements WatingRepositoryInterface
     }
 
     public function show_destroy(){
-        $Reservations =Reservation::onlyTrashed()->get();
+        $Reservations =Reservation::onlyTrashed()
+            //  الطريقة with () لتحميل علاقة "doctor" لكل حجز (باستخدام طريقة withTrashed () لتضمين الأطباء المحذوفين)
+            ->with(['doctor' => function ($query) {
+                $query->withTrashed();
+            }])->get();
+
         return view('backend.Reservations.show_delete_reservation',compact('Reservations'));
     }
 

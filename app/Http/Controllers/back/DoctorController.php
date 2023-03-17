@@ -61,9 +61,6 @@ class DoctorController extends Controller
         return $this->Doctoer->show_destroy();
     }
 
-    public function showDeleted($id){
-        return $this->Doctoer->showDeleted($id);
-    }
 
 
     public function Filter_Clinces(Request $request){

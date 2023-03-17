@@ -30,7 +30,6 @@
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">birthday</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">status</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Cansel</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Action</th>
 
 
 
@@ -47,7 +46,7 @@
 
 
                                                 @foreach($Reservations as $Reservation)
-                                                    <td>{{$Reservation->doctor->name ?? 'Null'}}</td>
+                                                    <td>{{ $Reservation->doctor->name }}</td>
                                                 <td>{{$Reservation->name}}</td>
                                                 <td>{{$Reservation->date}} | {{$Reservation->time}}</td>
                                                 <td>{{$Reservation->phone}}</td>
@@ -70,12 +69,11 @@
                                                                                     @endif</td>
 
                                                 <td>{{$Reservation->deleted_at}}</td>
-                                                <td>
-                                                    <a href=""> <button class="btn btn btn-outline-danger">Show Doctor Deleted</button></a>&nbsp;
-                                                </td>
-                                                @endforeach
+
+
                                             </tr>
-                                            <a href="{{route('Retreat.appointment')}}"> <button class="btn btn-primary">Retreat</button></a>&nbsp;
+                                            @endforeach
+                                            <a href="{{route('Retreat.appointment')}}"> <button class="btn btn-primary">appointment</button></a>&nbsp;
 
                                             </tbody>
                                         </table>

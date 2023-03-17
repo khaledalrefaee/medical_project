@@ -23,25 +23,25 @@
                                             <thead>
                                             <tr>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Doctor</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Clinic</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">specialization Doctor</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone Doctor</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">email Doctor</th>
 
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Action</th>
 
 
                                             </thead>
                                             <tbody>
 
-                                            @foreach( $doctors as $doctor)
+                                            @foreach( $deletedDetails as $detail)
 
                                                 <tr class="odd">
-                                                    <td>{{$doctor->name}}</td>
 
-
-
-                                                    <td>
-                                                    <a href="{{route('doctors.deleted.show', $doctor->id)}}">
-                                                        <button type="button" class="btn btn btn-outline-danger">Show details </button> </a>
-                                                    </td>
-
+                                                    <td>{{ $detail->name }}</td>
+                                                    <td> {{$detail->clinic->name }}</td>
+                                                    <td>{{$detail->detail->specialization}}</td>
+                                                    <td>{{$detail->detail->phone}}</td>
+                                                    <td>{{$detail->detail->email}}</td>
 
                                                     @endforeach
 
@@ -49,9 +49,11 @@
 
 
                                             </tbody>
+
                                             <tfoot>
 
                                             </tfoot>
+                                            <a href="{{route('all_doctor')}}">   <button type="button" class="btn btn btn-primary">Back</button></a>
 
 
 

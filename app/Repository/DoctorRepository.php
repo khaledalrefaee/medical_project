@@ -158,17 +158,18 @@ class DoctorRepository implements DoctoerRepositoryInterface
 
     public function show_destroy()
     {
-        $doctors =Doctor::onlyTrashed()->get();
-        return view('backend.Doctor.show_Doctor_Delete',compact('doctors'));
+        $deletedDetails  = Doctor::onlyTrashed()
+            ->with(['clinic' => function ($query) {
+                $query->withTrashed('clinic');
+            },
+                'detail' => function ($query) {
+                $query->onlyTrashed();
+            }])
+            ->get();
+        return view('backend.Doctor.show_Doctor_Delete',compact('deletedDetails'));
     }
 
-    public function showDeleted($id)
-    {
-        $doctor = Doctor::withTrashed()->where('id', $id)->firstOrFail();
-        $details = $doctor->detail()->withTrashed()->get();
 
-        return view('backend.Doctor.detail_deleted', compact('doctor','details'));
-    }
 
 
     public function Filter_Clinces($request)

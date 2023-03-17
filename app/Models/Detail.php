@@ -13,7 +13,7 @@ class Detail extends Model
 
     protected $fillable = ['doctor_id','specialization','phone','email'];
 
-    public function doctore(){
+    public function doctor(){
         return $this->belongsTo(Doctor::class);
     }
 

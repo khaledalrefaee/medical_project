@@ -31,8 +31,9 @@ class ReservationController extends Controller
                 'required',
                 'date_format:H:i',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
-                    return $query->where('doctor_id', $request->doctor_id)
-                        ->where('date', $request->date);
+                    return $query->where('doctor_id', '!=', $request->doctor_id)
+                        ->where('date', $request->date)
+                        ->where('status', 'Pending');
                 })
             ],
             'phone' => 'required',
@@ -66,7 +67,7 @@ class ReservationController extends Controller
 
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'doctor_id' => 'required',
+            'doctor_id' => 'required|exists:doctors,id',
             'date' => 'required|date_format:Y-m-d',
             'time' => [
                 'required',

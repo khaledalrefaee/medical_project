@@ -99,7 +99,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update/doctor/{id}',[DoctorController::class,'update'])->name('update.doctor');
     Route::get('/delete/doctor/{id}',[DoctorController::class,'destroy'])->name('delete.doctor');
     Route::get('/show/delete/doctor',[DoctorController::class,'show_destroy'])->name('show.delete.doctor');
-    Route::get('/doctors/deleted/{id}', [DoctorController::class,'showDeleted'])->name('doctors.deleted.show');
 
     Route::post('Filter_Clinces', [DoctorController::class,'Filter_Clinces'])->name('Filter_Clinces');
 

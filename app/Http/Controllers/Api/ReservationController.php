@@ -64,41 +64,46 @@ class ReservationController extends Controller
 
     public function update(Request $request,$id)
     {
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'doctor_id' => 'required|exists:doctors,id',
-            'date' => 'required|date_format:Y-m-d',
-            'time' => [
-                'required',
-                'date_format:H:i',
-                Rule::unique('reservations')->where(function ($query) use ($request) {
-                    return $query->where('doctor_id', $request->doctor_id)
-                        ->where('date', $request->date)
-                        ->where('id', '<>', $request->id);
-                })
-            ],
-            'phone' => 'required',
-            'birthday' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
-        }
-
         $reservation = Reservation::findOrFail($id);
 
-        $reservation->name = $request->name;
-        $reservation->time = $request->time;
-        $reservation->date = $request->date;
-        $reservation->phone = $request->phone;
-        $reservation->birthday = $request->birthday;
-        $reservation->address = $request->address;
-        $reservation->doctor_id = $request->doctor_id;
-        $reservation->status = 'Pending';
+        if ($reservation->status === 'Pending') {
+            $validator = Validator::make($request->all(), [
+                'name' => 'required',
+                'doctor_id' => 'required|exists:doctors,id',
+                'date' => 'required|date_format:Y-m-d',
+                'time' => [
+                    'required',
+                    'date_format:H:i',
+                    Rule::unique('reservations')->where(function ($query) use ($request) {
+                        return $query->where('doctor_id', $request->doctor_id)
+                            ->where('date', $request->date)
+                            ->where('id', '<>', $request->id);
+                    })
+                ],
+                'phone' => 'required',
+                'birthday' => 'required',
+            ]);
+            if ($validator->fails()) {
+                return response()->json($validator->errors(), 400);
+            }
 
-        $reservation->save();
 
-        return response()->json($reservation, 200);
+            $reservation->name = $request->name;
+            $reservation->time = $request->time;
+            $reservation->date = $request->date;
+            $reservation->phone = $request->phone;
+            $reservation->birthday = $request->birthday;
+            $reservation->address = $request->address;
+            $reservation->doctor_id = $request->doctor_id;
+            $reservation->status = 'Pending';
+
+            $reservation->save();
+
+            return response()->json($reservation, 200);
+        }
+        else{
+            return response()->json(['message' => 'Reservation cannot be updated because it is not in Pending status.'], 400);
+        }
 
 
     }
@@ -106,11 +111,18 @@ class ReservationController extends Controller
 
     public function destroy($id)
     {
+
         $Reservation = Reservation::find($id);
-        if(!$Reservation){
-            return response(' the post not found',404);
+        if ($Reservation->status === 'Pending') {
+            if (!$Reservation) {
+                return response(' the Reservation not found', 404);
+            }
+            $Reservation->delete();
+            return response('successfully', 200);
         }
-        $Reservation->delete();
-        return response('successfully', 200);
+        else{
+            return response()->json(['message' => 'Reservation cannot be delete because it is not in Pending status.'], 400);
+        }
+
     }
 }

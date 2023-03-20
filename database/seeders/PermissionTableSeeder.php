@@ -31,7 +31,7 @@ class PermissionTableSeeder extends Seeder
             'user employee create',
             'user employee edit',
             'user employee delete',
-            'user employee show',
+            'o',
 
             'Show chart',
 
@@ -78,10 +78,12 @@ class PermissionTableSeeder extends Seeder
             'waiting show',
             'waiting delete',
 
+            'Show Deleted Reservations'
+
             ];
 
         foreach ($permissions as $permission) {
-            Permission::create(['name' => $permission])->delete();
+            Permission::create(['name' => $permission]);
         }
     }
 }

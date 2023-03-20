@@ -24,20 +24,13 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('Search.user') }}" method="GET">
-                                <div class="form-group">
-                                    <label for="search">Search:</label>
-                                    <input type="text" name="search" class="form-control" placeholder="Search...">
-                                </div>
-                                <br>
-                                <button type="submit" class="btn btn-primary">Search</button>
-                            </form>
+
 
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><table class="row"><div class="col-sm-12">
 
 
                                         <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
-                                          @can('user-employee-create')
+                                          @can('user employee create')
                                             <a href="{{route('create_user')}}"> <button class="btn btn-primary">create User</button></a>
                                             @endcan
                                                 <thead>
@@ -66,15 +59,15 @@
                                                         <td > <label class="badge badge-success">{{ $user->status }}</label></td>
 
                                                         <td style="">
-                                                                 @can('user-employee-delete')
+                                                                 @can('user employee delete')
                                                                 <a href="{{route('delet_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                                 @endcan
 
-                                                                @can('user-employee-edit')
+                                                                @can('user employee edit')
                                                                     <a href="{{route('edit_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                                 @endcan
 
-                                                                @can('user-employee-show')
+                                                                @can('user employee show')
                                                                 <a href="{{url('/user/show',$user->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
                                                                 @endcan
                                                     </td>

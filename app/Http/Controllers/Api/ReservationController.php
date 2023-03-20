@@ -16,7 +16,8 @@ class ReservationController extends Controller
 {
     public function index()
     {
-        $reservations = Reservation::where('user_id', Auth::id())->orderBy('id', 'DESC')->get();
+        $reservations = Reservation::where('user_id', Auth::id())->orderBy('id', 'DESC')
+            ->with('doctor')->get();
 
         return response()->json($reservations, 200);
     }
@@ -121,7 +122,7 @@ class ReservationController extends Controller
             return response('successfully', 200);
         }
         else{
-            return response()->json(['message' => 'Reservation cannot be delete because it is not in Pending status.'], 400);
+            return response()->json(['message' => 'Reservation cannot be deleted because it is not in Pending status.'], 400);
         }
 
     }

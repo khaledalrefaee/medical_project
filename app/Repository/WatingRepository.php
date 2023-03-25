@@ -128,13 +128,16 @@ class WatingRepository implements WatingRepositoryInterface
     }
 
     public function edit_appointment($id){
-        $Reservation = Reservation::findorFail($id);
+        $Reservation = Reservation::findOrFail($id);
         $times = [];
         for ($i = 0; $i <= 16; $i++) {
             $times[] = Carbon::parse("09:00")->addMinutes(30 * $i)->format('H:i');
         }
-        $doctor =Doctor::all();
-        return view('backend.Reservations.edit_appointment',compact('Reservation','doctor','times'));
+
+
+        $doctor = Doctor::all();
+        return view('backend.Reservations.edit_appointment', compact('Reservation','times','doctor'));
+
     }
     public function update_appointment($request){
 
@@ -204,7 +207,6 @@ class WatingRepository implements WatingRepositoryInterface
         $Reservation = Reservation::find($id);
         $Reservation->status = 'Cancelling';
         $Reservation->save();
-        $Reservation->delete();
         return redirect()->route('Reservations.all');
     }
 
@@ -216,6 +218,10 @@ class WatingRepository implements WatingRepositoryInterface
             'chroot' => public_path(),
         ]);
         return $pdf->download('Reservations.pdf');
+    }
+
+    public function deleteRecords($request){
+
     }
 
 }

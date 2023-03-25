@@ -26,8 +26,14 @@
                         <div class="card-body">
 
 
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><table class="row"><div class="col-sm-12">
+                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row">
+                                    <div class="col-sm-12 col-md-6"></div>
 
+                                </div>
+
+                                    <div class="col-sm-12">
+
+                                        <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
 
                                         <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                           @can('user employee create')
@@ -36,14 +42,15 @@
                                                 <thead>
                                             <tr>
                                                 <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">#</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">email</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">phone</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="">status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
-                                            </thead>
-                                            <tbody>
+                                                <th >#</th>
+                                                <th >name</th>
+                                                <th >email</th>
+                                                <th >phone</th>
+                                                <th >status</th>
+                                              <th >Actions</th>
+                                            </tr>
+                                                </thead>
+                                              <tbody>
 
                                             <?php $i = 0; ?>
 
@@ -55,21 +62,20 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
-                                                    <td style="">{{$user->phone}}</td>
+                                                    <td >{{$user->phone}}</td>
                                                         <td > <label class="badge badge-success">{{ $user->status }}</label></td>
 
-                                                        <td style="">
-                                                                 @can('user employee delete')
+                                                        <td>
+                                                                @can('user employee delete')
                                                                 <a href="{{route('delet_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                                 @endcan
 
                                                                 @can('user employee edit')
-                                                                    <a href="{{route('edit_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                                <a href="{{route('edit_user',$user->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                                 @endcan
 
-                                                                @can('user employee show')
-                                                                <a href="{{url('/user/show',$user->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                                @endcan
+                                                                 <a href="{{route('show_user',$user->id)}}">  <button type="button" class="btn btn btn-outline-info">Show </button></a>
+
                                                     </td>
 
                                                 </tr>
@@ -86,28 +92,22 @@
 
 
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
+
 
 
                 </div>
-                <!-- /.col -->
-            </div>
-            <!-- /.row -->
-        </div>
+
             </div>
         </div>
-        <!-- /.container-fluid -->
+            </div>
+        </div>
+
     </section>
 
 
 
-    <script>
-        $(document).ready(function() {
-            $('#myTable').DataTable();
-        });
-    </script>
+
 @endsection
 
 

@@ -37,17 +37,21 @@
 
 
 
-                <select name="time" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >time </option>
+                <select name="time" id="inputStatus" class="form-control custom-select">
+                    <option value="" disabled>Select a time</option>
                     @foreach($times as $time)
-                    <option >{{$time}} </option>
+                        <option value="{{ $time }}" {{ $Reservation == $time ? 'selected' : '' }}>
+                            {{ $time }}
+                        </option>
                     @endforeach
-
                 </select>
+
                 @error('time')
                 <div class="alert alert-danger">{{ $message }}</div>
                 @enderror
+
                 <br>
+
                 <input type="date" class="form-control" name="date"  value="{{$Reservation->date}}" class="@error('date') is-invalid @enderror" placeholder="Date">
                 @error('date')
                 <div class="alert alert-danger">{{ $message }}</div>
@@ -85,8 +89,9 @@
                 @enderror
 
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                    <textarea class="form-control" name="diagnosis" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label  for="exampleFormControlTextarea1" class="form-label" >Example textarea</label>
+                    <input type="text"  value="{{$Reservation->diagnosis}}" >
+                    <textarea  class="form-control"  name="diagnosis" id="exampleFormControlTextarea1"  rows="3"></textarea>
                 </div>
 
                 <div class="input-group input-group-sm">

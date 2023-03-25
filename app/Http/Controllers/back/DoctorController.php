@@ -17,6 +17,14 @@ class DoctorController extends Controller
     public function __construct(DoctoerRepositoryInterface $Doctoer)
     {
         $this->Doctoer = $Doctoer;
+
+        $this->middleware('permission:doctor all', ['only' => ['index']]);
+        $this->middleware('permission:doctor create', ['only' => ['create','store']]);
+        $this->middleware('permission:doctor show', ['only' => ['show']]);
+        $this->middleware('permission:doctor edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:doctor delete', ['only' => ['destroy']]);
+        $this->middleware('permission:doctor show Delete', ['only' => ['show_destroy']]);
+
     }
 
 

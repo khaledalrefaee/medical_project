@@ -1,5 +1,6 @@
 @extends('backend.index')
 @section('content')
+
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -16,22 +17,35 @@
                         <div class="card-header">
                             <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
                         </div>
+
+
                         <!-- /.card-header -->
                         <div class="card-body">
                             <div class="container-fluid">
-
-
-
                             </div>
                         </div>
-                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
-                                    <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                        <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+
+                                </div>
+                                <div class="col-sm-12 col-md-6">
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
                                         <thead>
                                         <tr>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending"> Pries</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">description</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
+                                            <th >name</th>
+                                            <th > Pries</th>
+                                            <th >description</th>
+                                            <th >Actions</th>
+                                        </tr>
+
                                         </thead>
                                         <tbody>
 
@@ -40,14 +54,15 @@
                                                 <td>{{$phamies->name}}</td>
                                                 <td>{{$phamies->prise}}</td>
                                                 <td>{{$phamies->description}}</td>
-                                                <td style="">
+                                                <td>
 
-                                                    <a href="{{route('delete.pharmese',$phamies->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                    @can('pharmacy delete')
+                                                    <a href="{{route('delete.pharmese',$phamies->id)}}"> <button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                    @endcan
 
-
-
+                                                    @can('pharmacy edit')
                                                     <a href="{{route('edit.pharmese',$phamies->id)}}"> <button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-
+                                                    @endcan
                                                 </td>
 
                                             </tr>
@@ -60,22 +75,17 @@
                                         <br>
                                         <div></div>
 
-
+                                        @can('pharmacy create')
                                         <a href="{{route('create.pharmese')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-
+                                        @endcan
                                     </table>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
-
-
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                 </div>
-                <!-- /.container-fluid -->
+            </div>
+        </div>
     </section>
 
 @endsection

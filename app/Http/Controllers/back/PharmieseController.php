@@ -15,6 +15,12 @@ class PharmieseController extends Controller
     public function __construct(PharmieseRepositoryInterface $Pharmese)
     {
         $this->Pharmese = $Pharmese;
+
+        $this->middleware('permission:pharmacy all', ['only' => ['index']]);
+        $this->middleware('permission:pharmacy create', ['only' => ['create','store']]);
+        $this->middleware('permission:pharmacy edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:pharmacy delete', ['only' => ['destroy']]);
+
     }
 
 

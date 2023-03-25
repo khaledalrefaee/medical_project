@@ -131,22 +131,19 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/appointment/{id}',[ReservationController::class,'edit_appointment'])->name('edit.appointment');
     Route::post('/update/appointment/{id}',[ReservationController::class,'update_appointment'])->name('update.appointment');
     Route::get('delete/appointment/{id}',[ReservationController::class,'delete_appointment'])->name('delete.appointment');
-    Route::get('/Chnge/Status/{id}',[ReservationController::class,'ChngeStatus'])->name('Chnge.Status');
+    Route::get('/Change/Status/{id}',[ReservationController::class,'ChngeStatus'])->name('Chnge.Status');
     Route::get('/Cancelling/Status/{id}',[ReservationController::class,'ChngeCancelling'])->name('Chnge.Cancelling');
     Route::get('/download/pdf/{id}',[ReservationController::class,'PdfInvoiceDownload'])->name('download.pdf');
 
 
     Route::get('/show/delete/Reservation',[ReservationController::class,'show_destroy'])->name('show.delete.Reservation');
 
+    Route::post('/delete_all',[ReservationController::class,'deleteRecords'])->name('delete.all');
 
 
-//    //PsyPal
-//    Route::get('paypal',[PayPalController::class,'paypal'])->name('paypal');
-//    Route::get('cansel',[PayPalController::class,'cansel'])->name('cansel');
-//    Route::get('paypal/success',[PayPalController::class,'success'])->name('paypal.success');
 
 
-    //Mail
+        //Mail
 
     Route::resource('mail',MailController::class);
 
@@ -155,13 +152,6 @@ Route::middleware(['auth'])->group(function () {
        return redirect()->route('home');
     });
 
-
-    //search
-    Route::get('your/route/name',[\App\Http\Controllers\SearchController::class,'index'])->name('Search');
-    Route::get('search/nuerse',[\App\Http\Controllers\SearchController::class,'searchnuers'])->name('Search.nuers');
-    Route::get('search/user',[\App\Http\Controllers\SearchController::class,'searcuser'])->name('Search.user');
-    Route::get('search/Clinch',[\App\Http\Controllers\SearchController::class,'searchclince'])->name('Search.Clinch');
-    Route::get('search/Doctoer',[\App\Http\Controllers\SearchController::class,'searchdoctor'])->name('Search.Doctoer');
 
 
 });

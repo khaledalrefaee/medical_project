@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Admin Meadicel</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="{{asset('backend/img/logo/logo.png')}}" rel="icon">
+    <title>MedicalAdmin - Dashboard</title>
+    <link href="{{asset('backend/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('backend/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('backend/css/ruang-admin.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.11.2/datatables.min.css"/>
 
 
-    <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="{{asset('http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css')}}">
-    <link rel="stylesheet" href="{{asset('https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback')}}">
-    <!-- Font Awesome Icons -->
-    <link rel="stylesheet" href="{{asset('back/plugins/fontawesome-free/css/all.min.css')}}">
-    <!-- overlayScrollbars -->
-    <link rel="stylesheet" href="{{asset('back/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
-    <!-- Theme style -->
-    <link rel="stylesheet" href="{{asset('back/dist/css/adminlte.min.css')}}">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 </head>
-<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
-<div class="wrapper">
 
+
+
+<body id="page-top">
+<div id="wrapper">
     <!-- Preloader -->
-    <div class="preloader flex-column justify-content-center align-items-center">
-        <img class="animation__wobble" src="{{asset('back/dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo'" height="60" width="60">
-    </div>
+
 
     <!-- Navbar -->
     @include('backend.partials.header')
     <!-- /.navbar -->
 
     <!-- Main Sidebar Container -->
-    <aside class="main-sidebar sidebar-dark-primary elevation-4">
-        <!-- Brand Logo -->
-        <a href="#" class="brand-link">
-            <img src="{{asset('back/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-            <span class="brand-text font-weight-light">Admin meadical</span>
-        </a>
+
 
         <!-- Sidebar -->
       @include('backend.partials.sidebar')
@@ -49,12 +45,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Meadical</h1>
+                        <h1 class="m-0">Medical</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{url('/home')}}">Home</a></li>
-                            <li class="breadcrumb-item active">Meadical</li>
+                            <li class="breadcrumb-item"><a href="{{route('home')}}">Home</a></li>
+                            <li class="breadcrumb-item active">Medical</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -87,54 +83,69 @@
 </div>
 <!-- ./wrapper -->
 
-<!-- REQUIRED SCRIPTS -->
-<!-- jQuery -->
-<script src="{{asset('back/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap -->
-<script src="{{asset('back/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{asset('back/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{asset('back/dist/js/adminlte.js')}}"></script>
 
-<!-- PAGE PLUGINS -->
-<!-- jQuery Mapael -->
-<script src="{{asset('back/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
-<script src="{{asset('back/plugins/raphael/raphael.min.js')}}"></script>
-<script src="{{asset('back/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
-<script src="{{asset('back/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{asset('back/plugins/chart.js/Chart.min.js')}}"></script>
 
-{{--<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>--}}
-{{--<script src="https://js.pusher.com/7.2/pusher.min.js"></script>--}}
-{{--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">--}}
-{{--<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>--}}
-{{--<script>--}}
 
-{{--    // Enable pusher logging - don't include this in production--}}
-{{--    Pusher.logToConsole = true;--}}
 
-{{--    var pusher = new Pusher('0c6edec1fcc61215a213', {--}}
-{{--        cluster: 'ap2'--}}
-{{--    });--}}
 
-{{--    var channel = pusher.subscribe('my-channel');--}}
-{{--    channel.bind('my-event', function(data) {--}}
-{{--        toastr.info(JSON.stringify(data) +'you have a message ','success')--}}
-{{--    });--}}
-{{--</script>--}}
-<!-- AdminLTE for demo purposes -->
-<script src="{{asset('back/dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{asset('back/dist/js/pages/dashboard2.js')}}"></script>
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+<!-- Page level custom scripts -->
+
+<script src="{{asset('backend/js/demo/chart-bar-demo.js')}}"></script>
+
+
+
+<!-- Page level plugins -->
+
+
+<!-- Page level custom scripts -->
+
+
+
+<script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
+<script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
+<script src="{{asset('/backend/vendor/chart.js/Chart.min.js')}}"></script>
+<script src="{{asset('/backend/js/demo/chart-area-demo.js')}}"></script>
+
+
+<script type="application/javascript">
+    function tableSearch() {
+        let input, filter, table, tr, td, txtValue;
+
+        //Intialising Variables
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (let i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (let j = 0; j < td.length; j++) {
+                if (td[j]) {
+                    txtValue = td[j].textContent || td[j].innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    }
+</script>
+
 <script>
-    function CheckAll(className, elem) {
-        var elements = document.getElementsByClassName(className);
+
+    {{--check boks--}}
+
+    function CheckAll(CheckAll, elem) {
+        var elements = document.getElementsByClassName(CheckAll);
         var l = elements.length;
+
         if (elem.checked) {
             for (var i = 0; i < l; i++) {
                 elements[i].checked = true;
@@ -145,8 +156,6 @@
             }
         }
     }
-
 </script>
-
 </body>
 </html>

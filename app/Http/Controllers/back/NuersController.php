@@ -15,9 +15,19 @@ class NuersController extends Controller
 
     protected $Nuerse;
 
+
+
     public function __construct(NuerseRepositoryInterface $Nuerse)
     {
         $this->Nuerse = $Nuerse;
+
+
+        $this->middleware('permission:nurse all', ['only' => ['index']]);
+        $this->middleware('permission:nurse create', ['only' => ['create','store']]);
+        $this->middleware('permission:nurse show', ['only' => ['show']]);
+        $this->middleware('permission:nurse edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:nurse delete', ['only' => ['destroy']]);
+
     }
 
     public function index(){

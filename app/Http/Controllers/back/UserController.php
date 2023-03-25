@@ -26,6 +26,13 @@ class UserController extends Controller
     public function __construct(UserRepositoryInterface $User)
     {
         $this->User = $User;
+
+        $this->middleware('permission:user employee all', ['only' => ['index']]);
+        $this->middleware('permission:user employee create', ['only' => ['create','store']]);
+        $this->middleware('permission:user employee edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:user employee delete', ['only' => ['destroy']]);
+
+        $this->middleware('permission:Show chart', ['only' => ['chart']]);
     }
 
 

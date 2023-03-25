@@ -24,16 +24,7 @@
                         </div>
 
 
-                        <!-- /.card-header -->
 
-                        <form action="{{ route('Search.Doctoer') }}" method="GET">
-                            <div class="form-group">
-                                <label for="search">Search:</label>
-                                <input type="text" name="search" class="form-control" placeholder="Search Doctor...">
-                            </div>
-                            <br>
-                            <button type="submit" class="btn btn-primary">Search</button>
-                        </form>
 
                         <div class="card-body">
                             <form action="{{ route('Filter_Clinces') }}" method="POST">
@@ -46,9 +37,11 @@
                                     @endforeach
                                 </select>
                             </form>
+                            <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
                                         <div class="main-content">
-                                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                            <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">#</th>
@@ -78,10 +71,16 @@
                                                     <td>{{$doctor->clinic->name}}</td>
                                                     <td>{{$doctor->name}}</td>
 
-                                                    <td style="">
+                                                    <td >
+                                                        @can('doctor delete')
                                                         <a href="{{route('delete.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        <a href="{{route('edit.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                                <a href="{{route('show.doctor', $doctor->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        @endcan
+                                                        @can('doctor edit')
+                                                            <a href="{{route('edit.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                            @endcan
+                                                            @can('doctor show')
+                                                            <a href="{{route('show.doctor', $doctor->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                            @endcan
                                                     </td>
 
                                                 </tr>
@@ -94,12 +93,13 @@
                                             <br>
                                             <div></div>
 
-
+                                            @can('doctor create')
                                             <a href="{{route('create.doctor')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
+                                             @endcan
 
-
+                                            @can('doctor show Delete')
                                             <a href="{{route('show.delete.doctor')}}">   <button type="button" class="btn btn btn-outline-danger">show delete</button></a>
-
+                                                @endcan
                                         </table>
                                     </div>
 
@@ -111,6 +111,7 @@
                         </div>
 
                     </div>
+
 
 
 @endsection

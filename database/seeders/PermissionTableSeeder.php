@@ -21,7 +21,7 @@ class PermissionTableSeeder extends Seeder
             'role-edit',
             'role-delete',
 
-            'user index',
+            'user all',
             'user create',
             'user edit',
             'user delete',
@@ -31,40 +31,42 @@ class PermissionTableSeeder extends Seeder
             'user employee create',
             'user employee edit',
             'user employee delete',
-            'o',
+
 
             'Show chart',
 
             'Map',
 
-            'nurse index',
+            'nurse all',
             'nurse create',
             'nurse edit',
             'nurse delete',
             'nurse show',
 
-            'clinic index',
+            'clinic all',
             'clinic create',
             'clinic edit',
             'clinic delete',
             'clinic show',
+            'clinic show Delete',
 
 
-            'doctor index',
+            'doctor all',
             'doctor create',
             'doctor edit',
             'doctor delete',
             'doctor show',
+            'doctor show Delete',
 
 
-            'pharmacy index',
+            'pharmacy all',
             'pharmacy create',
             'pharmacy edit',
             'pharmacy delete',
 
             'Add a request',
 
-            'Reservations index',
+            'Reservations all',
             'Reservations create',
             'Reservations edit',
             'Reservations delete',

@@ -18,6 +18,13 @@ class ClinicsController extends Controller
     public function __construct(ClinceRepositoryInterface $Clince)
     {
         $this->Clince = $Clince;
+
+        $this->middleware('permission:clinic all', ['only' => ['index']]);
+        $this->middleware('permission:clinic create', ['only' => ['create','store']]);
+        $this->middleware('permission:clinic show', ['only' => ['show']]);
+        $this->middleware('permission:clinic edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:clinic delete', ['only' => ['destroy']]);
+        $this->middleware('permission:clinic show Delete', ['only' => ['show_destroy']]);
     }
 
 

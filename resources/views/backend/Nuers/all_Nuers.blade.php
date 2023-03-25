@@ -1,91 +1,55 @@
 @extends('backend.index')
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
+
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                @can('nurse create')
+                    <a href="{{route('create.nuers')}}">   <button type="button" class="btn btn-outline-success mb-1">create</button></a>
+                @endcan
+                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+                <h6 class="m-0 font-weight-bold text-primary">NurseTables</h6>
+            </div>
+
+
+            <div class="table-responsive p-3">
+                <table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+                    <tr>
+                        <th>Name</th>
+                        <th>phone nurse</th>
+                        <th>description</th>
+                        <th>image</th>
+                        <th>Actions </th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr>
+                        @foreach($nuers as $nuer)
+                            <td>{{$nuer->name}}</td>
+                            <td>{{$nuer->phone}}</td>
+                            <td>{{$nuer->description}}</td>
+                            <td><img  src="{{ asset('storage/' . $nuer->image) }}" alt="{{ $nuer->name }}" style="width: 100px;height: 100px"></td>
+                            <td>
+                                @can('nurse delete')
+                                <a href="{{route('delet.nuers'  , $nuer->id)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                @endcan
+                                @can('nurse edit')
+                                <a href="{{route('edit.nuers', $nuer->id)}}" class="btn btn-warning btn-sm"><i class="fas fa-exclamation-triangle"></i></a>
+                                @endcan
+                                @can('nurse show')
+                                <a href="{{route('show.nuers' , $nuer->id)}}" class="btn btn-info btn-sm"><i class="fas fa-info-circle"></i></a>
+                                @endcan
+                            </td>
+                    </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                            <div class="container-fluid">
 
-                                <form action="{{ route('Search.nuers') }}" method="GET">
-                                    <div class="form-group">
-                                        <label for="search">Search:</label>
-                                        <input type="text" name="search" class="form-control" placeholder="Search...">
-                                    </div>
-                                    <br>
-                                    <button type="submit" class="btn btn-primary">Search</button>
-                                </form>
-
-                                </div>
-                            </div>
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
-                                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
-                                            <thead>
-                                            <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone nuers</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">description</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">image</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
-                                            </thead>
-                                            <tbody>
-
-                                            @foreach($nuers as $nuer)
-                                                <tr class="odd">
-                                                    <td>{{$nuer->name}}</td>
-                                                    <td>{{$nuer->phone}}</td>
-                                                    <td>{{$nuer->description}}</td>
-                                                    <td>  <img  src="{{ asset('storage/' . $nuer->image) }}" alt="{{ $nuer->name }}" style="width: 100px;height: 100px"></td>
-
-
-                                                    <td style="">
-
-                                                            <a href="{{route('delet.nuers'  , $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-
-                                                            <a href="{{route('edit.nuers', $nuer->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-
-                                                            <a href="{{route('show.nuers' , $nuer->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                        &nbsp;
-                                                    </td>
-
-                                                </tr>
-
-                                            @endforeach
-                                            </tbody>
-                                            <tfoot>
-
-                                            </tfoot>
-                                            <br>
-                                            <div></div>
-                                            <a href="{{route('create.nuers')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
-
-                                        </table>
-                                        {{$nuers ->links('pagination::bootstrap-4')}}
-                                    </div>
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-
-
-                            </div>
-                            <!-- /.col -->
-                        </div>
-                        <!-- /.row -->
-                    </div>
-                    <!-- /.container-fluid -->
-    </section>
 
 @endsection

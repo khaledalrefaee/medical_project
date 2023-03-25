@@ -24,40 +24,47 @@
 
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><table class="row"><div class="col-sm-12">
                                     </div>
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
+                                        Delete
+                                    </button>
 
-                                            <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                            <table id="datatable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">#</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">name docrtoer</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">date</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending">status</th>
-
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
+                                                <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
+                                                <th>#</th>
+                                                <th>name</th>
+                                                <th >name doctor</th>
+                                                <th >date</th>
+                                                <th >status</th>
+                                                <th>Actions</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
 
                                             <?php $i = 0; ?>
 
                                             @foreach($waitings as $waiting)
-                                                <tr class="odd">
-                                                    <?php $i++; ?>
-                                                    </td>
+                                                <tr >
+                                                      <?php $i++; ?>
+                                                <td> <input type="checkbox" name="waiting_ids[]" value="{{ $waiting->id }}">
+                                                </td>
                                                     <td>{{ $i }}</td>
                                                     <td>{{$waiting->name}}  </td>
                                                     <td>{{$waiting->doctor->name}} </td>
                                                     <td> </td>
-                                                    <td> <span class="badge badge-pill badge-warning">wating</span></td>
+                                                    <td> <span class="badge badge-pill badge-warning">waiting</span></td>
                                                         <td>
-
+                                                            @can('waiting delete')
                                                             <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></i></a>
-
-
+                                                            @endcan
+                                                            @can('waiting show')
                                                             <a href="{{route('show.waitin',$waiting->id)}}" class="btn btn-info" title="show Data">  <i class="fa fa-eye"></i></i></a>
-
+                                                            @endcan
+                                                            @can('waiting edit')
                                                             <a href="{{route('edit.waitin',$waiting->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i> </a>
-                                                    </td>
+                                                            @endcan
+                                                        </td>
                                                     @endforeach
                                                 </tr>
 
@@ -66,6 +73,9 @@
 
                                                 @foreach($Reservations as $Reservation)
                                                     <tr class="odd">
+
+                                                        <td> <input type="checkbox"  name="reservations[]"  value="{{$Reservation->id }}" >
+                                                        </td>
                                                         <?php $i++; ?>
 
                                                         <td>{{ $i }}</td>
@@ -79,6 +89,7 @@
                                                                                     @elseif($Reservation->status === 'Pending') badge-warning
                                                                                     @else badge-secondary
                                                                                      @endif">
+
                                                                                     @if($Reservation->status === 'completed')
                                                                                     completed
                                                                                     @elseif($Reservation->status === 'Cancelling')
@@ -89,21 +100,28 @@
                                                                                 </span></td>
 
                                                         <td>
-                                                            <a href="{{route('delete.appointment',$Reservation->id)}}" class="btn btn-danger" title="Delete Data"> <i title=" Delete"  class="fa fa-trash"></i></a>
-
-
-
+                                                                @can('Reservations delete')
+                                                                <a href="{{route('delete.appointment',$Reservation->id)}}" class="btn btn-danger" title="Delete Data"> <i title=" Delete"  class="fa fa-trash"></i></a>
+                                                                @endcan
+                                                                @can('Reservations show')
                                                                 <a href="{{route('show.appointment',$Reservation->id)}}" class="btn btn-info" title="show Data"><i class="fa fa-eye"></i> </a>
+                                                                @endcan
 
+                                                                @can('Reservations edit')
+                                                                <a href="{{route('edit.appointment',$Reservation->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i></i> </a>
+                                                                @endcan
 
-                                                            <a href="{{route('edit.appointment',$Reservation->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i></i> </a>
+                                                                @can('Reservations completed')
+                                                                 <a href="{{route('Chnge.Status',$Reservation->id)}}"> <button type="button" class="btn btn-outline-success">completed</button></a>
+                                                                @endcan
 
-                                                           <a href="{{route('Chnge.Status',$Reservation->id)}}"> <button type="button" class="btn btn-outline-success">completed</button></a>
+                                                                @can('Reservations Cancelling')
+                                                                <a href="{{route('Chnge.Cancelling',$Reservation->id)}}" ><button type="button" class="btn btn-outline-dark">Cancelling</button></a>
+                                                                @endcan
 
-                                                                    <a href="{{route('Chnge.Cancelling',$Reservation->id)}}" ><button type="button" class="btn btn-outline-light">Cancelling</button></a>
-
-                                                                    <a href="{{route('download.pdf',$Reservation->id)}}" class="btn btn-info"><i class="fas fa-download"></i> Download pdf</a>
-
+                                                                @can('Reservations Download')
+                                                                <a href="{{route('download.pdf',$Reservation->id)}}" class="btn btn-info"><i class="fas fa-download"></i> Download pdf</a>
+                                                                @endcan
                                                         </td>
                                                         @endforeach
                                                     </tr>
@@ -113,13 +131,12 @@
 
                                             </tbody>
 
-
-
+                                            @can('Add a request')
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                                                 Add a request
                                             </button>
-
+                                             @endcan
 
                                             <!-- Modal -->
                                             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -136,18 +153,38 @@
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-
+                                                            @can('waiting create')
                                                             <a href="{{route('create.waiting')}}" ><button type="button" class="btn btn-primary">waiting date</button></a>
+                                                            @endcan
 
-
-
+                                                            @can('Reservations create')
                                                             <a href="{{route('create.appointment')}}"> <button type="button" class="btn btn-primary"> Reservation date</button></a>
-
+                                                            @endcan
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </table>
+
+                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteModalLabel">Delete Record</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete this record?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                    <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
 
 
@@ -157,21 +194,49 @@
 {{--                                {{$waitings ->links('pagination::bootstrap-4')}}--}}
 
                                     </div>
-                                    <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
-
-
                         </div>
-                        <!-- /.col -->
                     </div>
-                    <!-- /.row -->
                 </div>
             </div>
         </div>
-        <!-- /.container-fluid -->
     </section>
 
+
+
+   <script>
+       // Get the delete button
+       var deleteButton = document.getElementById("deleteButton");
+
+       // Add a click event listener to the delete button
+       deleteButton.addEventListener("click", function() {
+           // Get the checkboxes that are checked
+           var checkboxes = document.querySelectorAll('input[name="ids[]"]:checked');
+
+           // Create an array of ids
+           var ids = [];
+           for (var i = 0; i < checkboxes.length; i++) {
+               ids.push(checkboxes[i].value);
+           }
+
+           // Send an AJAX request to delete the records
+           $.ajax({
+               url: "/delete_all",
+               type: "POST",
+               data: {
+                   ids: ids,
+                   _token: "{{ csrf_token() }}"
+               },
+               success: function(response) {
+                   // Reload the page after the records are deleted
+                   location.reload();
+               },
+               error: function(xhr) {
+                   console.log(xhr.responseText);
+               }
+           });
+       });
+   </script>
 
 
 @endsection

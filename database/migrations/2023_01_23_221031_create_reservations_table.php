@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreignId('doctor_id')->references('id')->on('doctors');
             $table->string('name');
-            $table->bigInteger('phone');
+            $table->string('phone');
             $table->date('birthday');
             $table->text('address')->nullable();
             $table->time('time');

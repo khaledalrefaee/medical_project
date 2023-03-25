@@ -45,7 +45,7 @@
                 <select name="time" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" >time </option>
                     @foreach($times as $time)
-                        <option >{{$time}} </option>
+                        <option {{ old('time') == $time ? 'selected' : '' }}>{{$time}} </option>
                     @endforeach
 
                 </select>
@@ -80,8 +80,8 @@
                 </div>
                 <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
                     <option selected="" disabled="" >Doctoer </option>
-                    @foreach($doctor as $time)
-                        <option value="{{$time->id}}">{{$time->name}} </option>
+                    @foreach($doctor as $item)
+                        <option value="{{$item->id}}"{{ old('doctor_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
                     @endforeach
 
                 </select>

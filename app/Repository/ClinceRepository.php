@@ -50,29 +50,29 @@ class ClinceRepository implements ClinceRepositoryInterface
             return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
     }
-    public function delete($id)
-    {
-        $clinic = Clinics::findOrFail($id);
-
-        // Get all doctors associated with the clinic
-        $doctors = $clinic->doctor;
-
-
-        // Delete all doctors and their details associated with the clinic
-        foreach ($doctors as $doctor) {
-            if ($doctor->detail) {
-                $doctor->detail()->delete();
-            }
-            $doctor->delete();
-        }
-
-        // Delete the clinic itself
-        $clinic->delete();
-
-        toastr ()->error('messages Delete Clinic','success');
-        return redirect()->route('all.Clincs');
-
-    }
+//    public function delete($id ,$request)
+//    {
+//        $clinic = Clinics::findOrFail($id);
+//
+//        // Get all doctors associated with the clinic
+//        $doctors = $clinic->doctor;
+//
+//
+//        // Delete all doctors and their details associated with the clinic
+//        foreach ($doctors as $doctor) {
+//            if ($doctor->detail) {
+//                $doctor->detail()->delete();
+//            }
+//            $doctor->delete();
+//        }
+//
+//        // Delete the clinic itself
+//        $clinic->delete();
+//
+//        toastr ()->error('messages Delete Clinic','success');
+//        return redirect()->route('all.Clincs');
+//
+//    }
 
     public function show_delete(){
         $clinics =Clinics::onlyTrashed()->get();

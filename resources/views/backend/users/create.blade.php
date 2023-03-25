@@ -62,7 +62,7 @@
             <select name="gender_id" id="inputStatus" class="form-control custom-select" >
                 <option selected="" disabled="" >gender </option>
                 @foreach($gender as $item)
-                    <option value="{{$item->id}}">{{$item->name}} </option>
+                    <option value="{{$item->id}}" {{ old('gender_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
                 @endforeach
 
             </select>

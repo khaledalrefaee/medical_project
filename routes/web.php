@@ -84,7 +84,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Retreat/Clincs',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');
     Route::get('/edit/Clincs/{id}',[ClinicsController::class,'edit'])->name('edit.Clincs');
     Route::post('/update/Clincs/{id}',[ClinicsController::class,'update'])->name('update.Clincs');
-    Route::get('/delete/Clincs/{id}',[ClinicsController::class,'destroy'])->name('delete.Clincs');
+//    Route::get('/delete/Clincs',[ClinicsController::class,'destroy'])->name('delete.Clinics');
     Route::get('/show/delete/Clincs',[ClinicsController::class,'show_destroy'])->name('show.delete.Clincs');
 
     //Doctor

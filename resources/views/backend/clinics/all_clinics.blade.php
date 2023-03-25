@@ -30,7 +30,6 @@
                                             <tr>
                                                 <th>Name</th>
                                                 <th>description</th>
-
                                                 <th>Actions </th>
                                             </tr>
                                             </thead>
@@ -46,16 +45,14 @@
 
                                                     <td >
 
-                                                        @can('clinic delete')
-                                                        <a href="{{route('delete.Clincs'  , $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
-                                                        @endcan
+
 
                                                         @can('clinic edit')
-                                                            <a href="{{route('edit.Clincs', $clinic->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
+                                                            <a href="{{route('edit.Clincs', $clinic->id)}}"> <button type="button" class="btn btn btn-outline-warning">edit</button> </a>
                                                         @endcan
 
                                                         @can('clinic show')
-                                                        <a href="{{route('show.clincs' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
+                                                        <a href="{{route('show.clincs' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button> </a>
                                                         @endcan
 
                                                     </td>
@@ -77,22 +74,18 @@
                                             @endcan
 
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.card-body -->
                     </div>
-                    <!-- /.card -->
-
-
                 </div>
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
-        <!-- /.container-fluid -->
-
-
     </section>
-{{--    <script type="application/javascript">--}}
+
+
+    {{--    <script type="application/javascript">--}}
 {{--        function tableSearch() {--}}
 {{--            let input, filter, table, tr, td, txtValue;--}}
 

@@ -22,7 +22,7 @@
                     <select name="gender_id" id="inputStatus" class="form-control custom-select" >
                         <option selected="" disabled="" >gender </option>
                         @foreach($gender as $item)
-                            <option value="{{$item->id}}">{{$item->name}} </option>
+                            <option value="{{$item->id}}" {{ old('gender_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
                         @endforeach
                     </select>
                     @error('gender_id')
@@ -48,9 +48,9 @@
 
 
                 <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >Doctoer</option>
+                    <option selected="" disabled="" >Doctor</option>
                     @foreach($doctor as $item)
-                        <option value="{{$item->id}}">{{$item->name}} </option>
+                        <option value="{{$item->id}}" {{ old('doctor_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
                     @endforeach
                 </select>
 

@@ -21,17 +21,14 @@
 
                         <!-- /.card-header -->
                         <div class="card-body">
+                            <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
 
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><table class="row"><div class="col-sm-12">
                                     </div>
-                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal">
-                                        Delete
-                                    </button>
 
-                                            <table id="datatable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                            <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
                                                 <th>#</th>
                                                 <th>name</th>
                                                 <th >name doctor</th>
@@ -47,8 +44,7 @@
                                             @foreach($waitings as $waiting)
                                                 <tr >
                                                       <?php $i++; ?>
-                                                <td> <input type="checkbox" name="waiting_ids[]" value="{{ $waiting->id }}">
-                                                </td>
+
                                                     <td>{{ $i }}</td>
                                                     <td>{{$waiting->name}}  </td>
                                                     <td>{{$waiting->doctor->name}} </td>
@@ -72,10 +68,7 @@
 
 
                                                 @foreach($Reservations as $Reservation)
-                                                    <tr class="odd">
-
-                                                        <td> <input type="checkbox"  name="reservations[]"  value="{{$Reservation->id }}" >
-                                                        </td>
+                                                    <tr>
                                                         <?php $i++; ?>
 
                                                         <td>{{ $i }}</td>
@@ -166,25 +159,6 @@
                                             </div>
                                         </table>
 
-                                    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="deleteModalLabel">Delete Record</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    Are you sure you want to delete this record?
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                    <button type="button" class="btn btn-danger" id="deleteButton">Delete</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
 
 

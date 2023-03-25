@@ -23,7 +23,7 @@
                     <select name="clinic_id" id="inputStatus" class="form-control custom-select" >
                         <option selected="" disabled="" >Clinic</option>
                         @foreach($clinic as $item)
-                            <option value="{{$item->id}}">{{$item->name}} </option>
+                            <option value="{{$item->id}}"{{ old('clinic_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
                         @endforeach
                     </select>
                     @error('clinic_id')
@@ -52,7 +52,7 @@
 
 
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">specialization docter</label>
+                                    <label for="exampleInputEmail1">specialization doctor</label>
                                     <input type="text" name="specialization" class="form-control" id="exampleInputEmail1"  value="{{ old('specialization') }}" class="@error('specialization') is-invalid @enderror" placeholder="Enter specialization Doctor">
                                 </div>
                                 @error('specialization')

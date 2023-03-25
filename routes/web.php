@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\back\ClinicsController;
 use App\Http\Controllers\back\DetilsControler;
 use App\Http\Controllers\back\DoctorController;
+use App\Http\Controllers\back\MapController;
 use App\Http\Controllers\back\NuersController;
 use App\Http\Controllers\back\PharmieseController;
 use App\Http\Controllers\back\ReservationController;
@@ -53,9 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/Chart',[UserController::class,'chart'])->name('chart');
 
    //Map
-    Route::get('map',function (){
-        return view('backend.map.map');
-    });
+    Route::get('map',[MapController::class,'index'])->name('map');
 
     //Users
     Route::get('/all_users',[UserController::class,'index'])->name('all_user');

@@ -105,7 +105,7 @@
         <br>
         @can('Map')
         <li class="nav-item">
-            <a class="nav-link" href="{{url('map')}}">
+            <a class="nav-link" href="{{route('map')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
                 <span>Map</span>
             </a>

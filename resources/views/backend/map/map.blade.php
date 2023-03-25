@@ -1,179 +1,59 @@
+@extends('backend.index')
+@section('content')
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>Google Maps Example</title>
-    <style>
-        #map {
-            height: 100%;
-        }
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
-</head>
+
 <body>
-<div id="map"></div>
-<script>
-    function initMap() {
-        // Create a new map
-        var map = new google.maps.Map(document.getElementById("map"), {
-            center: { lat: 37.7749, lng: -122.4194 },
-            zoom: 8,
-        });
+<div id="map" style="height: 500px"></div>
 
-        // Get the user's current location
-        navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude,
-            };
-
-            // Create a new marker for the user's location
-            var userMarker = new google.maps.Marker({
-                position: pos,
-                map: map,
-                title: "Your Location",
-                icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",
-            });
-
-            // Fetch the login locations from the API
-            fetch("/api/locations")
-                .then((response) => response.json())
-                .then((locations) => {
-                    // Loop through the locations and create a new marker for each one
-                    locations.forEach((location) => {
-                        var pos = {
-                            lat: location.latitude,
-                            lng: location.longitude,
-                        };
-
-                        var marker = new google.maps.Marker({
-                            position: pos,
-                            map: map,
-                            title: "Login Location",
-                            icon: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",
-                        });
-                    });
-                });
-        });
-    }
-</script>
-{{--<script>--}}
-{{--    function initMap() {--}}
-{{--        var map = new google.maps.Map(document.getElementById('map'), {--}}
-{{--            center: {lat: 37.7749, lng: -122.4194},--}}
-{{--            zoom: 8--}}
-{{--        });--}}
-
-{{--        // Get the user's location--}}
-{{--        navigator.geolocation.getCurrentPosition(function(position) {--}}
-{{--            var pos = {--}}
-{{--                lat: position.coords.latitude,--}}
-{{--                lng: position.coords.longitude--}}
-{{--            };--}}
-
-{{--            // Add a marker for the user's location--}}
-{{--            var marker = new google.maps.Marker({--}}
-{{--                position: pos,--}}
-{{--                map: map,--}}
-{{--                title: 'Your Location'--}}
-{{--            });--}}
-{{--        });--}}
-{{--    }--}}
-{{--</script>--}}
-{{--<script>--}}
-{{--    // Create a new map--}}
-{{--    var map = new google.maps.Map(document.getElementById("map"), {--}}
-{{--        center: { lat: 37.7749, lng: -122.4194 },--}}
-{{--        zoom: 8,--}}
-{{--    });--}}
-
-{{--    // Get the user's current location--}}
-{{--    navigator.geolocation.getCurrentPosition(function (position) {--}}
-{{--        var pos = {--}}
-{{--            lat: position.coords.latitude,--}}
-{{--            lng: position.coords.longitude,--}}
-{{--        };--}}
-
-{{--        // Create a new marker for the user's location--}}
-{{--        var userMarker = new google.maps.Marker({--}}
-{{--            position: pos,--}}
-{{--            map: map,--}}
-{{--            title: "Your Location",--}}
-{{--            icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",--}}
-{{--        });--}}
-
-{{--        // Fetch the login locations from the API--}}
-{{--        fetch("/api/locations")--}}
-{{--            .then((response) => response.json())--}}
-{{--            .then((locations) => {--}}
-{{--                // Loop through the locations and create a new marker for each one--}}
-{{--                locations.forEach((location) => {--}}
-{{--                    var pos = {--}}
-{{--                        lat: location.latitude,--}}
-{{--                        lng: location.longitude,--}}
-{{--                    };--}}
-
-{{--                    var marker = new google.maps.Marker({--}}
-{{--                        position: pos,--}}
-{{--                        map: map,--}}
-{{--                        title: "Login Location",--}}
-{{--                        icon: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",--}}
-{{--                    });--}}
-{{--                });--}}
-{{--            });--}}
-{{--    });--}}
-{{--</script>--}}
-{{--<script>--}}
-{{--    var map;--}}
-
-{{--    function initMap() {--}}
-{{--        // Create a new map--}}
-{{--        map = new google.maps.Map(document.getElementById("map"), {--}}
-{{--            center: { lat: 37.7749, lng: -122.4194 },--}}
-{{--            zoom: 8,--}}
-{{--        });--}}
-
-{{--        // Get the user's current location--}}
-{{--        navigator.geolocation.getCurrentPosition(function (position) {--}}
-{{--            var pos = {--}}
-{{--                lat: position.coords.latitude,--}}
-{{--                lng: position.coords.longitude,--}}
-{{--            };--}}
-
-{{--            // Create a new marker for the user's location--}}
-{{--            var marker = new google.maps.Marker({--}}
-{{--                position: pos,--}}
-{{--                map: map,--}}
-{{--                title: "Your Location",--}}
-{{--                icon: "https://maps.google.com/mapfiles/ms/icons/red-dot.png",--}}
-{{--            });--}}
-
-{{--            // Fetch the login locations from the API--}}
-{{--            fetch("/api/locations")--}}
-{{--                .then((response) => response.json())--}}
-{{--                .then((locations) => {--}}
-{{--                    // Loop through the locations and create a new marker for each one--}}
-{{--                    locations.forEach((location) => {--}}
-{{--                        var pos = {--}}
-{{--                            lat: location.latitude,--}}
-{{--                            lng: location.longitude,--}}
-{{--                        };--}}
-
-{{--                        var marker = new google.maps.Marker({--}}
-{{--                            position: pos,--}}
-{{--                            map: map,--}}
-{{--                            title: "Login Location",--}}
-{{--                            icon: "https://maps.google.com/mapfiles/ms/icons/blue-dot.png",--}}
-{{--                        });--}}
-{{--                    });--}}
-{{--                });--}}
-{{--        });--}}
-{{--    }--}}
-{{--</script>--}}
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG9moWiWFp4yE6PDUWvUbDUQYRP-8ltRg&callback=initMap"></script>
 
+<!-- Initialize the map with markers for all user locations -->
+
+<script>
+    function initMap() {
+        var locations =@json($locations);
+
+        // Create the map
+
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+
+            zoom: 3,
+            center: new google.maps.LatLng(37.7749, -122.4194),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        // Create an info window to display location details
+
+        var infowindow = new google.maps.InfoWindow();
+
+        // Add a marker for each location
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i].lat, locations[i].lng),
+                map: map
+            });
+
+            // Add a click event listener to the marker to display location details
+
+            google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                    infowindow.setContent('Location ' + i +  '<br>' + 'Username: ' + locations[i].name );
+                    infowindow.open(map, marker);
+                }
+            })(marker, i));
+        }
+    }
+
+</script>
 </body>
 </html>
+
+@endsection

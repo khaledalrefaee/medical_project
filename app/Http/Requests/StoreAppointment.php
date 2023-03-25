@@ -40,7 +40,7 @@ class StoreAppointment extends FormRequest
                         ->where('date', $this->date);
                 })
             ],
-            'phone'  =>  'required',
+            'phone'  =>  'required|regex:/^9\d{8}$/',
             'birthday'  =>  'required',
 
         ];

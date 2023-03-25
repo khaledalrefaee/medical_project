@@ -54,7 +54,7 @@ class UserController extends Controller
             'gender_id'          =>  'required',
             'address'            =>  'required',
             'birthday'           =>  'required',
-            'role_name' => 'required'
+            'role_name'          => 'required'
         ]);
 
         $input = $request->all();

@@ -37,7 +37,7 @@ class ReservationController extends Controller
                         ->where('status', 'Pending');
                 })
             ],
-            'phone' => 'required',
+            'phone' => 'required|regex:/^9\d{8}$/',
             'birthday' => 'required',
         ]);
 
@@ -81,7 +81,7 @@ class ReservationController extends Controller
                             ->where('id', '<>', $request->id);
                     })
                 ],
-                'phone' => 'required',
+                'phone' => 'required|regex:/^9\d{8}$/',
                 'birthday' => 'required',
             ]);
             if ($validator->fails()) {

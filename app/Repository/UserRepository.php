@@ -40,6 +40,8 @@ class UserRepository implements UserRepositoryInterface
             $User->gender_id = $request->gender_id;
             $User->address = $request->address;
             $User->birthday = $request->birthday;
+            $User->latitude = $request->latitude;
+            $User->longitude = $request->longitude;
             $User->role_name = ['user'];
             $User->status = 'Active';
 

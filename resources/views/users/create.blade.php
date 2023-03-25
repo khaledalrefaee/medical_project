@@ -83,12 +83,20 @@
             {!! Form::select('role_name[]', $roles,[], array('class' => 'form-control','multiple')) !!}
         </div>
     </div>
+
+
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>
+
+
 {!! Form::close() !!}
 
 
-<p class="text-center text-primary"><small>Tutorial by ItSolutionStuff.com</small></p>
+
+
+
+
 @endsection

@@ -41,7 +41,6 @@
                                             @endcan
                                                 <thead>
                                             <tr>
-                                                <th><input name="select_all" id="example-select-all" type="checkbox" onclick="CheckAll('box1', this)" /></th>
                                                 <th >#</th>
                                                 <th >name</th>
                                                 <th >email</th>
@@ -57,8 +56,7 @@
                                             @foreach($Users as $user)
                                                 <tr class="odd">
                                                     <?php $i++; ?>
-                                                        <td> <input type="checkbox"   value="{{$user->id }}" class="box1" id="checkbox">
-                                                        </td>
+
                                                     <td>{{ $i }}</td>
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>

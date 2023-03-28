@@ -14,13 +14,13 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+                            <h3 class="card-title">DataTable Clinic</h3>
                         </div>
 
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
 
-                            <h6 class="m-0 font-weight-bold text-primary">NurseTables</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">ClinicTables</h6>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -55,6 +55,10 @@
                                                         <a href="{{route('show.clincs' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button> </a>
                                                         @endcan
 
+                                                        @can('clinic delete')
+                                                        <a href="{{route('delete.Clinics' , $clinic->id)}}">  <button type="button" class="btn btn btn-outline-danger">Delete</button> </a>
+                                                        @endcan
+
                                                     </td>
 
 
@@ -85,29 +89,6 @@
     </section>
 
 
-    {{--    <script type="application/javascript">--}}
-{{--        function tableSearch() {--}}
-{{--            let input, filter, table, tr, td, txtValue;--}}
 
-{{--            //Intialising Variables--}}
-{{--            input = document.getElementById("myInput");--}}
-{{--            filter = input.value.toUpperCase();--}}
-{{--            table = document.getElementById("myTable");--}}
-{{--            tr = table.getElementsByTagName("tr");--}}
-
-{{--            for (let i = 0; i < tr.length; i++) {--}}
-{{--                td = tr[i].getElementsByTagName("td")[0];--}}
-{{--                if (td) {--}}
-{{--                    txtValue = td.textContent || td.innerText;--}}
-{{--                    if (txtValue.toUpperCase().indexOf(filter) > -1) {--}}
-{{--                        tr[i].style.display = "";--}}
-{{--                    } else {--}}
-{{--                        tr[i].style.display = "none";--}}
-{{--                    }--}}
-{{--                }--}}
-{{--            }--}}
-
-{{--        }--}}
-{{--    </script>--}}
 
 @endsection

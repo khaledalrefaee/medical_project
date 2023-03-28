@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Models\Gender;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -12,6 +13,13 @@ class UserRepository implements UserRepositoryInterface
     public function getAllUser()
     {
         $Users = User::orderBy('id','DESC')->paginate(5);
+
+///نستخدم طريقة الخريطة للتكرار على كل مستخدم في المجموعة وحساب عمره باستخدام فئة الكربون. نقوم بعد ذلك بدمج خاصية العمر في كائن المستخدم
+///  وإعادة مجموعة جديدة من المستخدمين مع تضمين أعمارهم. أخيرًا ، نقوم بتمرير هذه المجموعة الجديدة إلى العرض.
+        $usersWithAge = $Users->map(function ($user) {
+            $age = Carbon::parse($user->birthday)->age;
+            return collect($user)->merge(['age' => $age]);
+        });
         return view('backend.users.all_users',compact('Users'));
     }
 
@@ -39,7 +47,7 @@ class UserRepository implements UserRepositoryInterface
             $User->phone = $request->phone;
             $User->gender_id = $request->gender_id;
             $User->address = $request->address;
-            $User->birthday = $request->birthday;
+            $User->birthday = Carbon::parse($request->birthday . '-01');
             $User->latitude = $request->latitude;
             $User->longitude = $request->longitude;
             $User->role_name = ['user'];

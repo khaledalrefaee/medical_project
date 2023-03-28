@@ -26,4 +26,7 @@ class Doctor extends Model
     public function reservation(){
         return $this->hasMany(Reservation::class);
     }
+    public function waiting(){
+        return $this->hasMany(Waiting::class);
+    }
 }

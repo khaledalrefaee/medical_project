@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d212f1ba53b842cec359148a7320604b",
+    "content-hash": "634022970140eb82ba296723ef0f3686",
     "packages": [
         {
             "name": "bacon/bacon-qr-code",
@@ -1345,6 +1345,45 @@
                 }
             ],
             "time": "2021-10-07T12:57:01+00:00"
+        },
+        {
+            "name": "innovareti/password-policy",
+            "version": "v1.4.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/innovareti/password-policy.git",
+                "reference": "90d128ca09ec04c2e5591cbc1d690157a6d6bc30"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/innovareti/password-policy/zipball/90d128ca09ec04c2e5591cbc1d690157a6d6bc30",
+                "reference": "90d128ca09ec04c2e5591cbc1d690157a6d6bc30",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": [
+                    "src/PasswordPolicy/Providers/Laravel/PasswordPolicyServiceProvider"
+                ]
+            },
+            "autoload": {
+                "psr-4": {
+                    "PasswordPolicy\\": "src/PasswordPolicy/",
+                    "PasswordPolicy\\Tests\\": "tests/",
+                    "PasswordPolicy\\Models\\": "src/Models",
+                    "PasswordPolicy\\Database\\Factories\\": "database/factories"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "A library to intuitively create password policies and validate a subject against them.",
+            "support": {
+                "issues": "https://github.com/innovareti/password-policy/issues",
+                "source": "https://github.com/innovareti/password-policy/tree/v1.4.4"
+            },
+            "time": "2022-12-02T18:20:37+00:00"
         },
         {
             "name": "intervention/image",

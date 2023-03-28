@@ -126,4 +126,15 @@ class ReservationController extends Controller
         }
 
     }
+
+    public function show_destroy()
+    {
+        $Reservations = Reservation::where('user_id', Auth::id())->onlyTrashed()
+            //  الطريقة with () لتحميل علاقة "doctor" لكل حجز (باستخدام طريقة withTrashed () لتضمين الأطباء المحذوفين)
+            ->with(['doctor' => function ($query) {
+                $query->withTrashed();
+            }])->get();
+
+        return response($Reservations,200);
+    }
 }

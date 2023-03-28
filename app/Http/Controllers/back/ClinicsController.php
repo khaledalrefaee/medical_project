@@ -59,10 +59,11 @@ class ClinicsController extends Controller
     }
 
 
-    public function destroy(Request $request  )
+    public function destroy($id)
     {
-//        return $this->Clince->delete($request);
+        return  $this->Clince->delete($id);
     }
+
 
     public function show_destroy()
     {

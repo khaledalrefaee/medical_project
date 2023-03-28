@@ -3,19 +3,16 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\back\ClinicsController;
-use App\Http\Controllers\back\DetilsControler;
 use App\Http\Controllers\back\DoctorController;
 use App\Http\Controllers\back\MapController;
 use App\Http\Controllers\back\NuersController;
 use App\Http\Controllers\back\PharmieseController;
 use App\Http\Controllers\back\ReservationController;
-use App\Http\Controllers\back\ReservationsController;
-use App\Http\Controllers\back\RoleController;
+use App\Http\Controllers\back\StatisticsController;
 use App\Http\Controllers\back\UserController;
-use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MailController;
-use App\Http\Controllers\PayPalController;
-use App\Http\Controllers\WatingController;
+
+
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -51,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout',[AdminController::class,'destroy'])->name('Logout');
 
     //Chart
-    Route::get('/Chart',[UserController::class,'chart'])->name('chart');
+    Route::get('/Chart',[StatisticsController::class,'chart'])->name('chart');
 
    //Map
     Route::get('map',[MapController::class,'index'])->name('map');
@@ -77,15 +74,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/delete/nuers/{id}',[NuersController::class,'destroy'])->name('delet.nuers');
 
     //clinics
-    Route::get('/all/Clincs',[ClinicsController::class,'index'])->name('all.Clincs');
-    Route::get('/create/Clincs',[ClinicsController::class,'create'])->name('create.clincs');
-    Route::post('/stror/Clincs',[ClinicsController::class,'store'])->name('store.clincs');
-    Route::get('/show/Clincs/{id}',[ClinicsController::class,'show'])->name('show.clincs');
-    Route::get('/Retreat/Clincs',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');
-    Route::get('/edit/Clincs/{id}',[ClinicsController::class,'edit'])->name('edit.Clincs');
-    Route::post('/update/Clincs/{id}',[ClinicsController::class,'update'])->name('update.Clincs');
-//    Route::get('/delete/Clincs',[ClinicsController::class,'destroy'])->name('delete.Clinics');
-    Route::get('/show/delete/Clincs',[ClinicsController::class,'show_destroy'])->name('show.delete.Clincs');
+    Route::get('/all/Clinics',[ClinicsController::class,'index'])->name('all.Clincs');
+    Route::get('/create/Clinics',[ClinicsController::class,'create'])->name('create.clincs');
+    Route::post('/store/Clinics',[ClinicsController::class,'store'])->name('store.clincs');
+    Route::get('/show/Clinics/{id}',[ClinicsController::class,'show'])->name('show.clincs');
+    Route::get('/Retreat/Clinics',[ClinicsController::class,'Retreat'])->name('Retreat.clincs');
+    Route::get('/edit/Clinics/{id}',[ClinicsController::class,'edit'])->name('edit.Clincs');
+    Route::post('/update/Clinics/{id}',[ClinicsController::class,'update'])->name('update.Clincs');
+    Route::get('/delete/Clinics/{id}',[ClinicsController::class,'destroy'])->name('delete.Clinics');
+    Route::get('/show/delete/Clinics',[ClinicsController::class,'show_destroy'])->name('show.delete.Clincs');
 
     //Doctor
 
@@ -165,32 +162,6 @@ Route::group(['middleware' => ['auth']], function() {
 
 
 
-
-
-Route::group(['middleware' => ['auth']], function() {
-
-    Route::resource('roles', \App\Http\Controllers\RoleController::class);
-    Route::resource('users', \App\Http\Controllers\UserController::class);
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//live-wire
-Route::view('add_User','livewire.Show_Form');
 
 
 

@@ -123,34 +123,19 @@ class DoctorRepository implements DoctoerRepositoryInterface
 
     public function delete($id)
     {
-//        DB::beginTransaction();
 
         try {
 
             $doctor = Doctor::findorFail($id);
-            $doctor->delete();
             $doctor->detail()->delete();
             $doctor->reservation()->delete();
+            $doctor->waiting()->delete();
+            $doctor->delete();
 
-            // Delete the doctor record
-//            DB::table('doctors')->where('id', $id)->delete();
-
-            // حذف سجل التفاصيل المقابل
-//            DB::table('details')->where('doctor_id', $id)->delete();
-
-            // حذف سجل التفاصيل المقابل
-//            DB::table('reservations')->where('doctor_id', $id)->delete();
-
-            // Commit the transaction
-            DB::commit();
             toastr()->error('Deleted','Deleted Doctoer');
-
 
             return redirect()->back();
         } catch (\Exception $e) {
-            // Roll back the transaction
-            DB::rollback();
-
             // Log the error or display an error message to the user
             return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }

@@ -45,6 +45,7 @@
                                                 <th >name</th>
                                                 <th >email</th>
                                                 <th >phone</th>
+                                                <th >Age</th>
                                                 <th >status</th>
                                               <th >Actions</th>
                                             </tr>
@@ -61,6 +62,11 @@
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td >{{$user->phone}}</td>
+
+
+
+                                                        <td>{{ Carbon\Carbon::parse($user->birthday)->age }}</td>
+
                                                         <td > <label class="badge badge-success">{{ $user->status }}</label></td>
 
                                                         <td>

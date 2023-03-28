@@ -9,6 +9,7 @@
         "barryvdh/laravel-dompdf": "^2.0",
         "barryvdh/laravel-snappy": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
+        "innovareti/password-policy": "^1.4",
         "intervention/image": "^2.7",
         "laravel/framework": "^9.19",
         "laravel/jetstream": "^3.0",

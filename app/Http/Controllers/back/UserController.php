@@ -74,14 +74,4 @@ class UserController extends Controller
         return redirect()->route('all_user');
     }
 
-
-
-
-    public function chart(){
-        $totalUsers = User::count();
-        $totalClince=Clinics::count();
-        $totalDoctoer=Doctor::count();
-        $toutalNuers= Nurses::count();
-        $totalDrugs=Pharmise::count();
-        return view('backend.Chart.Chart', compact('totalUsers','totalClince','totalDoctoer','toutalNuers','totalDrugs'));    }
 }

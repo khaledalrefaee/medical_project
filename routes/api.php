@@ -51,4 +51,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::post('/store',[ReservationController::class,'store']);
 
     Route::get('/My/Reservation',[ReservationController::class,'index']);
+
+    Route::get('/My/Reservation/destroy',[ReservationController::class,'show_destroy']);
+
+
 });

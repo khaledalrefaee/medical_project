@@ -10,11 +10,17 @@
 </head>
 <body>
 
-<div class="chart-container">
-    <canvas id="user-chart"></canvas>
-    <i id="arrow-icon" class="fas fa-arrow-up"></i>
+<div class="charts-wrapper">
+    <div class="chart-container">
+        <canvas id="user-chart"></canvas>
+        <i id="arrow-icon" class="fas fa-arrow-up"></i>
+    </div>
+    <div class="chart-container">
+        <canvas id="circle"></canvas>
+    </div>
 </div>
 
+ <br><br>
 
 <div class="row mb-3">
 <div class="col-xl-3 col-md-6 mb-4">
@@ -44,10 +50,8 @@
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-uppercase mb-1">The number of doctors</div>
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalDoctoer}}</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalDoctors}}</div>
                     <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -65,8 +69,6 @@
                         <div class="text-xs font-weight-bold text-uppercase mb-1">Clinics</div>
                         <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalClince}}</div>
                         <div class="mt-2 mb-0 text-muted text-xs">
-                            <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                            <span>Since last month</span>
                         </div>
                     </div>
                     <div class="col-auto">
@@ -82,10 +84,8 @@
             <div class="row no-gutters align-items-center">
                 <div class="col mr-2">
                     <div class="text-xs font-weight-bold text-uppercase mb-1">Number of nurses</div>
-                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$toutalNuers}}</div>
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$totalNurses}}</div>
                     <div class="mt-2 mb-0 text-muted text-xs">
-                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
-                        <span>Since last month</span>
                     </div>
                 </div>
                 <div class="col-auto">
@@ -101,24 +101,62 @@
 
 
 
+<script>
+    var ctx = document.getElementById('circle').getContext('2d');
+    var circle = new Chart(ctx, {
+        type: 'pie',
+        data: {
+            labels: ['All Appointments', 'Daily Appointments', 'Cancelled Appointments'],
+            datasets: [{
+                label: '# of Appointments',
+                data: [{{ $data['all'] }}, {{ $data['daily'] }}, {{ $data['Cancelled'] }}],
+                backgroundColor: ['#ff6384', '#36a2eb', '#ffce56']
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false
+        }
+    });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <script>
-
-    var totalUsers = <?php echo $totalUsers; ?>;
-    var totalDoctoer = <?php echo $totalDoctoer; ?>;
-    var toutalNuers = <?php echo $toutalNuers; ?>;
     var ctx = document.getElementById('user-chart').getContext('2d');
     var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Users','Doctoers','Nurses'],
+            labels: ['Doctors', 'Users', 'Nurses'],
             datasets: [{
-                label: 'Number ',
-                data: [totalUsers,totalDoctoer,toutalNuers],
+                label: 'Number',
+                data: [{{ $totalDoctors }}, {{ $totalUsers }}, {{ $totalNurses }}],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
-            }]
+            },
+
+                    @foreach ($data['doctorAppointments'] as $doctorName => $appointmentCount)
+                {
+                    label: '{{ $doctorName }}',
+                    data: [{{ $appointmentCount }}, 0, 0],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                },
+            @endforeach
+            ]
         },
         options: {
             scales: {
@@ -130,45 +168,21 @@
             }
         }
     });
-
-    var prevValue = totalUsers;
-    var prevValue = totalDoctoer;
-    var prevValue = toutalNuers;
-    setInterval(function() {
-        //  the current number of users
-        var totalUsers = <?php echo \App\Models\User::count(); ?>;
-        var totalDoctoer = <?php echo \App\Models\Doctor::count(); ?>;
-        var toutalNuers = <?php echo \App\Models\Nurses::count(); ?>;
-
-        // Update the chart
-        userChart.data.datasets[0].data = [totalUsers,];
-        userChart.update();
-
-        // Determine the direction of the arrow
-
-        var direction = (totalUsers > prevValue) ? 'up' : 'down';
-          var direction_2 = (totalDoctoer > prevValue) ? 'up' : 'down';
-          var direction_3 = (toutalNuers > prevValue) ? 'up' : 'down';
-
-        // Update the arrow icon
-        var arrowIcon = document.getElementById('arrow-icon');
-        arrowIcon.classList.remove('fa-arrow-up', 'fa-arrow-down');
-        arrowIcon.classList.add('fa-arrow-' + direction);
-         arrowIcon.classList.add('fa-arrow-' + direction_2);
-         arrowIcon.classList.add('fa-arrow-' + direction_3);
-
-        arrowIcon.style.color = (direction === 'up') ? 'green' : 'red';
-        arrowIcon.style.color = (direction_2 === 'up') ? 'green' : 'red';
-        arrowIcon.style.color = (direction_3 === 'up') ? 'green' : 'red';
-        // Update the previous value
-        prevValue = totalUsers;
-
-    }, 5000);
-
-
 </script>
 
+
 <style>
+    .charts-wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .chart-container {
+        width: 48%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
     .chart-container {
         position: relative;
         width: 50%;
@@ -176,7 +190,10 @@
         margin-top: 50px;
         text-align: center;
     }
-
+    .chart-containers {
+        width: 400px;
+        height: 400px;
+    }
     #arrow-icon {
         position: absolute;
         top: 0;

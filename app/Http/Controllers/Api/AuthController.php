@@ -22,7 +22,7 @@ class AuthController extends Controller
 
     //check password
     if (!$user || !Hash::check($filds['password'], $user->password)) {
-        return response(['mesegag' => 'Error'], 401);
+        return response(['massage' => 'Error'], 401);
     }
 
 

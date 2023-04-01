@@ -38,7 +38,7 @@ Route::get('get_All',[NuersController::class,'get_All']);
 
 Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 
-Route::post('/Reservation/update/{id}',[ReservationController::class,'update']);
+Route::put('/Reservation/update/{id}',[ReservationController::class,'update']);
 
 Route::post('/Reservation/delete/{id}',[ReservationController::class,'destroy']);
 

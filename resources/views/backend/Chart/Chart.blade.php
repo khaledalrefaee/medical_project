@@ -10,15 +10,7 @@
 </head>
 <body>
 
-<div class="charts-wrapper">
-    <div class="chart-container">
-        <canvas id="user-chart"></canvas>
-        <i id="arrow-icon" class="fas fa-arrow-up"></i>
-    </div>
-    <div class="chart-container">
-        <canvas id="circle"></canvas>
-    </div>
-</div>
+
 
  <br><br>
 
@@ -97,8 +89,17 @@
 </div>
 </div>
 
+ <div class="charts-wrapper">
+     <div class="chart-container">
+         <canvas id="user-chart"></canvas>
+         <i id="arrow-icon" class="fas fa-arrow-up"></i>
+     </div>
+     <div class="chart-container">
+         <canvas id="circle"></canvas>
+     </div>
+ </div>
 
-
+<canvas id="myChart" ></canvas>
 
 
 <script>
@@ -171,6 +172,54 @@
 </script>
 
 
+
+
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+            datasets: [{
+                label: 'Total',
+                data: [10, 8, 12, 15, 7],
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
+                borderWidth: 5,
+                tension: 0.1
+            }, {
+                label: 'Remaining',
+                data: [3, 5, 2, 0, 4],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 5,
+                tension: 0.1
+            }, {
+                label: 'Paid',
+                data: [7, 3, 10, 15, 3],
+                backgroundColor: 'rgba(255, 206, 86, 0.2)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 5,
+                tension: 0.1
+            }]
+        },
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    stacked: true,
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+</script>
+
+
 <style>
     .charts-wrapper {
         display: flex;
@@ -190,7 +239,7 @@
         margin-top: 50px;
         text-align: center;
     }
-    .chart-containers {
+    .myChart {
         width: 400px;
         height: 400px;
     }

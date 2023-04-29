@@ -23,6 +23,7 @@
                                             <thead>
                                             <tr>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Doctor</th>
+                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Doctor email application </th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Clinic</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">specialization Doctor</th>
                                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone Doctor</th>
@@ -38,6 +39,7 @@
                                                 <tr class="odd">
 
                                                     <td>{{ $detail->name }}</td>
+                                                    <td>{{ $detail->email }}</td>
                                                     <td> {{$detail->clinic->name }}</td>
                                                     <td>{{$detail->detail->specialization}}</td>
                                                     <td>{{$detail->detail->phone}}</td>

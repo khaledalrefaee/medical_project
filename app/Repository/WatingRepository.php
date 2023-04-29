@@ -134,9 +134,11 @@ class WatingRepository implements WatingRepositoryInterface
             $times[] = Carbon::parse("09:00")->addMinutes(30 * $i)->format('H:i');
         }
 
+        $ctime = Reservation::find('time');
+
 
         $doctor = Doctor::all();
-        return view('backend.Reservations.edit_appointment', compact('Reservation','times','doctor'));
+        return view('backend.Reservations.edit_appointment', compact('Reservation','times','doctor','ctime'));
 
     }
     public function update_appointment($request){

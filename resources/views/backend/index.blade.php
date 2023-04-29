@@ -60,15 +60,13 @@
         <!-- /.content-header -->
 
         <!-- Main content -->
-        <section class="content">
-            <div class="container-fluid">
+
                 <!-- Info boxes -->
                 @yield('content')
                 <!-- /.row -->
 
                 <!-- /.row -->
-            </div><!--/. container-fluid -->
-        </section>
+
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
@@ -93,7 +91,6 @@
 
 <!-- Page level custom scripts -->
 
-<script src="{{asset('backend/js/demo/chart-bar-demo.js')}}"></script>
 
 
 
@@ -106,10 +103,7 @@
 
 <script src="{{asset('backend/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('backend/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 <script src="{{asset('backend/js/ruang-admin.min.js')}}"></script>
-<script src="{{asset('/backend/vendor/chart.js/Chart.min.js')}}"></script>
-<script src="{{asset('/backend/js/demo/chart-area-demo.js')}}"></script>
 
 
 
@@ -142,6 +136,7 @@
     }
 </script>
 
+
 <script>
 
     {{--check boks--}}
@@ -161,5 +156,7 @@
         }
     }
 </script>
+
+
 </body>
 </html>

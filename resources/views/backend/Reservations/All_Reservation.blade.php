@@ -1,15 +1,8 @@
 @extends('backend.index')
 @section('content')
-   <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
 
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
 
-    <section class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
@@ -22,9 +15,6 @@
                         <!-- /.card-header -->
                         <div class="card-body">
                             <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
-
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><table class="row"><div class="col-sm-12">
-                                    </div>
 
                                             <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
@@ -52,10 +42,10 @@
                                                     <td> <span class="badge badge-pill badge-warning">waiting</span></td>
                                                         <td>
                                                             @can('waiting delete')
-                                                            <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></i></a>
+                                                            <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></a>
                                                             @endcan
                                                             @can('waiting show')
-                                                            <a href="{{route('show.waitin',$waiting->id)}}" class="btn btn-info" title="show Data">  <i class="fa fa-eye"></i></i></a>
+                                                            <a href="{{route('show.waitin',$waiting->id)}}" class="btn btn-info" title="show Data">  <i class="fa fa-eye"></i></a>
                                                             @endcan
                                                             @can('waiting edit')
                                                             <a href="{{route('edit.waitin',$waiting->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i> </a>
@@ -63,8 +53,6 @@
                                                         </td>
                                                     @endforeach
                                                 </tr>
-
-
 
 
                                                 @foreach($Reservations as $Reservation)
@@ -120,8 +108,6 @@
                                                     </tr>
 
 
-
-
                                             </tbody>
 
                                             @can('Add a request')
@@ -160,58 +146,35 @@
                                         </table>
 
 
-
-
-{{--                                    Reservations--}}
-{{--                                {{$Reservations ->links('pagination::bootstrap-4')}}--}}
-{{--                                    waitings--}}
-{{--                                {{$waitings ->links('pagination::bootstrap-4')}}--}}
-
-                                    </div>
+                            </div>
+                        </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
+   {{--   <!-- Add a script tag to include jQuery -->--}}
 
-   <script>
-       // Get the delete button
-       var deleteButton = document.getElementById("deleteButton");
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-       // Add a click event listener to the delete button
-       deleteButton.addEventListener("click", function() {
-           // Get the checkboxes that are checked
-           var checkboxes = document.querySelectorAll('input[name="ids[]"]:checked');
 
-           // Create an array of ids
-           var ids = [];
-           for (var i = 0; i < checkboxes.length; i++) {
-               ids.push(checkboxes[i].value);
-           }
+        <script>
+            // Set the interval time in milliseconds
+            var intervalTime = 5000;
 
-           // Send an AJAX request to delete the records
-           $.ajax({
-               url: "/delete_all",
-               type: "POST",
-               data: {
-                   ids: ids,
-                   _token: "{{ csrf_token() }}"
-               },
-               success: function(response) {
-                   // Reload the page after the records are deleted
-                   location.reload();
-               },
-               error: function(xhr) {
-                   console.log(xhr.responseText);
-               }
-           });
-       });
-   </script>
-
+            // Set the interval function
+            setInterval(function() {
+                // Perform an AJAX request
+                $.ajax({
+                    url: '/Reservations',
+                    type: 'GET',
+                    success: function(data) {
+                        // Update the content of the target element
+                        $('#target-element').html(data);
+                    }
+                });
+            }, intervalTime);
+        </script>
 
 @endsection
 

@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\AuthDoctorController;
 use App\Http\Controllers\Api\NuersController;
 use App\Http\Controllers\Api\PharmiseController;
 use App\Http\Controllers\Api\ProfileContoller;
@@ -41,6 +42,9 @@ Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 Route::put('/Reservation/update/{id}',[ReservationController::class,'update']);
 
 Route::post('/Reservation/delete/{id}',[ReservationController::class,'destroy']);
+
+
+Route::post('/login/Doctor',[AuthDoctorController::class,'login']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 

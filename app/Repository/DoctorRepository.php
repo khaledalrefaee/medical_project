@@ -8,6 +8,7 @@ use App\Models\Detail;
 use App\Models\Doctor;
 use App\Models\Pharmise;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DoctorRepository implements DoctoerRepositoryInterface
 {
@@ -32,7 +33,10 @@ class DoctorRepository implements DoctoerRepositoryInterface
         try {
             $Doctoer = new Doctor();
             $Doctoer->name = $request->name;
+            $Doctoer->email = $request->email_1;
+            $Doctoer->password =Hash::make($request->password);
             $Doctoer->clinic_id = $request->clinic_id;
+
             $Doctoer->save();
 
             // insert Details
@@ -87,6 +91,8 @@ class DoctorRepository implements DoctoerRepositoryInterface
                 ->where('id', $id)
                 ->update([
                     'name' => $request->name,
+                    'email' => $request->email_1,
+                    'password' =>Hash::make($request->password),
                     'clinic_id'=>$request->clinic_id,
 
                     // ... other fields to update

@@ -51,7 +51,7 @@ class UserRepository implements UserRepositoryInterface
             $User->latitude = $request->latitude;
             $User->longitude = $request->longitude;
             $User->role_name = ['user'];
-            $User->status = 'Active';
+            $User->status = 'active';
 
             $User->save();
 

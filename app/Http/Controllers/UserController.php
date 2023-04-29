@@ -13,11 +13,7 @@ use Illuminate\Support\Arr;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(4);
@@ -26,11 +22,7 @@ class UserController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $gender =Gender::all();
@@ -38,18 +30,14 @@ class UserController extends Controller
         return view('users.create',compact('roles','gender'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
+
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required',
+            'name'               => 'required',
+            'email'              => 'required|email|unique:users,email',
+            'password'           => 'required',
             'phone'              =>  'required||regex:/^9\d{8}$/',
             'gender_id'          =>  'required',
             'address'            =>  'required',
@@ -59,7 +47,7 @@ class UserController extends Controller
 
         $input = $request->all();
         $input['password'] = Hash::make($input['password']);
-        $input['status'] ='Active';
+        $input['status'] ='active';
         $user = User::create($input);
         $user->assignRole($request->input('role_name'));
 
@@ -85,13 +73,7 @@ class UserController extends Controller
         return view('users.edit',compact('user','roles','userRole','gender'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $this->validate($request, [
@@ -123,12 +105,7 @@ class UserController extends Controller
             ->with('success','User updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         User::find($id)->delete();

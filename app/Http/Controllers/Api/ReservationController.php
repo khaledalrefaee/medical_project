@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\AppointmentAdded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAppointment;
 use App\Models\Reservation;
@@ -33,8 +34,8 @@ class ReservationController extends Controller
                 'date_format:H:i',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
                     return $query->where('doctor_id', '!=', $request->doctor_id)
-                        ->where('date', $request->date)
-                        ->where('status', 'Pending');
+                        ->where('date', $request->date);
+
                 })
             ],
             'phone' => 'required|regex:/^9\d{8}$/',
@@ -58,6 +59,8 @@ class ReservationController extends Controller
         $Reservation->status = 'Pending';
 
         $Reservation->save();
+
+
 
         return response($Reservation, 200);
     }

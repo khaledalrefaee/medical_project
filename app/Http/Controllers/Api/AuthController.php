@@ -16,14 +16,12 @@ class AuthController extends Controller
         'password' => 'required|string'
     ]);
 
+    $user = User::where('email', $filds['email'])->where('status', 'active')->first();
 
-    //check email
-    $user = User::where('email', $filds['email'])->first();
-
-    //check password
     if (!$user || !Hash::check($filds['password'], $user->password)) {
-        return response(['massage' => 'Error'], 401);
+        return response(['message' => 'Error'], 401);
     }
+
 
 
     $token = $user->createToken('myappToken')->plainTextToken;

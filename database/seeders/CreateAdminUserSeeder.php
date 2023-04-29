@@ -23,7 +23,7 @@ class CreateAdminUserSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => bcrypt('password'),
             'role_name'=>   ['Admin'],
-            'status'    =>'Active',
+            'status'    =>'active',
             'phone'     =>'962812838',
             'address'   =>'syria',
             'birthday'  =>'2023-03-23',

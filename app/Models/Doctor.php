@@ -5,14 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Laravel\Sanctum\HasApiTokens;
 
 class Doctor extends Model
 {
     use HasFactory;
+    use HasApiTokens;
     use SoftDeletes;
 
     protected $fillable =[
-        'name' , 'clinic_id'
+        'name' ,'password' ,'email','clinic_id'
     ];
 
     public function clinic(){

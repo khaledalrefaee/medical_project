@@ -48,9 +48,12 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <div class="input-group-append">
-                <span class="input-group-text" >00963</span>
 
                 <strong>phone:</strong>
+            </div>
+            <div class="input-group-append">
+                <span class="input-group-text">00963 </span>
+
                 {!! Form::text('phone', null, array('placeholder' => 'phone','class' => 'form-control')) !!}
             </div>
         </div>
@@ -61,27 +64,40 @@
             {!! Form::text('address', null, array('placeholder' => 'address','class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="input-group mb-3">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <strong>birthday:</strong>
         <input type="date" class="form-control" name="birthday"  value="{{$user->birthday}}"  class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
-
-        <div class="input-group-append">
-            <span class="input-group-text"><i class="fas fa-check"></i></span>
-        </div>
     </div>
+    <br>
+    <br>
+    <br>
+
+<div class="col-xs-12 col-sm-12 col-md-12">
+    <strong>gender:</strong>
     <select name="gender_id" id="inputStatus" class="form-control custom-select" >
         <option selected="" disabled="" >gender </option>
         @foreach($gender as $item)
             <option value="{{$item->id}} "{{$item->id == $user->gender_id ? 'selected' : ""}}>{{$item->name}} </option>
         @endforeach
+</div>
 
     </select>
     <br>
 
-    <select name="status" id="inputStatus" class="form-control custom-select" >
-        <option selected="" disabled="" >status </option>
-            <option value="active">active </option>
-            <option value="not active">not active </option>
+
+
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <strong>account status :</strong>
+    </div>
+    <select name="status" id="inputStatus" class="form-control custom-select">
+        <option disabled selected>Select status</option>
+        <option value="active" {{ $user->status === 'active' ? 'selected' : '' }}>active</option>
+        <option value="not active" {{ $user->status === 'not active' ? 'selected' : '' }}>not active</option>
     </select>
+
+
+    <br>
+    <br>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">

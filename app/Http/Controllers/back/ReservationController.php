@@ -41,7 +41,10 @@ class ReservationController extends Controller
 
     }
 
-
+    public function gssam(){
+        $Reservations = Reservation::all();
+        return $Reservations;
+    }
 
 
     public function index(){

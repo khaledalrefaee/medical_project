@@ -108,6 +108,8 @@ Route::middleware(['auth'])->group(function () {
 
     //Reservations
     Route::get('/Reservations',[ReservationController::class,'index'])->name('Reservations.all');
+    Route::get('/ReservationsA',[ReservationController::class,'gssam']);
+
     Route::get('/create/waiting',[ReservationController::class,'create_waiting'])->name('create.waiting');
     Route::post('/store/waiting',[ReservationController::class,'storewaiting'])->name('store.waiting');
     Route::get('/show/waiting/{id}',[ReservationController::class,'show_waiting'])->name('show.waitin');

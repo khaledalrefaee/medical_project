@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\AuthDoctorController;
+use App\Http\Controllers\Api\DoctorAppointmentsController;
 use App\Http\Controllers\Api\NuersController;
 use App\Http\Controllers\Api\PharmiseController;
 use App\Http\Controllers\Api\ProfileContoller;
@@ -43,8 +44,13 @@ Route::put('/Reservation/update/{id}',[ReservationController::class,'update']);
 
 Route::post('/Reservation/delete/{id}',[ReservationController::class,'destroy']);
 
+//Doctor
 
 Route::post('/login/Doctor',[AuthDoctorController::class,'login']);
+
+Route::put('/Reservation/Doctor/update/{id}',[DoctorAppointmentsController::class,'update']);
+
+Route::post('/Reservation/Doctor/delete/{id}',[DoctorAppointmentsController::class,'destroy']);
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
 
@@ -57,6 +63,11 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/My/Reservation',[ReservationController::class,'index']);
 
     Route::get('/My/Reservation/destroy',[ReservationController::class,'show_destroy']);
+
+
+    //Docotor
+    Route::get('/My/Reservation/Doctor',[DoctorAppointmentsController::class,'index']);
+    Route::get('/profile/doctor', [AuthDoctorController::class,'profile']);
 
 
 });

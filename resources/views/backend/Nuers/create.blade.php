@@ -4,7 +4,7 @@
         <!-- jquery validation -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
+                <h3 class="card-title">Add Nurse</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -12,43 +12,34 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clincs</label>
+                        <strong>name nurse</strong>
                         <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
                     </div>
                     @error('name')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
 
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text" >00963</span>
-                        </div>
+                        <div class="form-group">
+                            <div class="input-group-append">
+                                <strong>phone:</strong>
+                            </div>
+                            <div class="input-group-append">
+                                <span class="input-group-text">00963 </span>
                         <input type="number" class="form-control" name="phone"  value="{{ old('phone') }}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
                     </div>
                     @error('phone')
                     <div class="alert alert-danger">{{ $message }}
                         @enderror
-                    </div>
+                    </br>
 
                     <div class="form-group">
-                        <label for="exampleInputPassword1">description</label>
+                        <strong>description</strong>
                         <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="description">
                     </div>
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="form-group">
-                        <label for="exampleInputFile">image book</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input  type="file" id="image" name="image"  class="@error('image') is-invalid @enderror">
-                                @error('image')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                                @enderror
-                                <img src="{{ asset('storage/' . old('image')) }}">
 
-                            </div>
-                        </div>
                 </div>
                 <!-- /.card-body -->
                 <div class="card-footer">

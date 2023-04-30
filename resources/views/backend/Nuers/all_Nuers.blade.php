@@ -6,10 +6,13 @@
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 @can('nurse create')
-                    <a href="{{route('create.nuers')}}">   <button type="button" class="btn btn-outline-success mb-1">create</button></a>
+                    <a href="{{route('create.nuers')}}">
+                        <button type="button" class="btn btn-outline-success mb-1">create</button></a>
                 @endcan
-                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+
+
                 <h6 class="m-0 font-weight-bold text-primary">NurseTables</h6>
+                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
             </div>
 
 

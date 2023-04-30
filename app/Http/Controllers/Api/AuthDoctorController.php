@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class AuthDoctorController extends Controller
@@ -26,10 +27,25 @@ class AuthDoctorController extends Controller
 
         $token = $doctor->createToken('myappToken')->plainTextToken;
         $respons = [
-            'user' => $doctor,
+            'doctor' => $doctor,
             'token' => $token
         ];
 
         return response($respons, 201);
+    }
+
+    public function profile(Request $request)
+    {
+        $doctor = Auth::user()->load(['detail']);
+
+        return response()->json([
+            'name' => $doctor->name,
+            'email' => $doctor->email,
+
+            'specialization' => $doctor->detail->specialization,
+            'phone' => $doctor->detail->phone,
+            'Contact email' => $doctor->detail->email,
+        ]);
+
     }
 }

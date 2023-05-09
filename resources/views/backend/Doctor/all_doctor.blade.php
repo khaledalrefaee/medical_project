@@ -10,9 +10,6 @@
                         <a href="{{route('create.doctor')}}">   <button type="button" class="btn btn-outline-success">create</button></a>
                     @endcan
 
-                    @can('doctor show Delete')
-                        <a href="{{route('show.delete.doctor')}}">   <button type="button" class="btn btn btn-outline-danger">show delete</button></a>
-                    @endcan
                 <h6 class="m-0 font-weight-bold text-primary">DoctorTables</h6>
                 <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
             </div>
@@ -34,23 +31,18 @@
                                             <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">#</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Clinic</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name doctor</th>
-
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Actions</th></tr>
+                                                <th >#</th>
+                                                <th >name Clinic</th>
+                                                <th >name doctor</th>
+                                                <th >Actions</th></tr>
                                             </thead>
                                             <tbody>
 
-
                                             @if (isset($details))
-
                                                 <?php $doctors = $details; ?>
                                             @else
-
                                                 <?php   $doctors = $doctors; ?>
                                             @endif
-
 
 
 
@@ -60,24 +52,29 @@
                                                     <td>{{ $loop->index+1 }}</td>
                                                     <td>{{$doctor->clinic->name}}</td>
                                                     <td>{{$doctor->name}}</td>
-
-                                                    <td >
+                                                    <td>
                                                         @can('doctor delete')
-                                                        <a href="{{route('delete.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
+                                                            <a href="{{route('delete.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-danger">delete</button> </a>
                                                         @endcan
+
                                                         @can('doctor edit')
                                                             <a href="{{route('edit.doctor', $doctor->id)}}"> &nbsp;<button type="button" class="btn btn btn-outline-warning">edit</button> </a>
-                                                            @endcan
-                                                            @can('doctor show')
+                                                        @endcan
+
+                                                        @can('doctor show')
                                                             <a href="{{route('show.doctor', $doctor->id)}}">  <button type="button" class="btn btn btn-outline-info">show</button></a>
-                                                            @endcan
+                                                        @endcan
+
                                                     </td>
 
                                                 </tr>
                                     @endforeach
-
                                             </tbody>
                                             <br>
+                                                @can('doctor show Delete')
+                                                    <a href="{{route('show.delete.doctor')}}">   <button  type="button" class="btn btn btn-outline-danger">show delete</button></a>
+                                                @endcan
+
                                         </table>
                                     </div>
 

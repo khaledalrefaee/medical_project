@@ -12,32 +12,34 @@
                 @csrf
 
 
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">name nurse</label>
-                        <input type="text"  id="name" name="name" class="form-control" id="exampleInputEmail1"  class="form-control @error('name') is-invalid @enderror"  value="{{$nuer->name}}" placeholder="Enter name nurse">
-                    </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <strong>name nurse</strong>
+                        <input type="text"  id="name" name="name" class="form-control form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"    value="{{$nuer->name}}" placeholder="Enter name nurse">
                     @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text" >00963</span>
-                        </div>
-                        <input type="text" class="form-control"  id="phone" name="phone"   class="form-control @error('phone') is-invalid @enderror" value="{{$nuer->phone}}" placeholder="number phone nurse">
                     </div>
+                    <div class="col-md-6">
+                        <strong>phone:</strong>
+                        <div class="input-group">
+                            <span class="input-group-text">00963</span>
+                        <input type="text" class="form-control form-control @error('phone') is-invalid @enderror"  id="phone" name="phone"    value="{{$nuer->phone}}" placeholder="number phone nurse">
                     @error('phone')
-                    <div class="alert alert-danger">{{ $message }}
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                         @enderror
+                        </div>
                     </div>
+                </div>
 
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">description</label>
-                        <input type="text" id="description" name="description" class="form-control"   class="form-control @error('description') is-invalid @enderror" value="{{$nuer->description}}" placeholder="description">
-                    </div>
+
+                <div class="form-group">
+                    <strong>description</strong>
+                        <input type="text" id="description" name="description" class="form-control form-control @error('description') is-invalid @enderror" value="{{$nuer->description}}" placeholder="description">
                     @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
+                </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-primary">Go!</button>
                     </div>

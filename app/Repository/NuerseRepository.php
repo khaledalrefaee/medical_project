@@ -23,19 +23,11 @@ class NuerseRepository implements NuerseRepositoryInterface
     public function store($request)
     {
         try {
-
             $nurse = new Nurses();
             $nurse->name = $request->name;
             $nurse->phone = $request->phone;
             $nurse->description = $request->description;
 
-            if ($request->hasFile('image')) {
-                $image = $request->file('image');
-                $filename = time() . '.' . $image->getClientOriginalExtension();
-                $folder = str_replace(' ', '_', $nurse->name); // Replace spaces in nurse name with underscores
-                $path = $image->storeAs('uploads/'.$folder, $filename, 'public');
-                $nurse->image = $path;
-            }
             $nurse->save();
 
             toastr()->success('success');
@@ -53,11 +45,7 @@ class NuerseRepository implements NuerseRepositoryInterface
     }
 
     public function update($request,$id){
-        $request->validate([
-            'name'          =>'required',
-            'phone'         =>'required||regex:/^9\d{8}$/',
-            'description'   =>'required',
-        ]);
+
 
         $nurse = Nurses::findOrFail($id);
         $nurse->name = $request->name;

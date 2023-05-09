@@ -4,7 +4,7 @@
         <!-- jquery validation -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
+                <h3 class="card-title">Add Clinic</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -12,7 +12,7 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clincs</label>
+                        <label for="exampleInputEmail1">name clinic</label>
                         <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
                     </div>
                     @error('name')

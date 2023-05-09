@@ -43,5 +43,4 @@ interface WatingRepositoryInterface
     public function PdfInvoiceDownload($id);
 
 
-    public function deleteRecords($request);
 }

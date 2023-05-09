@@ -1,12 +1,6 @@
 @extends('backend.index')
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
 
     <section class="content">
         <div class="container-fluid">
@@ -14,7 +8,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+                            <h3 class="card-title">Deleted clinics</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -22,25 +16,18 @@
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">description</th>
+                                                <th >name</th>
+                                                <th >description</th>
 
                                                 </tr>
                                             </thead>
                                             <tbody>
-
-
-
                                             @foreach($clinics as $clinic)
                                                     <tr class="odd">
                                                     <td>{{$clinic->name}}</td>
-
                                                     <td>{{$clinic->description}}</td>
-                                                    @endforeach
+                                            @endforeach
 
-
-                                                    &nbsp;
-                                                </td>
 
                                             </tr>
 
@@ -50,10 +37,10 @@
 
                                             </tfoot>
                                             <br>
-                                            <div></div>
+
                                             <a href="{{route('all.Clincs')}}">   <button type="button" class="btn btn btn-primary">back</button></a>
 
-
+                                            </table>
                         </div>
                         <!-- /.card-body -->
                     </div>

@@ -11,6 +11,7 @@ use App\Models\Reservation;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StatisticsController extends Controller
 {
@@ -40,6 +41,10 @@ class StatisticsController extends Controller
         foreach ($doctors as $doctor) {
             $doctorAppointments[$doctor->name] = Reservation::where('doctor_id', $doctor->id)->count();
         }
+        //عم نفذ استعلام و عم نحدد الحقل و بعدين عم نتعامل معو كتاريخ ثم يتم استخدام طريقة groupBy لتجميع النتائج حسب التاريخ وحقول create_at. هذا يعني أنه سيتم تجميع النتائج حسب كل مجموعة فريدة من قيم التاريخ و created_at.
+        $dataT = Reservation::select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"), DB::raw("SUM(total) as total"))
+            ->groupBy('date', 'created_at')
+            ->get();;
 
         // Create data array for chart
         $data = [
@@ -47,7 +52,8 @@ class StatisticsController extends Controller
             'daily' => $dailyAppointments->count(),
             'Cancelled' => $cancelledAppointments->count(),
             'doctorAppointments' => $doctorAppointments,
-        ];
+            'total' => $dataT,
+            ];
 
         return view('backend.Chart.Chart', compact('totalUsers','totalClince','totalDoctors','totalNurses','totalDrugs' ,'data'));
     }

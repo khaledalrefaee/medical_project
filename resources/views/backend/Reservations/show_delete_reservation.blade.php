@@ -14,37 +14,28 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+                            <h3 class="card-title">All appointments deleted</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
+
                             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
-                                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
+                                        <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+
+                                        <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Doctoer</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name patient</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">date</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">address</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">birthday</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Cansel</th>
-
-
-
-
-
+                                                <th >name Doctor</th>
+                                                <th >name patient</th>
+                                                <th >date</th>
+                                                <th >phone</th>
+                                                <th >address</th>
+                                                <th >birthday</th>
+                                                <th >status</th>
+                                                <th >Cansel</th>
                                             </thead>
                                             <tbody>
-
-
-
                                             <tr class="odd">
-
-
-
-
                                                 @foreach($Reservations as $Reservation)
                                                     <td>{{ $Reservation->doctor->name }}</td>
                                                 <td>{{$Reservation->name}}</td>
@@ -52,29 +43,25 @@
                                                 <td>{{$Reservation->phone}}</td>
                                                 <td>{{$Reservation->address}}</td>
                                                 <td>{{$Reservation->birthday}}</td>
-
-
                                                 <td><span class="badge
-                                                                                    @if($Reservation->status === 'completed') badge-success
-                                                                                    @elseif($Reservation->status === 'Cancelling') badge-danger
-                                                                                    @elseif($Reservation->status === 'Pending') badge-warning
-                                                                                    @else badge-secondary
-                                                                                     @endif">
-                                                                                    @if($Reservation->status === 'completed')
-                                                                                    completed
-                                                                                    @elseif($Reservation->status === 'Cancelling')
-                                                                                    Cancelling
-                                                                                    @elseif($Reservation->status === 'Pending')
-                                                                                    Pending
-                                                                                    @endif</td>
+                                                 @if($Reservation->status === 'completed') badge-success
+                                                 @elseif($Reservation->status === 'Cancelling') badge-danger
+                                                 @elseif($Reservation->status === 'Pending') badge-warning
+                                                 @else badge-secondary
+                                                 @endif">
+                                                 @if($Reservation->status === 'completed')
+                                                 completed
+                                                 @elseif($Reservation->status === 'Cancelling')
+                                                 Cancelling
+                                                 @elseif($Reservation->status === 'Pending')
+                                                 Pending
+                                                 @endif</td>
 
                                                 <td>{{$Reservation->deleted_at}}</td>
 
 
                                             </tr>
                                             @endforeach
-                                            <a href="{{route('Retreat.appointment')}}"> <button class="btn btn-primary">appointment</button></a>&nbsp;
-
                                             </tbody>
                                         </table>
 

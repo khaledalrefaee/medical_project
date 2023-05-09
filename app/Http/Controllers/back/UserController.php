@@ -74,4 +74,5 @@ class UserController extends Controller
         return redirect()->route('all_user');
     }
 
+
 }

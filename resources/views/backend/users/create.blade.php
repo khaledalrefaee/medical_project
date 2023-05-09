@@ -6,100 +6,99 @@
 
     <div class="card card-info">
         <div class="card-header">
-            <h3 class="card-title">Add user</h3>
+            <h3 class="card-title">Add User</h3>
         </div>
         <br>
 
-
         <div class="card-body">
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">@</span>
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Username"  value="{{ old('name') }}"  name="name">
+                        @error('name')
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
-                <input type="text" class="form-control" placeholder="Username"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" name="name">
-
-            </div>
-              @error('name')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="fas fa-envelope"></i></span>
-                </div>
-
-             <input type="email" class="form-control" name="email"  value="{{ old('email') }}" class="@error('email') is-invalid @enderror" placeholder="Email">
-            </div>
-                @error('email')
-                <div class="alert alert-danger">{{ $message }}
-                @enderror
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-prepend">
-
-                </div>
-
-                <input type="password" class="form-control" name="password"  value="{{ old('password') }}" class="@error('password') is-invalid @enderror" placeholder="password">
-            </div>
-                @error('password')
-                <div class="alert alert-danger">{{ $message }}
-                @enderror
-            </div>
-
-            <div class="input-group mb-3">
-                <div class="input-group-append">
-                    <span class="input-group-text" >00963</span>
-                </div>
-                <input type="number" class="form-control" name="phone"  value="{{ old('phone') }}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
-            </div>
-                @error('phone')
-                <div class="alert alert-danger">{{ $message }}
-                @enderror
-            </div>
-
-            <select name="gender_id" id="inputStatus" class="form-control custom-select" >
-                <option selected="" disabled="" >gender </option>
-                @foreach($gender as $item)
-                    <option value="{{$item->id}}" {{ old('gender_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
-                @endforeach
-
-            </select>
-            @error('gender_id')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
-
-
-            <br>
-            <br>
-
-            <div class="input-group mb-3">
-                <input type="text" class="form-control" name="address"  value="{{ old('address') }}" class="@error('address') is-invalid @enderror" placeholder="address">
-
-                @error('address')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-
-            </div>
-
-            <div class="input-group mb-3">
-                <input type="date" class="form-control" name="birthday"  value="{{ old('birthday') }}" class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
-                @error('birthday')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <div class="input-group-append">
-                    <span class="input-group-text"><i class="fas fa-check"></i></span>
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <span class="input-group-text" >00963</span>
+                        </div>
+                        <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{ old('phone') }}"  placeholder="number phone">
+                        @error('phone')
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </div>
+
+        <div class="row">
+            <div class="col">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                    </div>
+                    <input type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Email">
+                    @error('email')
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group mb-3">
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password') }}" placeholder="Password">
+                    @error('password')
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
+
+
+            <div class="row">
+                <div class="col-md-6">
+                    <select name="gender_id" id="inputStatus" class="form-control @error('gender_id') is-invalid @enderror">
+                        <option selected="" disabled="">gender </option>
+                        @foreach($gender as $item)
+                            <option value="{{$item->id}}" {{ old('gender_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
+                        @endforeach
+                    </select>
+                    @error('gender_id')
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control @error('address') is-invalid @enderror" name="address"  value="{{ old('address') }}"  placeholder="address">
+                        @error('address')
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday"  value="{{ old('birthday') }}" placeholder="Birthday">
+                        @error('birthday')
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                        @enderror
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-check"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div>
                 <input type="hidden" name="latitude" id="latitude" readonly>
             </div>
-            <br><br>
             <div>
                 <input type="hidden" name="longitude" id="longitude"  readonly>
             </div>
-            <br>
+
             <div id="map" style="height: 500px"></div>
 
 
@@ -108,8 +107,12 @@
                   </span>
             </div>
         </div>
+            </div>
+        </div>
     </div>
     </form>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG9moWiWFp4yE6PDUWvUbDUQYRP-8ltRg&libraries=places&callback=initMap" async defer></script>
+
     <script>
         function initMap() {
             // Create a new map centered on your current location
@@ -119,7 +122,7 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     },
-                    zoom: 12
+                    zoom: 15
                 });
 
                 // Create a marker at your current location

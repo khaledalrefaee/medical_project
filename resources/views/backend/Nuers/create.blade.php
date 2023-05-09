@@ -8,39 +8,37 @@
             </div>
             <!-- /.card-header -->
             <!-- form start -->
-            <form id="quickForm" novalidate="novalidate" action="{{route('store.nuers')}}" method="POST" enctype="multipart/form-data">
+            <form  action="{{route('store.nuers')}}" method="POST">
                 @csrf
-                <div class="card-body">
-                    <div class="form-group">
+                <div class="row">
+                    <div class="col-md-6">
                         <strong>name nurse</strong>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
-                    </div>
-                    @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-
-                        <div class="form-group">
-                            <div class="input-group-append">
-                                <strong>phone:</strong>
-                            </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">00963 </span>
-                        <input type="number" class="form-control" name="phone"  value="{{ old('phone') }}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
-                    </div>
-                    @error('phone')
-                    <div class="alert alert-danger">{{ $message }}
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"  value="{{ old('name') }}"  placeholder="Enter name Nurse">
+                        @error('name')
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                         @enderror
-                    </br>
-
-                    <div class="form-group">
-                        <strong>description</strong>
-                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="description">
                     </div>
-                    @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-
+                    <div class="col-md-6">
+                        <strong>phone:</strong>
+                        <div class="input-group">
+                            <span class="input-group-text">00963</span>
+                            <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{ old('phone') }}"  placeholder="number phone">
+                            @error('phone')
+                            <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
+
+                <div class="form-group">
+                        <strong>description</strong>
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1"  value="{{ old('description') }}"  placeholder="description">
+
+                    @error('description')
+                <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                    </div>
+
                 <!-- /.card-body -->
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">GO!</button>

@@ -12,7 +12,7 @@
 
 
                 <h6 class="m-0 font-weight-bold text-primary">NurseTables</h6>
-                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="search">
             </div>
 
 
@@ -22,7 +22,6 @@
                         <th>Name</th>
                         <th>phone nurse</th>
                         <th>description</th>
-                        <th>image</th>
                         <th>Actions </th>
                     </tr>
                     </thead>
@@ -33,8 +32,7 @@
                             <td>{{$nuer->name}}</td>
                             <td>{{$nuer->phone}}</td>
                             <td>{{$nuer->description}}</td>
-                            <td><img  src="{{ asset('storage/' . $nuer->image) }}" alt="{{ $nuer->name }}" style="width: 100px;height: 100px"></td>
-                            <td>
+                                <td>
                                 @can('nurse delete')
                                 <a href="{{route('delet.nuers'  , $nuer->id)}}" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
                                 @endcan

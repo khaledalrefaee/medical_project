@@ -48,10 +48,11 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-        <div class="input-group-append">
+            <strong>phone:</strong>
+
+            <div class="input-group-append">
             <span class="input-group-text" >00963</span>
 
-            <strong>phone:</strong>
             {!! Form::text('phone', null, array('placeholder' => 'phone','class' => 'form-control')) !!}
         </div>
         </div>
@@ -86,6 +87,8 @@
 
 
 
+
+
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
@@ -93,6 +96,7 @@
 
 
 {!! Form::close() !!}
+
 
 
 

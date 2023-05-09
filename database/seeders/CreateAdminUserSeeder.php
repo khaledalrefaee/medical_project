@@ -26,7 +26,9 @@ class CreateAdminUserSeeder extends Seeder
             'status'    =>'active',
             'phone'     =>'962812838',
             'address'   =>'syria',
-            'birthday'  =>'2023-03-23',
+            'birthday'  =>'2000-03-23',
+            'latitude'  =>'33.52207565912137',
+            'longitude'  =>'36.290863319533315',
             'gender_id' =>1,
         ]);
         $role = Role::create(['name' => 'Admin']);

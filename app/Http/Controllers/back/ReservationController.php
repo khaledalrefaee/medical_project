@@ -128,37 +128,4 @@ class ReservationController extends Controller
         return $this->Wating->PdfInvoiceDownload($id);
     }
 
-    public function deleteRecords(Request $request){
-
-        $ids = $request->input('ids');
-
-        if (!empty($ids)) {
-            // Delete the records with the given ids
-            Reservation::whereIn('id', $ids)->delete();
-            Waiting::whereIn('id', $ids)->delete();
-
-            // Return a success response
-            return response()->json(['success' => true]);
-        }
-
-        // Return an error response if no ids were provided
-        return response()->json(['success' => false, 'message' => 'No ids provided']);
-
-//        // check if ids is not null
-//        if ($ids) {
-//            // convert the input to an array
-//            $idsArray = explode(',', $ids);
-//
-//            // delete reservations and waiting times with the given ids
-//            Reservation::whereIn('id', $idsArray)->delete();
-//            Waiting::whereIn('id', $idsArray)->delete();
-//
-//            // return a success response
-//            return response()->json(['success' => true]);
-//        }
-//
-//        // return an error response if ids is null
-//        return response()->json(['success' => false, 'message' => 'No ids provided']);
-    }
-
 }

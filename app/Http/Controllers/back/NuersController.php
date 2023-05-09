@@ -55,7 +55,7 @@ class NuersController extends Controller
     }
 
 
-    public function update(Request $request,$id){
+    public function update(StoreNuerse $request,$id){
         return $this->Nuerse->update($request,$id);
     }
 

@@ -17,7 +17,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('map')}}">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Map</span>
+                <span>Users location</span>
             </a>
         </li>
         @endcan

@@ -4,37 +4,42 @@
         <!-- jquery validation -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
+                <h3 class="card-title">Update Medicine </h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
             <form novalidate="novalidate" action="{{route('update.pharmese',$phamies->id)}}" method="POST">
                 @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">name drug </label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{$phamies->name}}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
-                    </div>
-                    @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
+                <div class="form-row">
+                    <div class="col-md-6 mb-3">
+                        <strong>Medicine Name:</strong>
+                        <input type="text" name="name"class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"  value="{{$phamies->name}}"  placeholder="Enter name clincs">
 
-                        <input type="text" class="form-control" name="prise"  value="{{$phamies->prise}}" class="@error('prise') is-invalid @enderror" placeholder="prise">
+                    @error('name')
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
                     </div>
-                    @error('phone')
-                    <div class="alert alert-danger">{{ $message }}
+                    <div class="col-md-6 mb-3">
+                        <strong>Medicine Prise :</strong>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">$</span>
+                        <input type="text" class="form-control  @error('prise') is-invalid @enderror" name="prise"  value="{{$phamies->prise}}"  placeholder="prise">
+                            <span class="input-group-text">.00</span>
+                            @error('prise')
+                            <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">description</label>
-                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{$phamies->description}}" class="@error('description') is-invalid @enderror" placeholder="description">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <strong>Description :</strong>
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1"  value="{{$phamies->description}}"  placeholder="description">
                     @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
-                        <!-- /.card-body -->
-                        <div class="card-footer">
+                </div>
+                <div class="card-footer">
                             <button type="submit" class="btn btn-primary">Go!</button>
                         </div>
             </form>

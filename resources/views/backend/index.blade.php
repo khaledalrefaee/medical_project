@@ -107,7 +107,6 @@
 
 
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG9moWiWFp4yE6PDUWvUbDUQYRP-8ltRg&libraries=places&callback=initMap" async defer></script>
 
 <script type="application/javascript">
     function tableSearch() {

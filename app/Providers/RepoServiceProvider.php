@@ -9,11 +9,7 @@ use Illuminate\Support\ServiceProvider;
 
 class RepoServiceProvider extends ServiceProvider
 {
-    /**
-     * Register services.
-     *
-     * @return void
-     */
+
     public function register()
     {
         $this->app->bind(

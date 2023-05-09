@@ -10,87 +10,88 @@
             </div>
             <br>
 
+            <div class="form-row">
+                <div class="col">
+                <strong>Patient Name :</strong>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
 
-            <div class="card-body">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
                         <span class="input-group-text">@</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Username"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" name="name">
-
+                    <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Patient Name" name="name" value="{{ old('name') }}">
+                    @error('name')
+                    <div class="invalid-feedback"  style="color: #8B0000;">
+                        {{ $message }}
+                    </div>
+                    @enderror
+                    </div>
                 </div>
-                @error('name')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
 
-
-
-
-
-
-                <div class="input-group mb-3">
-                    <div class="input-group-append">
+                <div class="col">
+                <strong>Patient Phone :</strong>
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
                         <span class="input-group-text" >00963</span>
                     </div>
-                    <input type="number" class="form-control" name="phone"  value="{{ old('phone') }}" class="@error('phone') is-invalid @enderror" placeholder="number phone">
-                </div>
-                @error('phone')
-                <div class="alert alert-danger">{{ $message }}
-                    @enderror
-                </div>
-
-
-
-
-                <select name="time" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >time </option>
-                    @foreach($times as $time)
-                        <option {{ old('time') == $time ? 'selected' : '' }}>{{$time}} </option>
-                    @endforeach
-
-                </select>
-                @error('time')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <br>
-                <input type="date" class="form-control" name="date"  value="{{ old('date') }}" class="@error('date') is-invalid @enderror" placeholder="Date">
-                @error('date')
-                <div class="alert alert-danger">{{ $message }}</div>
-                @enderror
-                <br>
-                <br>
-
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="address"  value="{{ old('address') }}" class="@error('address') is-invalid @enderror" placeholder="address">
-
-                    @error('address')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-
-                </div>
-
-                <div class="input-group mb-3">
-                    <input type="date" class="form-control" name="birthday"  value="{{ old('birthday') }}" class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
-                    @error('birthday')
-                    <div class="alert alert-danger">{{ $message }}</div>
-                    @enderror
-                    <div class="input-group-append">
-                        <span class="input-group-text"><i class="fas fa-check"></i></span>
+                    <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{ old('phone') }}"  placeholder="number phone">
+                    @error('phone')
+                    <div class="invalid-feedback" style="color: #8B0000;">
+                        {{ $message }}
                     </div>
+                    @enderror
                 </div>
-                <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
-                    <option selected="" disabled="" >Doctoer </option>
-                    @foreach($doctor as $item)
-                        <option value="{{$item->id}}"{{ old('doctor_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
-                    @endforeach
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="inputTime"><strong>Hour:</strong></label>
+                    <select name="time" id="inputTime" class="form-control @error('time') is-invalid @enderror">
+                        <option selected="" disabled="">time</option>
+                        @foreach($times as $time)
+                            <option {{ old('time') == $time ? 'selected' : '' }}>{{$time}}</option>
+                        @endforeach
+                    </select>
+                    @error('time')
+                <div class="invalid-feedback"  style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                </select>
-                @error('doctor_id')
-                <div class="alert alert-danger">{{ $message }}</div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Date:</strong>
+                <input type="date" class="form-control @error('date') is-invalid @enderror" name="date"  value="{{ old('date') }}" placeholder="Date">
+                @error('date')
+                <div class="invalid-feedback"  style="color: #8B0000;">{{ $message }}</div>
                 @enderror
+                </div>
 
-                <div class="input-group input-group-sm">
+                <div class="col-md-6 mb-3">
+                    <strong>Address:</strong>
+                    <input type="text" class="form-control" name="address" value="{{ old('address') }}" placeholder="address">
+                </div>
 
+                <div class="col-md-6 mb-3">
+                    <strong>Birthday:</strong>
+                    <input type="date" class="form-control @error('date') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" placeholder="Birthday">
+                    @error('birthday')
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <strong>Doctor:</strong>
+                    <select name="doctor_id" id="inputStatus" class="form-control @error('doctor_id') is-invalid @enderror">
+                        <option selected="" disabled="">Doctor</option>
+                        @foreach($doctor as $item)
+                            <option value="{{$item->id}}"{{ old('doctor_id') == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
+                        @endforeach
+                    </select>
+                    @error('doctor_id')
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    @enderror
+                </div>
+            </div>
+        </div>
                 <span class="input-group-append">
                  <button type="submit" class="btn btn-info btn-flat">Go!</button>
                   </span>
@@ -98,16 +99,7 @@
             </div>
         </div>
     </form>
-                <br>
-                <br>
 
 
 
-
-
-                <!-- /input-group -->
-            </div>
-            <!-- /.card-body -->
-        </div>
-    </form>
 @endsection

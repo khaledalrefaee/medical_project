@@ -101,7 +101,7 @@
 
 <canvas id="myChart" ></canvas>
 
-
+ <canvas id="totalChart" width="50" height="10"></canvas>
 <script>
     var ctx = document.getElementById('circle').getContext('2d');
     var circle = new Chart(ctx, {
@@ -120,11 +120,6 @@
         }
     });
 </script>
-
-
-
-
-
 
 
 
@@ -174,51 +169,35 @@
 
 
 
-<script>
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-            datasets: [{
-                label: 'Total',
-                data: [10, 8, 12, 15, 7],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 5,
-                tension: 0.1
-            }, {
-                label: 'Remaining',
-                data: [3, 5, 2, 0, 4],
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
-                borderWidth: 5,
-                tension: 0.1
-            }, {
-                label: 'Paid',
-                data: [7, 3, 10, 15, 3],
-                backgroundColor: 'rgba(255, 206, 86, 0.2)',
-                borderColor: 'rgba(255, 206, 86, 1)',
-                borderWidth: 5,
-                tension: 0.1
-            }]
-        },
-        options: {
-            scales: {
-                xAxes: [{
-                    stacked: true
-                }],
-                yAxes: [{
-                    stacked: true,
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-</script>
+ <script>
+     var ctx = document.getElementById('totalChart').getContext('2d');
+     var chart = new Chart(ctx, {
+         // The type of chart: line
+         type: 'line',
 
+         // The data for the dataset
+         data: {
+             labels: {!! $data['total']->pluck('date') !!},
+             datasets: [{
+                 label: 'Total Paid',
+                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                 borderColor: 'rgba(255, 99, 132, 1)',
+                 data: {!! $data['total']->pluck('total') !!}
+             }]
+         },
+
+         // Configuration options
+         options: {
+             scales: {
+                 yAxes: [{
+                     ticks: {
+                         beginAtZero: true
+                     }
+                 }]
+             }
+         }
+     });
+ </script>
 
 <style>
     .charts-wrapper {

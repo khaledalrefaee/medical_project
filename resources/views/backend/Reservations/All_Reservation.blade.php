@@ -9,11 +9,18 @@
                     <div class="card">
                         <div class="card-header">
 
-                            <h3 class="card-title">DataTable </h3>
+                            <h3 class="card-title">All appointments  </h3>
                         </div>
+
 
                         <!-- /.card-header -->
                         <div class="card-body">
+                        @can('Add a request')
+                            <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                                    Add a request
+                                </button>
+                            @endcan
                             <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
 
                                             <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
@@ -89,7 +96,7 @@
                                                                 @endcan
 
                                                                 @can('Reservations edit')
-                                                                <a href="{{route('edit.appointment',$Reservation->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i></i> </a>
+                                                                <a href="{{route('edit.appointment',$Reservation->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i> </a>
                                                                 @endcan
 
                                                                 @can('Reservations completed')
@@ -105,52 +112,43 @@
                                                                 @endcan
                                                         </td>
                                                         @endforeach
-                                                    </tr>
-
-
-                                            </tbody>
-
-                                            @can('Add a request')
-                                            <!-- Button trigger modal -->
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                                Add a request
-                                            </button>
-                                             @endcan
-
-                                            <!-- Modal -->
-                                            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel"> appointment</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            ...
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            @can('waiting create')
-                                                            <a href="{{route('create.waiting')}}" ><button type="button" class="btn btn-primary">waiting date</button></a>
-                                                            @endcan
-
-                                                            @can('Reservations create')
-                                                            <a href="{{route('create.appointment')}}"> <button type="button" class="btn btn-primary"> Reservation date</button></a>
-                                                            @endcan
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </table>
-
-
-                            </div>
-                        </div>
-                            </div>
+                                                </tr>
+                                      </tbody>
+                              </table>
+                            <br>
+                            {{ $Reservations->links('pagination::bootstrap-4') }}
+                            {{ $waitings->links('pagination::bootstrap-4') }}
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel"> appointment</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        @can('waiting create')
+                            <a href="{{route('create.waiting')}}" ><button type="button" class="btn btn-primary">waiting date</button></a>
+                        @endcan
+
+                        @can('Reservations create')
+                            <a href="{{route('create.appointment')}}"> <button type="button" class="btn btn-primary"> Reservation date</button></a>
+                        @endcan
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
    {{--   <!-- Add a script tag to include jQuery -->--}}

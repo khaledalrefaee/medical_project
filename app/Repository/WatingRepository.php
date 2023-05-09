@@ -2,9 +2,7 @@
 
 namespace App\Repository;
 
-
 use App\Models\Clinics;
-use App\Models\Detail;
 use App\Models\Doctor;
 use App\Models\Gender;
 use App\Models\Pharmise;
@@ -13,15 +11,16 @@ use App\Models\Waiting;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
 
 class WatingRepository implements WatingRepositoryInterface
 {
    public function getAll_wating_reservation()
    {
-       $Reservations =Reservation::all();
-       $waitings =Waiting::all();
+
+       $Reservations = Reservation::orderBy('id','DESC')->paginate(5);
+       $waitings = Waiting::orderBy('id','DESC')->paginate(5);
+
 
        return view('backend.Reservations.All_Reservation',compact('Reservations','waitings'));
    }
@@ -147,7 +146,7 @@ class WatingRepository implements WatingRepositoryInterface
             'name' => 'required',
             'doctor_id' => 'required',
             'date' => 'required|date_format:Y-m-d',
-            'time' => ['required', 'date_format:H:i',
+            'time' => ['required',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
                     return $query->where('doctor_id', $request->doctor_id)
                         ->where('date', $request->date)
@@ -155,6 +154,7 @@ class WatingRepository implements WatingRepositoryInterface
                 })
             ],
             'phone' => 'required|regex:/^9\d{8}$/',
+            'total' => 'nullable|regex:/^[0-9-]+$/',
             'birthday' => 'required',
         ]);
 
@@ -169,6 +169,7 @@ class WatingRepository implements WatingRepositoryInterface
             $Reservation->address =   $request->address;
             $Reservation->doctor_id = $request->doctor_id;
             $Reservation->diagnosis = $request->diagnosis;
+            $Reservation->total = $request->total;
 
             $Reservation->save();
             toastr()->warning('You are edit appointment','warning');
@@ -206,24 +207,40 @@ class WatingRepository implements WatingRepositoryInterface
 
     public function ChngeCancelling($id)
     {
-        $Reservation = Reservation::find($id);
-        $Reservation->status = 'Cancelling';
-        $Reservation->save();
-        return redirect()->route('Reservations.all');
+        $reservation = Reservation::find($id);
+
+        if ($reservation) {
+            $reservation->status = 'Cancelling';
+            $reservation->save();
+
+            $user = $reservation->user;
+            $canceledReservations = $user->reservation()->where('status', 'Cancelling')->count();
+
+            if ($canceledReservations >= 3) {
+                $user->status = 'Not Active';
+                $user->save();
+            }
+
+            return redirect()->back()->with('success', 'Reservation canceled successfully.');
+        }
+        return redirect()->back()->with('error', 'Reservation not found.');
     }
+
 
     public function PdfInvoiceDownload($id)
     {
         $Reservation = Reservation::find($id);
         $pdf = PDF::loadView('backend.Reservations.pdf', compact('Reservation'))->setPaper('a4')->setOptions([
+           //يعيّن هذا السطر الدليل المؤقت ودليل chroot لتوليد PDF. الدليل المؤقت هو المكان الذي سيتم فيه تخزين الملفات المؤقتة التي تم إنشاؤها أثناء إنشاء PDF ، ودليل chroot هو الدليل الجذر لإنشاء PDF.
+            //في هذه الحالة ، يتم تعيين كل من tempDir و chroot على دالة public_path () ، والتي تُعيد المسار الكامل إلى الدليل العام لتطبيق Laravel.
             'tempDir' => public_path(),
             'chroot' => public_path(),
         ]);
-        return $pdf->download('Reservations.pdf');
+        $filename = 'Reservation-' . $Reservation->name . '.pdf';
+        return $pdf->download($filename);
     }
 
-    public function deleteRecords($request){
 
-    }
+
 
 }

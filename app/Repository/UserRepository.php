@@ -82,7 +82,8 @@ class UserRepository implements UserRepositoryInterface
             $User->gender_id = $request->gender_id;
             $User->address = $request->address;
             $User->birthday = $request->birthday;
-
+            $User->latitude = $request->latitude;
+            $User->longitude = $request->longitude;
             $User->save();
 
             toastr()->warning('You are edit User','Update');

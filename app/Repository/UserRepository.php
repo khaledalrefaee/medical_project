@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Models\Gender;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 

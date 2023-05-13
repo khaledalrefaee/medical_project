@@ -42,10 +42,13 @@ class StatisticsController extends Controller
             $doctorAppointments[$doctor->name] = Reservation::where('doctor_id', $doctor->id)->count();
         }
         //عم نفذ استعلام و عم نحدد الحقل و بعدين عم نتعامل معو كتاريخ ثم يتم استخدام طريقة groupBy لتجميع النتائج حسب التاريخ وحقول create_at. هذا يعني أنه سيتم تجميع النتائج حسب كل مجموعة فريدة من قيم التاريخ و created_at.
-        $dataT = Reservation::select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"), DB::raw("SUM(total) as total"))
-            ->groupBy('date', 'created_at')
-            ->orderBy('date', 'asc')
+        $dataT = Reservation::selectRaw("DATE_FORMAT(updated_at, '%Y-%m') as month")
+            ->selectRaw("SUM(total) as total")
+            ->groupBy('month')
+            ->orderBy('month', 'asc')
             ->get();
+
+
 
         // Create data array for chart
         $data = [

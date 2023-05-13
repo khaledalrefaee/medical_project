@@ -30,17 +30,19 @@ class DoctorAppointmentsController extends Controller
         if (!$reservation) {
             return response()->json('the Reservation not found', 404);
         }
+
         if ($reservation->status === 'Pending') {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'date' => 'required|date_format:Y-m-d',
                 'time' => [
                     'required',
-                    Rule::unique('reservations', 'time')->where(function ($query) use ($request) {
-                        return $query->where('doctor_id', $request->doctor_id)
+                    'date_format:H:i',
+                    Rule::unique('reservations')->where(function ($query) use ($reservation, $request) {
+                        return $query->where('doctor_id', $reservation->doctor_id)
                             ->where('date', $request->date)
                             ->where('id', '<>', $request->id);
-                    }),
+                    })
                 ],
                 'phone' => 'required|regex:/^9\d{8}$/',
                 'birthday' => 'required',
@@ -50,7 +52,6 @@ class DoctorAppointmentsController extends Controller
                 $errors = $validator->getMessageBag()->all();
                 return response()->json($errors, 400);
             }
-
             $reservation->name = $request->name;
             $reservation->time = $request->time;
             $reservation->date = $request->date;

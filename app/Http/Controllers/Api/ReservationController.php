@@ -27,17 +27,16 @@ class ReservationController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'doctor_id' => 'required|exists:doctors,id',
-            'date' => 'required|date_format:Y-m-d',
             'time' => [
                 'required',
                 'date_format:H:i',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
-                    return $query->where('doctor_id', '<>', $request->doctor_id)
+                    return $query->where('doctor_id',  $request->doctor_id)
                         ->where('date', $request->date);
-
                 })
             ],
+            'doctor_id' => 'required|exists:doctors,id',
+            'date' => 'required|date_format:Y-m-d',
             'phone' => 'required|regex:/^9\d{8}$/',
             'birthday' => 'required',
         ]);
@@ -83,11 +82,12 @@ class ReservationController extends Controller
                     'required',
                     'date_format:H:i',
                     Rule::unique('reservations')->where(function ($query) use ($request) {
-                        return $query->where('doctor_id', $request->doctor_id)
+                        return $query->where('doctor_id',  $request->doctor_id)
                             ->where('date', $request->date)
                             ->where('id', '<>', $request->id);
                     })
                 ],
+
                 'phone' => 'required|regex:/^9\d{8}$/',
                 'birthday' => 'required',
             ]);

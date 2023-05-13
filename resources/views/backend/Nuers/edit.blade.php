@@ -11,7 +11,7 @@
             <form novalidate="novalidate" action="{{route('update.kk', $nuer->id)}}" method="POST" >
                 @csrf
 
-
+                <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <strong>name nurse</strong>

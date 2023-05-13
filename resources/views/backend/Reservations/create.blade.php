@@ -9,7 +9,7 @@
                 <h3 class="card-title">Add Reservation</h3>
             </div>
             <br>
-
+            <div class="card-body">
             <div class="form-row">
                 <div class="col">
                 <strong>Patient Name :</strong>
@@ -77,21 +77,27 @@
                     <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
                 </div>
-
-                <div class="col-md-6 mb-3">
-                    <strong>Doctor:</strong>
-                    <select name="doctor_id" id="inputStatus" class="form-control @error('doctor_id') is-invalid @enderror">
-                        <option selected="" disabled="">Doctor</option>
-                        @foreach($doctor as $item)
-                            <option value="{{$item->id}}"{{ old('doctor_id') == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
-                        @endforeach
-                    </select>
-                    @error('doctor_id')
-                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
-                    @enderror
-                </div>
             </div>
-        </div>
+            </div>
+
+
+                <div style="display: flex; justify-content: center;">
+                    <div style="width: 50%;">
+                        <div class="form-group">
+                            <strong>Doctor:</strong>
+                            <select name="doctor_id" id="inputStatus" class="form-control @error('doctor_id') is-invalid @enderror">
+                                <option selected disabled>Doctor</option>
+                                @foreach($doctor as $item)
+                                    <option value="{{ $item->id }}" {{ old('doctor_id') == $item->id ? 'selected' : '' }}>{{ $item->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('doctor_id')
+                            <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                            @enderror
+                        </div>
+                    </div>
+                </div>
+
                 <span class="input-group-append">
                  <button type="submit" class="btn btn-info btn-flat">Go!</button>
                   </span>

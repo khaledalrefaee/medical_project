@@ -10,6 +10,7 @@
             <!-- form start -->
             <form  action="{{route('store.nuers')}}" method="POST">
                 @csrf
+                <div class="card-body">
                 <div class="row">
                     <div class="col-md-6">
                         <strong>name nurse</strong>

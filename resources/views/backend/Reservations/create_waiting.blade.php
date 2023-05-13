@@ -62,7 +62,9 @@
 
 
 
-                        <div class="col-sm-7">
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 50%;">
+                            <div class="form-group">
                             <strong>birthday :</strong>
 
                             <input type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday"  value="{{ old('birthday') }}"  placeholder="birthday">
@@ -72,6 +74,7 @@
                             @enderror
                         </div>
                 </div>
+                    </div>
 
                 <button type="submit" class="btn btn-primary">GO!</button>
                     </div>

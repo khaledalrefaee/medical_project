@@ -171,7 +171,7 @@
 
  <script>
      var ctx = document.getElementById('totalChart').getContext('2d');
-     var dates = {!! $data['total']->pluck('date') !!};
+     var dates = {!! $data['total']->pluck('month') !!};
      var totals = {!! $data['total']->pluck('total') !!};
 
      var chart = new Chart(ctx, {
@@ -182,7 +182,8 @@
                  label: 'Total Paid',
                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
                  borderColor: 'rgba(255, 99, 132, 1)',
-                 data: totals
+                 data: totals,
+                 fill: false // تعيينها إلى false لإظهار خطوط الرسم البياني بدلاً من المناطق الملونة
              }]
          },
          options: {
@@ -196,6 +197,7 @@
          }
      });
  </script>
+
 
 
 

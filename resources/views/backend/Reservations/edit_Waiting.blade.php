@@ -60,7 +60,10 @@
                         </div>
                         </div>
                 </div>
-                    <div class="col-sm-7">
+
+                    <div style="display: flex; justify-content: center;">
+                        <div style="width: 50%;">
+                            <div class="form-group">
                         <strong>Doctor :</strong>
                         <select name="doctor_id" id="inputStatus" class="form-control custom-select" >
                             <option selected="" disabled="" >doctor</option>
@@ -71,10 +74,8 @@
                         @error('doctor_id')
                         <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
-
-
-
-</div>
+                            </div>
+                    </div>
                 </div>
                     <button type="submit" class="btn btn-primary">Go!</button>
                 </div>

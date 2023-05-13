@@ -4,7 +4,7 @@
         <!-- jquery validation -->
         <div class="card card-primary">
             <div class="card-header">
-                <h3 class="card-title">Quick Example <small>jQuery Validation</small></h3>
+                <h3 class="card-title">Edit Clinic</h3>
             </div>
             <!-- /.card-header -->
             <!-- form start -->
@@ -12,21 +12,19 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clincs</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{$clinic->name}}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
-                    </div>
+                        <strong>name clinic</strong>
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"  value="{{$clinic->name}}"  placeholder="Enter name clincs">
                     @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">description</label>
-                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{$clinic->description}}" class="@error('description') is-invalid @enderror" placeholder="description">
                     </div>
+                    <div class="form-group">
+                        <strong>description</strong>
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror"" id="exampleInputPassword1"  value="{{$clinic->description}}" placeholder="description">
+
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>
                     @enderror
-                    <div class="form-group mb-0">
-
                     </div>
                 </div>
                 <!-- /.card-body -->

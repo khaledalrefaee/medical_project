@@ -61,5 +61,24 @@
         </div>
     </div>
 </div>
+<div id="map" style="height: 500px"></div>
 
+<script>
+    function initMap() {
+        var location = { lat: {{$user->latitude}}, lng: {{$user->longitude}} }; // example location
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: location,
+            zoom: 20
+        });
+
+        var marker = new google.maps.Marker({
+            position: location,
+            map: map,
+            draggable: false, // disable marker dragging
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            }
+        });
+    }
+</script>
 @endsection

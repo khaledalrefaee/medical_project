@@ -110,6 +110,10 @@
     </div>
 </div>
 
+<input type="hidden" name="latitude" value="{{$user->latitude}}" id="latitude">
+<input type="hidden" name="longitude" value="{{$user->longitude}}" id="longitude">
+
+<div id="map" style="height: 500px"></div>
 
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -117,6 +121,37 @@
 </div>
 {!! Form::close() !!}
 
+<script>
+    function initMap() {
+        // Create a new map centered on the desired location
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: {
+                lat: {{$user->latitude}},
+                lng: {{$user->longitude}}
+            },
+            zoom: 18
+        });
 
-<p class="text-center text-primary"></p>
+        // Create a marker at the desired location
+        var marker = new google.maps.Marker({
+            position: {
+                lat: {{$user->latitude}},
+                lng: {{$user->longitude}}
+            },
+            map: map,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+            }
+        });
+
+        // Allow the user to drag the marker
+        marker.setDraggable(true);
+
+        // Update the marker's position when the user drags it
+        google.maps.event.addListener(marker, 'dragend', function(event) {
+            document.getElementById("latitude").value = this.getPosition().lat();
+            document.getElementById("longitude").value = this.getPosition().lng();
+        });
+    }
+</script>
 @endsection

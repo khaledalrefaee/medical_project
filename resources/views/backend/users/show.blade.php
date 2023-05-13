@@ -107,11 +107,12 @@
                                                     <td style="">{{$user->birthday}}</td>
 
                                                 </tr>
-                                                <input type="hidden" name="latitude" id="latitude" value="{{$user->latitude}}">
-                                                <input type="hidden" name="longitude" id="longitude" value="{{$user->longitude}}">
+
                                             </tbody>
                                         </table>
-                                    </div>
+                                        <br>
+                                        <div id="map" style="height: 500px"></div>
+
 
                                     <div class="container">
                                         <div class="row">
@@ -153,7 +154,7 @@
                                         </div>
                                     </div>
 
-                                </div>
+
                     </div>
 
 
@@ -171,7 +172,7 @@
             var location = { lat: {{$user->latitude}}, lng: {{$user->longitude}} }; // example location
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: location,
-                zoom: 18
+                zoom: 20
             });
 
             var marker = new google.maps.Marker({

@@ -96,7 +96,10 @@
     </div>
 </div>
 
+<input type="hidden" name="latitude"  value="{{ old('latitude') }}"  id="latitude" readonly>
+<input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude"  readonly>
 
+<div id="map" style="height: 500px"></div>
 
 
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
@@ -111,6 +114,40 @@
 
 
 
+<script>
+    function initMap() {
+        // Create a new map centered on your current location
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                },
+                zoom: 17
+            });
 
+            // Create a marker at your current location
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                },
+                map: map,
+                icon: {
+                    url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+                }
+            });
+
+            // Allow the user to drag the marker
+            marker.setDraggable(true);
+
+            // Update the marker's position when the user drags it
+            google.maps.event.addListener(marker, 'dragend', function(event) {
+                document.getElementById("latitude").value = this.getPosition().lat();
+                document.getElementById("longitude").value = this.getPosition().lng();
+            });
+        });
+    }
+</script>
 
 @endsection

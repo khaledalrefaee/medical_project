@@ -119,10 +119,7 @@
 
 
         <input type="hidden" name="latitude"  value="{{ old('latitude') }}"  id="latitude" readonly>
-
-
-
-                <input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude"  readonly>
+        <input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude"  readonly>
 
             <div id="map" style="height: 500px"></div>
 
@@ -145,7 +142,7 @@
                         lat: position.coords.latitude,
                         lng: position.coords.longitude
                     },
-                    zoom: 15
+                    zoom: 17
                 });
 
                 // Create a marker at your current location

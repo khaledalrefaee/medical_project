@@ -116,7 +116,7 @@
 
                 <div class="mb-3">
                     <label  for="exampleFormControlTextarea1" class="form-label" ><strong> Diagnosis </strong></label>
-                    <textarea  class="form-control"  name="diagnosis" id="exampleFormControlTextarea1"  rows="3">{{$Reservation->diagnosis}}</textarea>
+                    <textarea  class="form-control"  name="diagnosis" id="exampleFormControlTextarea1" value="{{$Reservation->date}}"  rows="3">{{$Reservation->diagnosis}}</textarea>
                 </div>
 
 

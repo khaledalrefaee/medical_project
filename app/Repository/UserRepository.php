@@ -57,11 +57,6 @@ class UserRepository implements UserRepositoryInterface
             $User->latitude = $request->latitude;
             $User->longitude = $request->longitude;
             $User->role_name = ['user'];
-//            $User->role_name = 'user';
-//
-//            $role = Role::where('name', 'user')->first();
-//            $User->assignRole($role);
-
             $User->status = 'active';
 
             $User->save();

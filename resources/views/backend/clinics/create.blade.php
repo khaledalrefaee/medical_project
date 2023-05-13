@@ -12,18 +12,19 @@
                 @csrf
                 <div class="card-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">name clinic</label>
-                        <input type="text" name="name" class="form-control" id="exampleInputEmail1"  value="{{ old('name') }}" class="@error('name') is-invalid @enderror" placeholder="Enter name clincs">
-                    </div>
+                        <strong>name clinic</strong>
+                        <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"  value="{{ old('name') }}"  placeholder="Enter name clincs">
+
                     @error('name')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
-                    <div class="form-group">
-                        <label for="exampleInputPassword1">description</label>
-                        <input type="text" name="description" class="form-control" id="exampleInputPassword1"  value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="description">
                     </div>
+                    <div class="form-group">
+                        <strong>description</strong>
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1"  value="{{ old('description') }}"  placeholder="description">
+
                     @error('description')
-                    <div class="alert alert-danger">{{ $message }}</div>
+                        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
                     <div class="form-group mb-0">
 

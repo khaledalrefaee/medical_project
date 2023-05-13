@@ -25,7 +25,7 @@
                                                 <th >name doctor</th>
                                                 <th >specialization</th>
                                                 <th >phone doctor</th>
-                                                <th >email doctor</th>
+                                                <th >Communication Email</th>
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -34,7 +34,7 @@
                                                 <tr>
 
 
-                                                    @foreach ($clinic->doctor as $doctor)
+                                                    @foreach ($doctors as $doctor)
                                                     <td>{{ $doctor->name }}</td>
                                                     <td>{{ $doctor->detail->specialization }}</td>
                                                         <td>{{ $doctor->detail->phone }}</td>

@@ -33,7 +33,7 @@ class ReservationController extends Controller
                 'required',
                 'date_format:H:i',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
-                    return $query->where('doctor_id', '!=', $request->doctor_id)
+                    return $query->where('doctor_id', '<>', $request->doctor_id)
                         ->where('date', $request->date);
 
                 })
@@ -43,7 +43,8 @@ class ReservationController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return response()->json($validator->errors(), 400);
+            $errors = $validator->getMessageBag()->all();
+            return response()->json($errors, 400);
         }
 
 
@@ -68,7 +69,10 @@ class ReservationController extends Controller
 
     public function update(Request $request,$id)
     {
-        $reservation = Reservation::findOrFail($id);
+        $reservation = Reservation::find($id);
+        if (!$reservation) {
+            return response()->json('the Reservation not found', 404);
+        }
 
         if ($reservation->status === 'Pending') {
             $validator = Validator::make($request->all(), [
@@ -87,10 +91,11 @@ class ReservationController extends Controller
                 'phone' => 'required|regex:/^9\d{8}$/',
                 'birthday' => 'required',
             ]);
-            if ($validator->fails()) {
-                return response()->json($validator->errors(), 400);
-            }
 
+            if ($validator->fails()) {
+                $errors = $validator->getMessageBag()->all();
+                return response()->json($errors, 400);
+            }
 
             $reservation->name = $request->name;
             $reservation->time = $request->time;
@@ -117,10 +122,11 @@ class ReservationController extends Controller
     {
 
         $Reservation = Reservation::find($id);
+        if (!$Reservation) {
+            return response(' the Reservation not found', 404);
+        }
         if ($Reservation->status === 'Pending') {
-            if (!$Reservation) {
-                return response(' the Reservation not found', 404);
-            }
+
             $Reservation->delete();
             return response('successfully', 200);
         }

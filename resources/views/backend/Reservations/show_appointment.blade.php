@@ -1,12 +1,6 @@
 @extends('backend.index')
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
 
     <section class="content">
         <div class="container-fluid">
@@ -14,7 +8,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+                            <h3 class="card-title">Appointment Details</h3>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
@@ -22,15 +16,15 @@
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">email User</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">time</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">address</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">birthday</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">diagnosis</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">status</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Action</th>
+                                                <th >email User</th>
+                                                <th >name</th>
+                                                <th >time</th>
+                                                <th >phone</th>
+                                                <th >address</th>
+                                                <th >birthday</th>
+
+                                                <th >status</th>
+                                                <th >Action</th>
 
 
 
@@ -45,7 +39,7 @@
                                                 <td>{{$Reservation->phone}}</td>
                                                 <td>{{$Reservation->address}}</td>
                                                 <td>{{$Reservation->birthday}}</td>
-                                                <td>{{$Reservation->diagnosis}}</td>
+
                                                 <td><span class="badge
                                                                                     @if($Reservation->status === 'completed') badge-success
                                                                                     @elseif($Reservation->status === 'Cancelling') badge-danger

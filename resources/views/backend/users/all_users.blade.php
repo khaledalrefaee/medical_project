@@ -43,12 +43,19 @@
                                                     <td>{{$user->name}}</td>
                                                     <td>{{$user->email}}</td>
                                                     <td >{{$user->phone}}</td>
+                                                    <td>{{ Carbon\Carbon::parse($user->birthday)->age }}</td>
+                                                        <td> <span class="badge
+                                                                 @if($user->status === 'active')  badge-success
+                                                                 @elseif($user->status === 'not active')  badge-danger
+                                                                 @endif">
 
+                                                                 @if($user->status === 'active')
+                                                                    active
+                                                                @elseif($user->status === 'not active')
+                                                                    not active
+                                                                @endif
 
-
-                                                        <td>{{ Carbon\Carbon::parse($user->birthday)->age }}</td>
-
-                                                        <td > <label class="badge badge-success">{{ $user->status }}</label></td>
+                                                        </span></td>
 
                                                         <td>
                                                                 @can('user employee delete')

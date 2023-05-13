@@ -44,7 +44,8 @@ class StatisticsController extends Controller
         //عم نفذ استعلام و عم نحدد الحقل و بعدين عم نتعامل معو كتاريخ ثم يتم استخدام طريقة groupBy لتجميع النتائج حسب التاريخ وحقول create_at. هذا يعني أنه سيتم تجميع النتائج حسب كل مجموعة فريدة من قيم التاريخ و created_at.
         $dataT = Reservation::select(DB::raw("DATE_FORMAT(created_at,'%Y-%m-%d') as date"), DB::raw("SUM(total) as total"))
             ->groupBy('date', 'created_at')
-            ->get();;
+            ->orderBy('date', 'asc')
+            ->get();
 
         // Create data array for chart
         $data = [

@@ -6,32 +6,42 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
+
     public function login(Request $request)
-{
-    $filds = $request->validate([
-        'email' => 'required|string',
-        'password' => 'required|string'
-    ]);
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email',
+            'password' => 'required|string'
+        ]);
 
-    $user = User::where('email', $filds['email'])->where('status', 'active')->first();
+        if ($validator->fails()) {
+            $errors = $validator->getMessageBag()->all();
+            return response()->json($errors, 400);
+        }
 
-    if (!$user || !Hash::check($filds['password'], $user->password)) {
-        return response(['message' => 'Error'], 401);
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user || !Hash::check($request->password, $user->password)) {
+            return response()->json('There is an error in the email or password ' , 401);
+        }
+
+        if ($user->status !== 'active') {
+            return response(['message' => 'Your account is canceled.'], 500);
+        }
+
+        $token = $user->createToken('myappToken')->plainTextToken;
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
-
-
-    $token = $user->createToken('myappToken')->plainTextToken;
-    $respons = [
-        'user' => $user,
-        'token' => $token
-    ];
-
-    return response($respons, 201);
-}
 
     public function logout(Request $request){
         auth()->user()->tokens()->delete();

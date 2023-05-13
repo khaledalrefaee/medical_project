@@ -28,68 +28,78 @@
 
 {!! Form::open(array('route' => 'users.store','method'=>'POST')) !!}
 <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Name:</strong>
             {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Phone:</strong>
+            <div class="input-group">
+                <span class="input-group-text">00963</span>
+                {!! Form::text('phone', null, array('placeholder' => 'Phone','class' => 'form-control')) !!}
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Email:</strong>
             {!! Form::text('email', null, array('placeholder' => 'Email','class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
+    <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Password:</strong>
             {!! Form::password('password', array('placeholder' => 'Password','class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
-            <strong>phone:</strong>
+</div>
 
-            <div class="input-group-append">
-            <span class="input-group-text" >00963</span>
 
-            {!! Form::text('phone', null, array('placeholder' => 'phone','class' => 'form-control')) !!}
-        </div>
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
+
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>address:</strong>
             {!! Form::text('address', null, array('placeholder' => 'address','class' => 'form-control')) !!}
         </div>
     </div>
-    <div class="input-group mb-3">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>birthday:</strong>
         <input type="date" class="form-control" name="birthday"  value="{{ old('birthday') }}" class="@error('birthday') is-invalid @enderror" placeholder="Birthday">
-
-        <div class="input-group-append">
-            <span class="input-group-text"><i class="fas fa-check"></i></span>
         </div>
     </div>
-    <select name="gender_id" id="inputStatus" class="form-control custom-select" >
-        <option selected="" disabled="" >gender </option>
-        @foreach($gender as $item)
-            <option value="{{$item->id}}" {{ old('gender_id') == $item->id ? 'selected' : '' }}>{{$item->name}} </option>
-        @endforeach
-
-    </select>
-
-    <div class="col-xs-12 col-sm-12 col-md-12">
+</div>
+<div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+        <div class="form-group">
+            <strong>Gender:</strong>
+            <select name="gender_id" id="inputStatus" class="form-control custom-select">
+                <option selected disabled>gender</option>
+                @foreach($gender as $item)
+                    <option value="{{$item->id}}" {{ old('gender_id') == $item->id ? 'selected' : '' }}>{{$item->name}}</option>
+                @endforeach
+            </select>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6 col-md-6">
         <div class="form-group">
             <strong>Role:</strong>
-            {!! Form::select('role_name[]', $roles,[], array('class' => 'form-control','multiple')) !!}
+            {!! Form::select('role_name[]', $roles, [], array('class' => 'form-control', 'multiple')) !!}
         </div>
     </div>
+</div>
 
 
 
 
-
-    <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+<div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>
     </div>
 </div>

@@ -1,27 +1,16 @@
 @extends('backend.index')
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
 
-    <section class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h3 class="card-title">All appointments deleted</h3>
-                        </div>
-                        <!-- /.card-header -->
-                        <div class="card-body">
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
-                                        <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
-
+                <h6 class="m-0 font-weight-bold text-primary">Deleted appointments</h6>
+                <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="search">
+            </div>
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
+                        <div class="main-content">
                                         <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
@@ -33,6 +22,7 @@
                                                 <th >birthday</th>
                                                 <th >status</th>
                                                 <th >Cansel</th>
+                                            </tr>
                                             </thead>
                                             <tbody>
                                             <tr class="odd">
@@ -64,17 +54,13 @@
                                             @endforeach
                                             </tbody>
                                         </table>
-
-                                        <!-- /.card-body -->
-                                    </div>
-                                    <!-- /.card -->
-
-
-                                </div>
-                                <!-- /.col -->
-                            </div>
-                            <!-- /.row -->
                         </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
                         <!-- /.container-fluid -->
     </section>
 @endsection

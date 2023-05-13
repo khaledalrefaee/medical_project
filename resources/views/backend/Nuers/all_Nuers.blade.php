@@ -18,6 +18,7 @@
 
             <div class="table-responsive p-3">
                 <table class="table" id="myTable" data-filter-control="true" data-show-search-clear-button="true">
+                    <thead>
                     <tr>
                         <th>Name</th>
                         <th>phone nurse</th>

@@ -1,3 +1,6 @@
+
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -7,122 +10,145 @@
 
     <style type="text/css">
         * {
-            font-family: Verdana, Arial, sans-serif;
+            box-sizing: border-box;
         }
-        table{
-            font-size: x-small;
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
         }
-        tfoot tr td{
-            font-weight: bold;
-            font-size: x-small;
+        .invoice-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border: 1px solid #ddd;
         }
-        .gray {
-            background-color: lightgray
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
         }
-        .font{
-            font-size: 15px;
+        .header img {
+            max-width: 150px;
         }
-        .authority {
-            /*text-align: center;*/
-            float: right
-        }
-        .authority h5 {
-            margin-top: -10px;
+        .header h2 {
+            font-size: 24px;
             color: green;
-            /*text-align: center;*/
-            margin-left: 35px;
+            margin: 0;
+        }
+        .invoice-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .invoice-details .left-column p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .invoice-details .right-column p {
+            margin: 0;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: right;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        table th, table td {
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f7f7f7;
+            color: #444;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        table td {
+            font-size: 14px;
+            border-bottom: 1px solid #ddd;
+        }
+        .subtotal {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        .subtotal h2 {
+            font-size: 24px;
+            color: green;
+            margin: 0;
+        }
+        .thanks {
+            text-align: center;
+            margin-top: 40px;
         }
         .thanks p {
-            color: green;;
             font-size: 16px;
-            font-weight: normal;
-            font-family: serif;
+            font-weight: bold;
+            color: green;
+            margin: 0;
+        }
+        .signature {
+            text-align: right;
             margin-top: 20px;
+        }
+        .signature p {
+            margin: 0;
+            font-size: 14px;
         }
     </style>
 
 </head>
 <body>
 
-<table width="100%" style="background: #F7F7F7; padding:0 20px 0 20px;">
-    <tr>
-        <td valign="top">
-            <!-- {{-- <img src="" alt="" width="150"/> --}} -->
-            <h2 style="color: green; font-size: 26px;"><strong>E-Khaled Book</strong></h2>
-        </td>
-        <td align="right">
+<div class="invoice-container">
 
-        </td>
-    </tr>
+    <div class="header">
+        <img src="" alt="">
+        <h2>My Clinic</h2>
+    </div>
 
-</table>
-
-
-<table width="100%" style="background:white; padding:2px;""></table>
-<table width="100%" style="background: #F7F7F7; padding:0 5 0 5px;" class="font">
-    <tr>
-        <td>
-            <p class="font" style="margin-left: 20px;">
-                <strong>Name:</strong> {{ $Reservation->name }}<br>
-                <strong>Email:</strong> {{ $Reservation->user->email }} <br>
-                <strong>Phone:</strong> {{ $Reservation->phone }} <br>
-{{--                @php--}}
-{{--                    $div = $order->city->city;--}}
-{{--                    $dis = $order->address->address;--}}
-{{--                    $s = $order->s_address;--}}
-
-{{--                @endphp--}}
-
-                <strong>Address:{{ $Reservation->address }}</strong> <br>
-            </p>
-        </td>
-        <td>
-            <p class="font">
+    <div class="invoice-details">
+        <div class="left-column">
+            <p><strong>Name:</strong> {{ $Reservation->name }}</p>
+            <p><strong>Email:</strong> {{ $Reservation->user->email }}</p>
+            <p><strong>Phone:</strong> {{ $Reservation->phone }}</p>
+            <p><strong>Address:</strong> {{ $Reservation->address }}</p>
+        </div>
+        <div class="right-column">
             <h3><span style="color: green;">Reservation Date:</span> #{{ $Reservation->date}}</h3>
-            Reservation time: {{ $Reservation->time }} <br>
-
-            birthday :<span> {{ $Reservation->birthday }} </span><br>
-            diagnosis :<span> {{ $Reservation->diagnosis }} </span><br>
-            status :<span> {{ $Reservation->status }} </span>
-            </p>
-        </td>
-    </tr>
-</table>
-<br/>
-<h3></h3>
-<table width="100%">
-    <thead style="background-color: green; color:#FFFFFF;">
-    <tr class="font">
-        <th>Image</th>
-        <th>Product Name</th>
-        <th>Size</th>
-        <th>Color</th>
-        <th>Code</th>
-        <th>Quantity</th>
-        <th>Unit Price </th>
-        <th>Total </th>
-    </tr>
-    </thead>
-    <tbody>
+            <p><strong >Reservation time:</strong> {{ $Reservation->time }}</p>
+            <p><strong>Birthday:</strong> {{ $Reservation->birthday }}</p>
+            <p><strong>Status:</strong> {{ $Reservation->status }}</p>
+            <p><strong>Total:</strong> {{ $Reservation->total }} $</p>
+            <p><strong>Diagnosis:</strong> {{ $Reservation->diagnosis }}</p>
+        </div>
+    </div>
 
 
-    </tbody>
-</table>
-<br>
-<table width="100%" style=" padding:0 10px 0 10px;">
-    <tr>
-        <td align="right" >
-            <h2><span style="color: green;">Subtotal:</span></h2>
-            {{-- <h2><span style="color: green;">Full Payment PAID</h2> --}}
-        </td>
-    </tr>
-</table>
-<div class="thanks mt-3">
-    <p>Thanks For Dealing With US..!!</p>
+
+    <div class="subtotal">
+        <h2>Subtotal: {{ $Reservation->total }} $</h2>
+    </div>
+
+    <div class="thanks">
+        <p>Thanks for your business!</p>
+    </div>
+
+    <div class="signature">
+        <p>-----------------------------------</p>
+        <p>Authority Signature:</p>
+
+
+    </div>
+
 </div>
-<div class="authority float-right mt-5">
-    <p>-----------------------------------</p>
-    <h5>Authority Signature:</h5>
-</div>
+
 </body>
 </html>
+

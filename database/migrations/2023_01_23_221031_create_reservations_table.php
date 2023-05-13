@@ -24,7 +24,7 @@ return new class extends Migration
             $table->time('time');
             $table->date('date');
             $table->string('status');
-            $table->string('diagnosis')->nullable();
+            $table->text('diagnosis')->nullable();
             $table->string('total')->nullable();
             $table->softDeletes();
             $table->timestamps();

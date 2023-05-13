@@ -15,6 +15,14 @@ use Illuminate\Validation\Rule;
 
 class WatingRepository implements WatingRepositoryInterface
 {
+    public function dailyAppointments()
+    {
+        // Retrieve daily appointments for the current day
+        $Reservations = Reservation::whereDate('date', Carbon::today())->orderBy('id','DESC')->paginate(5);;
+
+        return view('backend.Reservations.daily-appointments', compact('Reservations'));
+    }
+
    public function getAll_wating_reservation()
    {
 
@@ -217,7 +225,7 @@ class WatingRepository implements WatingRepositoryInterface
             $canceledReservations = $user->reservation()->where('status', 'Cancelling')->count();
 
             if ($canceledReservations >= 3) {
-                $user->status = 'Not Active';
+                $user->status = 'not active';
                 $user->save();
             }
 

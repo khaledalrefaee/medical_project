@@ -7,12 +7,16 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Role;
 
 class UserRepository implements UserRepositoryInterface
 {
     public function getAllUser()
     {
-        $Users = User::orderBy('id','DESC')->paginate(5);
+        // نستخدم الدالة whereDoesntHave للتحقق مما إذا كان المستخدم ليس لديه الدور
+        $Users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'Admin');
+        })->orderBy('id','DESC')->paginate(5);
 
 ///نستخدم طريقة الخريطة للتكرار على كل مستخدم في المجموعة وحساب عمره باستخدام فئة الكربون. نقوم بعد ذلك بدمج خاصية العمر في كائن المستخدم
 ///  وإعادة مجموعة جديدة من المستخدمين مع تضمين أعمارهم. أخيرًا ، نقوم بتمرير هذه المجموعة الجديدة إلى العرض.
@@ -26,15 +30,17 @@ class UserRepository implements UserRepositoryInterface
     public function showUser($id)
     {
         $user = User::findOrFail($id);
+        $reservation = $user->reservation()->get();
         toastr()->info('You are show User');
-        return view('backend.users.show',compact('user'));
+        return view('backend.users.show',compact('user','reservation'));
     }
 
     public function createUser()
     {
 
         $gender=Gender::all();
-        return view('backend.users.create',compact('gender'));
+        $roles = Role::pluck('name','name')->all();
+        return view('backend.users.create',compact('gender','roles'));
     }
 
     public function StoreUser($request)
@@ -51,6 +57,11 @@ class UserRepository implements UserRepositoryInterface
             $User->latitude = $request->latitude;
             $User->longitude = $request->longitude;
             $User->role_name = ['user'];
+//            $User->role_name = 'user';
+//
+//            $role = Role::where('name', 'user')->first();
+//            $User->assignRole($role);
+
             $User->status = 'active';
 
             $User->save();
@@ -66,9 +77,10 @@ class UserRepository implements UserRepositoryInterface
     public function editUser($id)
     {
         $user = User::findOrFail($id);
-
         $gender=Gender::all();
-        return view('backend.users.edit', compact('user','gender'));
+        $roles = Role::pluck('name','name')->all();
+        $userRole = $user->roles->pluck('name','name')->all();
+        return view('backend.users.edit', compact('user','gender','roles','userRole'));
     }
 
     public function UpdateUser($request)

@@ -41,11 +41,9 @@ class ReservationController extends Controller
 
     }
 
-    public function gssam(){
-        $Reservations = Reservation::all();
-        return $Reservations;
+    public function daily_reservation(){
+        return $this->Wating->dailyAppointments();
     }
-
 
     public function index(){
         return $this->Wating->getAll_wating_reservation();
@@ -78,9 +76,7 @@ class ReservationController extends Controller
       return $this->Wating->delete_wating($id);
     }
 
-    public function Get_Doctoer($clinic_id){
 
-    }
 
     ////
 

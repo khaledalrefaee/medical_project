@@ -6,7 +6,7 @@
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 @can('clinic create')
-                    <a href="{{route('create.clincs')}}">   <button type="button" class="btn btn btn-primary">create</button></a>
+                    <a href="{{route('create.clincs')}}">   <button type="button" class="btn btn-outline-success">create</button></a>
                 @endcan
 
 
@@ -49,6 +49,7 @@
                                             <a href="{{route('show.delete.Clincs')}}">   <button type="button" class="btn btn btn-outline-danger">show delete</button></a>
                                             @endcan
                                             <br>
+                    <br>
                                         </table>
                                     </div>
                                 </div>

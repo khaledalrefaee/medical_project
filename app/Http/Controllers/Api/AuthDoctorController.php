@@ -7,23 +7,27 @@ use App\Models\Doctor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthDoctorController extends Controller
 {
     public function login(Request $request)
     {
-        $filds = $request->validate([
-            'email' => 'required|string',
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|string|email',
             'password' => 'required|string'
         ]);
 
-        $doctor = Doctor::where('email', $filds['email'])->first();
-
-        if (!$doctor || !Hash::check($filds['password'], $doctor->password)) {
-            return response(['message' => 'Error'], 401);
+        if ($validator->fails()) {
+            $errors = $validator->getMessageBag()->all();
+            return response()->json($errors, 400);
         }
 
+        $doctor = Doctor::where('email',  $request->email)->first();;
 
+        if (!$doctor || !Hash::check($request->password, $doctor->password)) {
+            return response()->json('There is an error in the email or password ' , 401);
+        }
 
         $token = $doctor->createToken('myappToken')->plainTextToken;
         $respons = [

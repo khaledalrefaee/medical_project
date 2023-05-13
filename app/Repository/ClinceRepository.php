@@ -33,7 +33,7 @@ class ClinceRepository implements ClinceRepositoryInterface
     public function show($id)
     {
         $clinic = Clinics::findOrFail($id);
-        $doctors = $clinic->doctor()->with('detail')->get();
+        $doctors = $clinic->doctor()->get();
         toastr()->info('you are show clince','show');
         return view('backend.clinics.show',compact('clinic','doctors'));
     }

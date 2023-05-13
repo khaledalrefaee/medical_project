@@ -101,7 +101,8 @@
 
 <canvas id="myChart" ></canvas>
 
- <canvas id="totalChart" width="50" height="10"></canvas>
+ <canvas id="totalChart" width="50" height="20"></canvas>
+
 <script>
     var ctx = document.getElementById('circle').getContext('2d');
     var circle = new Chart(ctx, {
@@ -168,25 +169,22 @@
 
 
 
-
  <script>
      var ctx = document.getElementById('totalChart').getContext('2d');
-     var chart = new Chart(ctx, {
-         // The type of chart: line
-         type: 'line',
+     var dates = {!! $data['total']->pluck('date') !!};
+     var totals = {!! $data['total']->pluck('total') !!};
 
-         // The data for the dataset
+     var chart = new Chart(ctx, {
+         type: 'line',
          data: {
-             labels: {!! $data['total']->pluck('date') !!},
+             labels: dates,
              datasets: [{
                  label: 'Total Paid',
                  backgroundColor: 'rgba(255, 99, 132, 0.2)',
                  borderColor: 'rgba(255, 99, 132, 1)',
-                 data: {!! $data['total']->pluck('total') !!}
+                 data: totals
              }]
          },
-
-         // Configuration options
          options: {
              scales: {
                  yAxes: [{
@@ -198,6 +196,8 @@
          }
      });
  </script>
+
+
 
 <style>
     .charts-wrapper {

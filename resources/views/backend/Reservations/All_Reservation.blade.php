@@ -2,27 +2,20 @@
 @section('content')
 
 
-
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-
-                            <h3 class="card-title">All appointments  </h3>
-                        </div>
-
-
-                        <!-- /.card-header -->
-                        <div class="card-body">
-                        @can('Add a request')
-                            <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                                    Add a request
-                                </button>
-                            @endcan
-                            <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
-
+    <div class="col-lg-12">
+        <div class="card mb-4">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            @can('Add a request')
+                <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#exampleModal">
+                        Add a request
+                    </button>
+                @endcan
+                <h6 class="m-0 font-weight-bold text-primary">All appointments</h6>
+                <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Name">
+            </div>
+            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
+                        <div class="main-content">
                                             <table id="myTable" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
@@ -85,7 +78,8 @@
                                                                                     @elseif($Reservation->status === 'Pending')
                                                                                     Pending
                                                                                     @endif
-                                                                                </span></td>
+                                                                                </span>
+                                                            </td>
 
                                                         <td>
                                                                 @can('Reservations delete')
@@ -108,6 +102,7 @@
                                                                 @endcan
 
                                                                 @can('Reservations Download')
+
                                                                 <a href="{{route('download.pdf',$Reservation->id)}}" class="btn btn-info"><i class="fas fa-download"></i> Download pdf</a>
                                                                 @endcan
                                                         </td>
@@ -134,16 +129,16 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        ...
+
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
                         @can('waiting create')
-                            <a href="{{route('create.waiting')}}" ><button type="button" class="btn btn-primary">waiting date</button></a>
+                            <a href="{{route('create.waiting')}}" ><button type="button" class="btn btn-outline-warning">waiting date</button></a>
                         @endcan
 
                         @can('Reservations create')
-                            <a href="{{route('create.appointment')}}"> <button type="button" class="btn btn-primary"> Reservation date</button></a>
+                            <a href="{{route('create.appointment')}}"> <button type="button" class="btn btn-outline-success"> Reservation date</button></a>
                         @endcan
                     </div>
                 </div>

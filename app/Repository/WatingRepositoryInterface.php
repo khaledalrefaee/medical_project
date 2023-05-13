@@ -4,6 +4,8 @@ namespace App\Repository;
 
 interface WatingRepositoryInterface
 {
+    public function dailyAppointments();
+
   public function getAll_wating_reservation();
 
   public function create_wating();

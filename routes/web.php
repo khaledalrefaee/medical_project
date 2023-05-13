@@ -107,8 +107,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/delete/pharmese/{id}',[PharmieseController::class,'destroy'])->name('delete.pharmese');
 
     //Reservations
+    Route::get('/daily_reservation',[ReservationController::class,'daily_reservation'])->name('daily.reservation');
     Route::get('/Reservations',[ReservationController::class,'index'])->name('Reservations.all');
-    Route::get('/ReservationsA',[ReservationController::class,'gssam']);
 
     Route::get('/create/waiting',[ReservationController::class,'create_waiting'])->name('create.waiting');
     Route::post('/store/waiting',[ReservationController::class,'storewaiting'])->name('store.waiting');
@@ -118,7 +118,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update/waiting/{id}',[ReservationController::class,'update_waiting'])->name('update.waiting');
     Route::get('delete/wating/{id}',[ReservationController::class,'delete_wating'])->name('delete.wating');
 
-    Route::get('/Get_Doctoer/{division_id}', [ReservationController::class,'Get_Doctoer']);
 
 
 

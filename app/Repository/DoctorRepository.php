@@ -61,9 +61,11 @@ class DoctorRepository implements DoctoerRepositoryInterface
     }
 
     public function show($id){
-        $doctor = Detail::where('doctor_id',$id)->firstOrFail();;
+        $doc = Doctor::findOrFail($id);
+        $doctor = Detail::where('doctor_id', $id)->first();
+        $reservation = $doc->reservation()->get();; // الحصول على حجوزات الطبيب
         toastr()->info('You are show Doctor');
-        return view('backend.Doctor.show',compact('doctor'));
+        return view('backend.Doctor.show',compact('doctor','reservation'));
     }
 
 

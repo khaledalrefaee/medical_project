@@ -43,8 +43,8 @@
                     <div style="width: 50%; margin-right: 10px;">
                         <div class="form-group">
                             <strong>Doctor email application</strong>
-                            <input type="text" name="email_1" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1" value="{{ old('email') }}" placeholder="Enter email Doctor">
-                            @error('email')
+                            <input type="text" name="email_1" class="form-control @error('email_1') is-invalid @enderror" id="exampleInputEmail1" value="{{ old('email_1') }}" placeholder="Enter email Doctor">
+                            @error('email_1')
                             <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                             @enderror
                         </div>

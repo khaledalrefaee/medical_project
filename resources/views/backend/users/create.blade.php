@@ -118,11 +118,16 @@
 
 
 
-        <input type="hidden" name="latitude"  value="{{ old('latitude') }}"  id="latitude" readonly>
+
+
         <input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude"  readonly>
 
             <div id="map" style="height: 500px"></div>
 
+        <input type="hidden" name="latitude" class="form-control @error('latitude') is-invalid @enderror"  value="{{ old('latitude') }}"  id="latitude" readonly>
+        @error('latitude')
+        <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+        @enderror
 
                 <span class="input-group-append">
                  <button type="submit" class="btn btn-info btn-flat">Go!</button>

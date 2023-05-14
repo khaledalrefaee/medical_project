@@ -7,12 +7,19 @@
             <h2>Users Management</h2>
             <br>
         </div>
-        <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-        </div>
-    </div>
-</div>
-<br>
+
+        <div class="col-lg-12">
+            <div class="card mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <div class="pull-right">
+                    <a class="btn btn-outline-success" href="{{ route('users.create') }}"> Create New User</a>
+                    </div>
+                    <h6 class="m-0 font-weight-bold text-primary">All UsersTables</h6>
+                    <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="search">
+                </div>
+            </div>
+
+
 
 @if ($message = Session::get('success'))
     <div class="alert alert-success">
@@ -20,8 +27,7 @@
     </div>
 @endif
 
-
-<table class="table table-bordered">
+<table id="myTable" class="table table-bordered">
     <tr>
         <th>No</th>
         <th>Name</th>
@@ -66,8 +72,8 @@
     @endforeach
 </table>
 
+            {{ $data->links('pagination::bootstrap-4') }}
 
-{!! $data->render() !!}
 
 
 <p class="text-center text-primary"></p>

@@ -30,7 +30,7 @@ class AuthController extends Controller
         }
 
         if ($user->status !== 'active') {
-            return response(['message' => 'Your account is canceled.'], 500);
+            return response('Your account is canceled.' , 500);
         }
 
         $token = $user->createToken('myappToken')->plainTextToken;

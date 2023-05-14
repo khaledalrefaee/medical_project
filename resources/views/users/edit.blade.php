@@ -95,8 +95,8 @@
                     <strong>Account Status:</strong>
                     <select name="status" id="inputStatus" class="form-control custom-select">
                         <option disabled selected>Select status</option>
-                        <option value="active" {{$user->status === 'active' ? 'selected' : ''}}>Active</option>
-                        <option value="not active" {{$user->status === 'not active' ? 'selected' : ''}}>Not Active</option>
+                        <option value="active" {{$user->status === 'active' ? 'selected' : ''}}>active</option>
+                        <option value="not active" {{$user->status === 'not active' ? 'selected' : ''}}>not active</option>
                     </select>
                 </div>
             </div>

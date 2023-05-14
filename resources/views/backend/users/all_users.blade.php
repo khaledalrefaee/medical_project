@@ -9,7 +9,7 @@
         <div class="card mb-4">
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                 @can('user employee create')
-                    <a href="{{route('create_user')}}"> <button class="btn btn-primary">create User</button></a>
+                    <a href="{{route('create_user')}}"> <button class="btn btn-outline-success mb-1">create User</button></a>
                 @endcan
 
 

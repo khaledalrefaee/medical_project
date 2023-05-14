@@ -96,11 +96,14 @@
     </div>
 </div>
 
-<input type="hidden" name="latitude"  value="{{ old('latitude') }}"  id="latitude" readonly>
+
 <input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude"  readonly>
 
 <div id="map" style="height: 500px"></div>
-
+<input type="hidden" name="latitude" class="form-control @error('latitude') is-invalid @enderror"  value="{{ old('latitude') }}"  id="latitude" readonly>
+@error('latitude')
+<div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+@enderror
 
 <div class="col-xs-12 col-sm-12 col-md-12 text-center">
         <button type="submit" class="btn btn-primary">Submit</button>

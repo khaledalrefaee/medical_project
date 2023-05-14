@@ -72,92 +72,78 @@
 
     </style>
 </head>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title"> User Information {{$user->name}} </h3>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">User Information: {{$user->name}}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="form-group">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" id="name" value="{{ $user->name }}" readonly>
                     </div>
-
-
-                        <div class="card-body">
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
-                                        <a href="{{url('Retreat')}}"> <button class="btn btn-primary">Retreat</button></a>
-<br>
-                                        <br>
-                                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
-
-                                            <thead>
-                                            <tr>
-                                                <th >email</th>
-                                                <th >phone</th>
-                                                <th >gender</th>
-                                                <th >address</th>
-                                                <th >age</th>
-                                               </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr class="odd">
-
-                                                    <td>{{$user->email}}</td>
-                                                    <td style="">{{$user->phone}}</td>
-                                                    <td style="">{{$user->gender->name ?? 'nono'}}</td>
-                                                    <td style="">{{$user->address}}</td>
-                                                    <td style="">{{$user->birthday}}</td>
-
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                        <br>
-                                        <div id="map" style="height: 500px"></div>
-
-
-                                    <div class="container">
-                                        <div class="row">
-                                            <div class="col-md-8 offset-md-2">
-                                                <div class="card">
-                                                    <div class="card-header d-flex justify-content-between">
-                                                        <h5 class="card-title">Reservations {{$user->name}}</h5>
-                                                        <h5 class="card-title">Number of appointments: {{ $reservation->count() }}</h5>
-                                                    </div>
-                                                        <div class="card-body">
-                                                        <div class="row">
-                                                            @if ($reservation->count() > 0)
-                                                                @foreach ($reservation as $item)
-                                                                    <div class="col-md-4">
-
-                                                                        <div class="reservation-item">
-                                                                            <div class="list-group-item">
-
-                                                                                <span class="reservation-id">Reservation ID: {{ $item->id }}</span>
-                                                                                <div class="reservation-details">
-                                                                                    <span class="reservation-date"><i class="far fa-calendar-alt"></i> Date: {{ $item->date }}</span>
-                                                                                    <span class="reservation-time"><i class="far fa-clock"></i> Time: {{ $item->time }}</span>
-                                                                                    <span class="reservation-details"><i class="fas fa-stethoscope"></i> Doctor: {{ $item->doctor->name }}</span>
-
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                @endforeach
-                                                            @else
-                                                                <div class="col-md-12">
-                                                                    <p class="no-reservations">No reservations found.</p>
-                                                                </div>
-                                                            @endif
-                                                        </div>
-                                                    </div>
-                                                </div>
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" class="form-control" id="email" value="{{ $user->email }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">Address:</label>
+                        <input type="text" class="form-control" id="address" value="{{ $user->address }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone:</label>
+                        <input type="text" class="form-control" id="phone" value="{{ $user->phone }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="birthday">Birthday:</label>
+                        <input type="text" class="form-control" id="birthday" value="{{ $user->birthday }}" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender:</label>
+                        <input type="text" class="form-control" id="gender" value="{{ $user->gender->name ?? 'N/A' }}" readonly>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between">
+                    <h5 class="card-title">Reservations</h5>
+                    <h5 class="card-title">Number of Appointments: {{ $reservation->count() }}</h5>
+                </div>
+                <div class="card-body">
+                    @if ($reservation->count() > 0)
+                        <div class="row">
+                            @foreach ($reservation as $item)
+                                <div class="col-md-4">
+                                    <div class="reservation-item">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <h6 class="card-subtitle">Reservation ID: {{ $item->id }}</h6>
+                                                <p class="card-text">
+                                                <p class="reservation-details i"> <i class="far fa-calendar-alt"></i> Date: {{ $item->date }}<br>
+                                                <p class="reservation-details i"> <i class="far fa-clock"></i> Time: {{ $item->time }}<br>
+                                                <p class="reservation-details i"> <i class="fas fa-stethoscope"></i> Doctor: {{ $item->doctor->name }}
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-
-
-                    </div>
-
-
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <p class="no-reservations">No reservations found.</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                                    <div id="map" style="height: 500px"></div>
 
 
 

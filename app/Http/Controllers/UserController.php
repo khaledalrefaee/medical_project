@@ -42,6 +42,7 @@ class UserController extends Controller
             'gender_id'          =>  'required',
             'address'            =>  'required',
             'birthday'           =>  'required',
+            'latitude'          =>   'required',
             'role_name'          => 'required'
         ]);
 
@@ -60,7 +61,8 @@ class UserController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        return view('users.show',compact('user'));
+        $reservation = $user->reservation()->get();
+        return view('users.show',compact('user','reservation'));
     }
 
 

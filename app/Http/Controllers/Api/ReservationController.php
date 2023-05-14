@@ -87,7 +87,6 @@ class ReservationController extends Controller
                             ->where('id', '<>', $request->id);
                     })
                 ],
-
                 'phone' => 'required|regex:/^9\d{8}$/',
                 'birthday' => 'required',
             ]);
@@ -111,7 +110,7 @@ class ReservationController extends Controller
             return response()->json($reservation, 200);
         }
         else{
-            return response()->json(['message' => 'Reservation cannot be updated because it is not in Pending status.'], 400);
+            return response()->json( 'Reservation cannot be updated because it is not in Pending status.', 500);
         }
 
 
@@ -131,7 +130,7 @@ class ReservationController extends Controller
             return response('successfully', 200);
         }
         else{
-            return response()->json(['message' => 'Reservation cannot be deleted because it is not in Pending status.'], 400);
+            return response()->json('Reservation cannot be deleted because it is not in Pending status.', 500);
         }
 
     }

@@ -45,7 +45,6 @@ class AuthDoctorController extends Controller
         return response()->json([
             'name' => $doctor->name,
             'email' => $doctor->email,
-
             'specialization' => $doctor->detail->specialization,
             'phone' => $doctor->detail->phone,
             'Contact email' => $doctor->detail->email,

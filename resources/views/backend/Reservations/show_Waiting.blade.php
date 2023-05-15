@@ -1,12 +1,6 @@
 @extends('backend.index')
 @section('content')
-    <div class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
 
-            </div><!-- /.row -->
-        </div><!-- /.container-fluid -->
-    </div>
 
     <section class="content">
         <div class="container-fluid">
@@ -14,56 +8,39 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">DataTable with minimal features &amp; hover style</h3>
+                            <h3 class="card-title">Waiting Details</h3>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
-                            <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4"><div class="row"><div class="col-sm-12 col-md-6"></div><div class="col-sm-12 col-md-6"></div></div><div class="row"><div class="col-sm-12">
-                                        <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
-                                            <thead>
-                                            <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">address</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">birthday</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">gender</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">doctor name</th>
-                                            <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="CSS grade: activate to sort column ascending" style="">Action</th></tr>
-
-                                            </thead>
-                                            <tbody>
-
-
-                                            <tr class="odd">
-                                                <td>{{$waiting->name}}</td>
-                                                <td>{{$waiting->address}}</td>
-                                                <td>{{$waiting->birthday}}</td>
-                                                <td>{{$waiting->gender->name}}</td>
-                                                <td>{{$waiting->doctor->name}}</td>
-
-                                                <td>  <a href="{{route('Retreat.waitin')}}">   <button type="button" class="btn btn btn-primary">Retreat</button></a></td>
-
-                                            </tr>
-
-
-                                            </tbody>
-                                            <tfoot>
-
-                                            </tfoot>
-                                            <br>
-                                            <div></div>
-
-
-                                        </table>                        </div>
-                                    <!-- /.card-body -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>Name:</strong> {{ $waiting->name }}
                                 </div>
-                                <!-- /.card -->
-
-
+                                <div class="col-md-6">
+                                    <strong>Address:</strong> {{ $waiting->address }}
+                                </div>
                             </div>
-                            <!-- /.col -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>Birthday:</strong> {{ $waiting->birthday }}
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Gender:</strong> {{ $waiting->gender->name }}
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <strong>Doctor Name:</strong> {{ $waiting->doctor->name }}
+                                </div>
+                                <div class="col-md-6">
+                                    <strong>Action:</strong>
+                                    <a href="{{ route('Retreat.waitin') }}" class="btn btn-primary">Retreat</a>
+                                </div>
+                            </div>
                         </div>
-                        <!-- /.row -->
                     </div>
-                    <!-- /.container-fluid -->
+                </div>
+            </div>
+        </div>
+    </section>
 
 @endsection

@@ -8,9 +8,9 @@
             </div>
             <form id="quickForm" novalidate="novalidate" action="{{route('store.pharmese')}}" method="POST" >
                 @csrf
-
-                <div class="form-row">
-                    <div class="col-md-6 mb-3">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
                         <strong>Medicine Name:</strong>
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="exampleInputEmail1"  value="{{ old('name') }}"  placeholder="Enter name medicine">
                         @error('name')
@@ -35,19 +35,16 @@
                     <div class="form-group">
                         <strong>Description :</strong>
                         <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1"  value="{{ old('description') }}"  placeholder="description medicine">
-
                     @error('description')
-                <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
+                    <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror
-
-
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">GO!</button>
-                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">GO!</button>
+                </div>
             </form>
         </div>
-        <!-- /.card -->
     </div>
 @endsection
 

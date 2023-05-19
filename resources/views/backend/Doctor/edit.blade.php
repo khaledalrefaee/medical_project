@@ -50,7 +50,7 @@
                         <div style="width: 50%; margin-left: 10px;">
                             <div class="form-group">
                                 <strong>password doctor</strong>
-                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputEmail1"  value="{{ old('password') }}"  placeholder="Enter password Doctor">
+                        <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="exampleInputEmail1"    placeholder="Enter password Doctor">
                             @error('password')
                             <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                             @enderror
@@ -63,7 +63,7 @@
                         <div style="width: 50%; margin-right: 10px;">
                             <div class="form-group">
                                 <strong>Doctor's email to contact</strong>
-                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror"" id="exampleInputEmail1"   value="{{$detail->email}}"  placeholder="Enter email Doctor">
+                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="exampleInputEmail1"   value="{{$detail->email}}"  placeholder="Enter email Doctor">
                             @error('email')
                             <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                             @enderror
@@ -74,7 +74,7 @@
                                 <strong>phone Doctor:</strong>
                                 <div class="input-group-append">
                                     <span class="input-group-text">00963</span>
-                        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror"" id="exampleInputEmail1"   value="{{$detail->phone}}"  placeholder="Enter phone Doctor">
+                        <input type="text" name="phone" class="form-control @error('phone') is-invalid @enderror" id="exampleInputEmail1"   value="{{$detail->phone}}"  placeholder="Enter phone Doctor">
                                 @error('phone')
                                 <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                                 @enderror
@@ -88,8 +88,7 @@
                         <div style="width: 50%;">
                             <div class="form-group">
                                 <strong>specialization doctor</strong>
-                        <input type="text" name="specialization @error('specialization') is-invalid @enderror"" class="form-control" id="exampleInputEmail1"  value="{{$detail->specialization}}"  placeholder="Enter specialization Doctor">
-                                @error('specialization')
+                                <input type="text" name="specialization" class="form-control @error('specialization') is-invalid @enderror" id="exampleInputEmail1"  value="{{$detail->specialization}}"  placeholder="Enter specialization Doctor">                                @error('specialization')
                                 <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -99,6 +98,7 @@
 
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Go!</button>
+                </div>
                 </div>
             </form>
         </div>

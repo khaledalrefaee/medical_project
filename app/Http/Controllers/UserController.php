@@ -42,7 +42,6 @@ class UserController extends Controller
             'gender_id'          =>  'required',
             'address'            =>  'required',
             'birthday'           =>  'required',
-            'latitude'          =>   'required',
             'role_name'          => 'required'
         ]);
 
@@ -82,20 +81,19 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
-            'password' => 'required',
             'phone'              =>  'required||regex:/^9\d{8}$/',
             'gender_id'          =>  'required',
             'address'            =>  'required',
             'birthday'           =>  'required',
             'status'            =>'required',
-            'role_name' => 'required'
+
         ]);
 
         $input = $request->all();
         if(!empty($input['password'])){
             $input['password'] = Hash::make($input['password']);
         }else{
-            $input = Arr::except($input,array('password'));
+            $input = Arr::except($input,array('password','role_name[]'));
         }
 
         $user = User::find($id);

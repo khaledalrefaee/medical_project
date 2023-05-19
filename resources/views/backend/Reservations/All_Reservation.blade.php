@@ -38,7 +38,7 @@
                                                     <td>{{ $i }}</td>
                                                     <td>{{$waiting->name}}  </td>
                                                     <td>{{$waiting->doctor->name}} </td>
-                                                    <td> </td>
+                                                    <td> {{$waiting->created_at}}</td>
                                                     <td> <span class="badge badge-pill badge-warning">waiting</span></td>
                                                         <td>
                                                             @can('waiting delete')
@@ -69,7 +69,7 @@
                                                                                     @elseif($Reservation->status === 'Cancelling') badge-danger
                                                                                     @elseif($Reservation->status === 'Pending') badge-warning
                                                                                     @else badge-secondary
-                                                                                     @endif">
+                                                                                    @endif">
 
                                                                                     @if($Reservation->status === 'completed')
                                                                                     completed
@@ -78,9 +78,7 @@
                                                                                     @elseif($Reservation->status === 'Pending')
                                                                                     Pending
                                                                                     @endif
-                                                                                </span>
-                                                            </td>
-
+                                                                 </span></td>
                                                         <td>
                                                                 @can('Reservations delete')
                                                                 <a href="{{route('delete.appointment',$Reservation->id)}}" class="btn btn-danger" title="Delete Data"> <i title=" Delete"  class="fa fa-trash"></i></a>
@@ -148,26 +146,26 @@
 
    {{--   <!-- Add a script tag to include jQuery -->--}}
 
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{{--   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
 
 
-        <script>
-            // Set the interval time in milliseconds
-            var intervalTime = 5000;
+{{--        <script>--}}
+{{--            // Set the interval time in milliseconds--}}
+{{--            var intervalTime = 5000;--}}
 
-            // Set the interval function
-            setInterval(function() {
-                // Perform an AJAX request
-                $.ajax({
-                    url: '/Reservations',
-                    type: 'GET',
-                    success: function(data) {
-                        // Update the content of the target element
-                        $('#target-element').html(data);
-                    }
-                });
-            }, intervalTime);
-        </script>
+{{--            // Set the interval function--}}
+{{--            setInterval(function() {--}}
+{{--                // Perform an AJAX request--}}
+{{--                $.ajax({--}}
+{{--                    url: '/Reservations',--}}
+{{--                    type: 'GET',--}}
+{{--                    success: function(data) {--}}
+{{--                        // Update the content of the target element--}}
+{{--                        $('#target-element').html(data);--}}
+{{--                    }--}}
+{{--                });--}}
+{{--            }, intervalTime);--}}
+{{--        </script>--}}
 
 @endsection
 

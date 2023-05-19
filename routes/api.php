@@ -40,6 +40,8 @@ Route::get('get_All',[NuersController::class,'get_All']);
 
 Route::get('/get/ALLDoctoer',[NuersController::class,'doctoer']);
 
+Route::get('/Reservation/edit/{id}',[ReservationController::class,'edit']);
+
 Route::put('/Reservation/update/{id}',[ReservationController::class,'update']);
 
 Route::post('/Reservation/delete/{id}',[ReservationController::class,'destroy']);
@@ -47,6 +49,9 @@ Route::post('/Reservation/delete/{id}',[ReservationController::class,'destroy'])
 //Doctor
 
 Route::post('/login/Doctor',[AuthDoctorController::class,'login']);
+
+Route::get('/Reservation/Doctor/edit/{id}',[DoctorAppointmentsController::class,'edit']);
+
 
 Route::put('/Reservation/Doctor/update/{id}',[DoctorAppointmentsController::class,'update']);
 

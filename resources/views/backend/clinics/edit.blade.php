@@ -20,7 +20,7 @@
                     </div>
                     <div class="form-group">
                         <strong>description</strong>
-                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror"" id="exampleInputPassword1"  value="{{$clinic->description}}" placeholder="description">
+                        <input type="text" name="description" class="form-control @error('description') is-invalid @enderror" id="exampleInputPassword1"  value="{{$clinic->description}}" placeholder="description">
 
                     @error('description')
                     <div class="alert alert-danger">{{ $message }}</div>

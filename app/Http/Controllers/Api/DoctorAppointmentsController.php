@@ -22,6 +22,20 @@ class DoctorAppointmentsController extends Controller
         return response()->json($reservations, 200);
     }
 
+    public function edit($id)
+    {
+        $reservation = Reservation::find($id);
+
+        if (!$reservation) {
+            return response()->json('The reservation was not found', 404);
+        }
+
+        if ($reservation->status === 'Pending') {
+            return response()->json($reservation);
+        } else {
+            return response()->json('Reservation cannot be updated because it is not in Pending status.', 500);
+        }
+    }
 
     public function update(Request $request,$id)
     {
@@ -35,7 +49,7 @@ class DoctorAppointmentsController extends Controller
         if ($reservation->status === 'Pending') {
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
-                'date' => 'required|date_format:Y-m-d',
+                'date' => 'required|date_format:Y-m-d|after:today',
                 'time' => [
                     'required',
                     'date_format:H:i',

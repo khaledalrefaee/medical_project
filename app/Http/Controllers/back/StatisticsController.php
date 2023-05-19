@@ -24,8 +24,7 @@ class StatisticsController extends Controller
         $totalDrugs=Pharmise::count();
 
 
-        // Fetch all doctors
-        $doctors = Doctor::all();
+
 
         // Fetch all appointments
         $allAppointments = Reservation::all();
@@ -35,7 +34,8 @@ class StatisticsController extends Controller
 
         $cancelledAppointments = Reservation::where('status', 'Cancelling')->get();
 
-
+        // Fetch all doctors
+        $doctors = Doctor::all();
         // Create array for doctor names and appointment counts
         $doctorAppointments = [];
         foreach ($doctors as $doctor) {

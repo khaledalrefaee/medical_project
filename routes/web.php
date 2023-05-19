@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\back\ClinicsController;
 use App\Http\Controllers\back\DoctorController;
 use App\Http\Controllers\back\MapController;
@@ -31,27 +32,28 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {return view('backend.index');})->name('home');
-    Route::group(['middleware'=>['guest']], function () {
+Route::post('/log/in', [AuthController::class, 'login']);
 
+// Authenticated Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('backend.index');
+    })->name('home');
+
+    // Guest Routes
+    Route::middleware(['guest'])->group(function () {
         Route::get('/', function () {
             return view('backend.index');
         });
     });
-});
 
-// Add a middleware that redirects unauthenticated users to the login page
-Route::middleware(['auth'])->group(function () {
-    // Add more authenticated routes here
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::get('/logout',[AdminController::class,'destroy'])->name('Logout');
+    // Other Authenticated Routes
+    Route::get('/Chart', [StatisticsController::class, 'chart'])->name('chart');
 
-    //Chart
-    Route::get('/Chart',[StatisticsController::class,'chart'])->name('chart');
-
-   //Map
-    Route::get('map',[MapController::class,'index'])->name('map');
+    Route::get('map', [MapController::class, 'index'])->name('map');
 
     //Users
     Route::get('/all_users',[UserController::class,'index'])->name('all_user');
@@ -140,25 +142,29 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-        //Mail
+    //Mail
 
     Route::resource('mail',MailController::class);
 
     Route::get('/see/All',[MailController::class,'see_All'])->name('see');
     Route::get('redirect',function (){
-       return redirect()->route('home');
+        return redirect()->route('home');
     });
 
-
-
-});
-
-
-Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', \App\Http\Controllers\RoleController::class);
-    Route::resource('users', \App\Http\Controllers\UserController::class);
 
+    Route::resource('users', \App\Http\Controllers\UserController::class);
 });
+
+
+
+
+
+
+
+
+
+
 
 
 

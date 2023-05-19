@@ -46,7 +46,8 @@ class PharmieseRepository implements PharmieseRepositoryInterface{
             $Pharmiese->save();
             toastr()->warning('messages.Update','Update');
             return redirect()->route('all.pharmese');
-        } catch (Exception $e) {
+        }
+        catch (Exception $e) {
             return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
         }
     }

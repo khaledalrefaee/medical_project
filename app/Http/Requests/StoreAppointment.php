@@ -30,8 +30,7 @@ class StoreAppointment extends FormRequest
         return [
             'name'  =>  'required',
             'doctor_id' => 'required|exists:doctors,id',
-            'date' => 'required|date_format:Y-m-d',
-
+            'date' => 'required|date_format:Y-m-d|after:today',
             'time' => [
                 'required',
                 'date_format:H:i',

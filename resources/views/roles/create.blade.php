@@ -2,6 +2,44 @@
 @extends('backend.index')
 @section('content')
 
+    <style>
+        .checkbox-label {
+            display: inline-block;
+            margin-right: 10px;
+            font-size: 16px;
+            line-height: 24px;
+            color: #333;
+        }
+
+        .checkbox-input {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            margin-right: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            vertical-align: middle;
+        }
+
+        .checkbox-input:checked {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .checkbox-input:checked:after {
+            content: '\2713';
+            display: block;
+            color: #fff;
+            font-size: 14px;
+            line-height: 18px;
+            text-align: center;
+        }
+
+        .checkbox-text {
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
@@ -40,10 +78,10 @@
             <br/>
             <div>
                 @foreach($permission as $value)
-                    <div style="display: inline-block; margin-right: 10px;">
-                        <label>{{ Form::checkbox('permission[]', $value->id, false, array('class' => 'name')) }}
-                            {{ $value->name }}</label>
-                    </div>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="permission[]" value="{{ $value->id }}" class="checkbox-input">
+                        <span class="checkbox-text">{{ $value->name }}</span>
+                    </label>
                 @endforeach
             </div>
         </div>

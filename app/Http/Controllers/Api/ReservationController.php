@@ -36,7 +36,7 @@ class ReservationController extends Controller
                 })
             ],
             'doctor_id' => 'required|exists:doctors,id',
-            'date' => 'required|date_format:Y-m-d',
+            'date' => 'required|date_format:Y-m-d|after:today',
             'phone' => 'required|regex:/^9\d{8}$/',
             'birthday' => 'required',
         ]);
@@ -66,6 +66,22 @@ class ReservationController extends Controller
     }
 
 
+    public function edit($id)
+    {
+        $reservation = Reservation::with('doctor')->find($id);
+
+        if (!$reservation) {
+            return response()->json('The reservation was not found', 404);
+        }
+
+        if ($reservation->status === 'Pending') {
+            return response()->json($reservation);
+        } else {
+            return response()->json('Reservation cannot be updated because it is not in Pending status.', 500);
+        }
+    }
+
+
     public function update(Request $request,$id)
     {
         $reservation = Reservation::find($id);
@@ -77,7 +93,7 @@ class ReservationController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'doctor_id' => 'required|exists:doctors,id',
-                'date' => 'required|date_format:Y-m-d',
+                'date' => 'required|date_format:Y-m-d|after:today',
                 'time' => [
                     'required',
                     'date_format:H:i',

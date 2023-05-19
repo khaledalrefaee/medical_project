@@ -60,9 +60,9 @@ class UserController extends Controller
         return $this->User->editUser($id);
     }
 
-    public function update(StoreUser $request ){
+    public function update(Request $request ,$id ){
 
-        return $this->User->UpdateUser($request);
+        return $this->User->UpdateUser($request ,$id);
     }
 
 

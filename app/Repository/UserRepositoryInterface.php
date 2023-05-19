@@ -14,5 +14,5 @@ interface UserRepositoryInterface
 
     public function editUser($id);
 
-    public function UpdateUser($request);
+    public function UpdateUser($request, $id);
 }

@@ -21,8 +21,8 @@ class Mailnotification extends Notification
      */
     public function __construct($user_created,$text,$mail_id)
     {
-        $this -> mail_id = $mail_id;
-       $this->user_created =$user_created;
+        $this -> mail_id    = $mail_id;
+        $this->user_created = $user_created;
         $this -> text = $text;
     }
 

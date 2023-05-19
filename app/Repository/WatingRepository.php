@@ -5,7 +5,6 @@ namespace App\Repository;
 use App\Models\Clinics;
 use App\Models\Doctor;
 use App\Models\Gender;
-use App\Models\Pharmise;
 use App\Models\Reservation;
 use App\Models\Waiting;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -141,11 +140,9 @@ class WatingRepository implements WatingRepositoryInterface
             $times[] = Carbon::parse("09:00")->addMinutes(30 * $i)->format('H:i');
         }
 
-        $ctime = Reservation::find('time');
-
 
         $doctor = Doctor::all();
-        return view('backend.Reservations.edit_appointment', compact('Reservation','times','doctor','ctime'));
+        return view('backend.Reservations.edit_appointment', compact('Reservation','times','doctor'));
 
     }
     public function update_appointment($request){
@@ -153,7 +150,7 @@ class WatingRepository implements WatingRepositoryInterface
         $request->validate([
             'name' => 'required',
             'doctor_id' => 'required',
-            'date' => 'required|date_format:Y-m-d',
+            'date' => 'required|date_format:Y-m-d|after:today',
             'time' => ['required',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
                     return $query->where('doctor_id', $request->doctor_id)

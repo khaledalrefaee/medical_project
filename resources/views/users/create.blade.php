@@ -100,7 +100,9 @@
 <input type="hidden" name="longitude" value="{{ old('longitude') }}" id="longitude"  readonly>
 
 <div id="map" style="height: 500px"></div>
+
 <input type="hidden" name="latitude" class="form-control @error('latitude') is-invalid @enderror"  value="{{ old('latitude') }}"  id="latitude" readonly>
+
 @error('latitude')
 <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
 @enderror

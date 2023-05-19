@@ -62,10 +62,10 @@ class DoctorRepository implements DoctoerRepositoryInterface
 
     public function show($id){
         $doc = Doctor::findOrFail($id);
-        $doctor = Detail::where('doctor_id', $id)->first();
         $reservation = $doc->reservation()->get();; // الحصول على حجوزات الطبيب
+        $doctor = Detail::where('doctor_id', $id)->first();
         toastr()->info('You are show Doctor');
-        return view('backend.Doctor.show',compact('doctor','reservation'));
+        return view('backend.Doctor.show',compact('doc','doctor','reservation'));
     }
 
 
@@ -80,49 +80,41 @@ class DoctorRepository implements DoctoerRepositoryInterface
 
     public function update_doctoer($request ,$id)
     {
-
-        DB::beginTransaction();
-
+        $doctor = Doctor::findorFail($id);
+        $request->validate([
+            'clinic_id'      =>     'required',
+            'name'           =>     'required',
+            'email_1'         =>      'required||unique:doctors,email,'.$id,
+            'email'         =>      'required||unique:details,email,'.$id,
+            'phone'         =>      'required||regex:/^9\d{8}$/',
+            'specialization'  =>'required',
+        ]);
         try {
-            // استرجع الطبيب وسجلات التفاصيل لتحديثها
-            $doctor = DB::table('doctors')->where('id', $id)->first();
-            $detail = DB::table('details')->where('doctor_id', $id)->first();
 
-            // Update the doctor record
-            DB::table('doctors')
-                ->where('id', $id)
-                ->update([
-                    'name' => $request->name,
-                    'email' => $request->email_1,
-                    'password' =>Hash::make($request->password),
-                    'clinic_id'=>$request->clinic_id,
 
-                    // ... other fields to update
-                ]);
+            $doctor->name = $request->name;
+            $doctor->email = $request->email_1;
+            $doctor->password = Hash::make($request->password);
+            if (!empty($request->password)) {
+                $doctor->password = Hash::make($request->password);
+            }else{
+                unset($doctor->password);
+            }
+            $doctor->clinic_id = $request->clinic_id;
+            // ... other fields to update
+            $doctor->save();
 
-            // Update the detail record
-            DB::table('details')
-                ->where('doctor_id', $id)
-                ->update([
-                    'specialization' => $request->specialization,
-                    'phone' => $request->phone,
-                    'email' =>$request->email,
+            $detail = Detail::where('doctor_id', $id)->first();
 
-                    // ... other fields to update
-                ]);
-
-            // Commit the transaction
-            DB::commit();
+            $detail->specialization = $request->specialization;
+            $detail->phone = $request->phone;
+            $detail->email = $request->email;
+            // ... other fields to update
+            $detail->save();
 
             toastr()->warning('done editing');
-
             return redirect()->route('all_doctor');
         } catch (\Exception $e) {
-
-            // Roll back the transaction
-
-            DB::rollback();
-
             // Log the error or display an error message to the user
             return redirect()->back()->with('error', 'Error updating record: '.$e->getMessage());
         }

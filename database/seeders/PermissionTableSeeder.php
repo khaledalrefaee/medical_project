@@ -27,8 +27,7 @@ class PermissionTableSeeder extends Seeder
             'user delete',
             'user show',
 
-            'add role for users',
-            'change status for users',
+
 
             'user employee all',
             'user employee create',

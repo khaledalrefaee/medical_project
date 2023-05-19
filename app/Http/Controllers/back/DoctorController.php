@@ -54,7 +54,7 @@ class DoctorController extends Controller
     }
 
 
-    public function update(StoreDoctoer $request,$id){
+    public function update(Request $request,$id){
        return $this->Doctoer->update_doctoer($request ,$id);
     }
 

@@ -12,8 +12,10 @@ use App\Http\Controllers\back\ReservationController;
 use App\Http\Controllers\back\StatisticsController;
 use App\Http\Controllers\back\UserController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\ChatController;
 
 
+use App\Models\GroupMasseg;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +54,21 @@ Route::middleware(['auth'])->group(function () {
 
     // Other Authenticated Routes
     Route::get('/Chart', [StatisticsController::class, 'chart'])->name('chart');
+
+    Route::get('/group/chat', function () {
+        return view('backend.Chating.group');
+    });
+
+    Route::get('delete_chat',
+        function () {
+        GroupMasseg::truncate();
+        return redirect()->route('chat.index');
+    });
+
+    Route::get('/chat', [ChatController::class, 'index'])->middleware(['auth'])->name('chat.index');
+    Route::get('/chat/{senderId}/{receiverId}', [ChatController::class, 'showMessages'])->middleware(['auth'])->name('chat.show');
+    Route::post('/chat/send', [ChatController::class, 'sendMessage'])->middleware(['auth'])->name('chat.send');
+
 
     Route::get('map', [MapController::class, 'index'])->name('map');
 
@@ -155,22 +172,3 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('users', \App\Http\Controllers\UserController::class);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

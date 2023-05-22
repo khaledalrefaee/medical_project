@@ -36,7 +36,7 @@
     <div class="container-login100">
         <div class="wrap-login100">
             <div class="login100-pic js-tilt" data-tilt>
-                <img src="{{asset('front_log/images/img-01.png')}}" alt="IMG">
+                <img src="{{asset('front_log/images/imag_02.jpeg')}}" alt="IMG">
             </div>
 
             <form class="login100-form validate-form" method="post" action="{{url('log/in')}}">

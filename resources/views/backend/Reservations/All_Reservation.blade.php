@@ -144,30 +144,10 @@
         </div>
 
 
-   {{--   <!-- Add a script tag to include jQuery -->--}}
-
-{{--   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>--}}
-
-
-{{--        <script>--}}
-{{--            // Set the interval time in milliseconds--}}
-{{--            var intervalTime = 5000;--}}
-
-{{--            // Set the interval function--}}
-{{--            setInterval(function() {--}}
-{{--                // Perform an AJAX request--}}
-{{--                $.ajax({--}}
-{{--                    url: '/Reservations',--}}
-{{--                    type: 'GET',--}}
-{{--                    success: function(data) {--}}
-{{--                        // Update the content of the target element--}}
-{{--                        $('#target-element').html(data);--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            }, intervalTime);--}}
-{{--        </script>--}}
-
+        <script>
+            // تحديث الصفحة كل 5 ثوانٍ
+            setInterval(function() {
+              location.reload();
+            }, 10000); // 5000 ميلي ثانية تعادل 5 ثوانٍ
+          </script>
 @endsection
-
-
-

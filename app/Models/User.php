@@ -43,6 +43,7 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
+
     /**
      * The attributes that should be cast.
      *
@@ -67,9 +68,22 @@ class User extends Authenticatable
         return $this->belongsTo(Gender::class);
     }
 
-
-
     public function reservation(){
         return $this->hasMany(Reservation::class);
+    }
+
+    public function messages()
+    {
+      return $this->hasMany(messages::class, 'receiver_id');
+    }
+
+    public function sender()
+    {
+      return $this->hasMany(messages::class, 'sender_id');
+    }
+
+    public function sessions()
+    {
+      return $this->hasMany(Session::class,);
     }
 }

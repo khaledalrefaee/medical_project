@@ -16,8 +16,9 @@ class UserRepository implements UserRepositoryInterface
     {
         // نستخدم الدالة whereDoesntHave للتحقق مما إذا كان المستخدم ليس لديه الدور
         $Users = User::whereDoesntHave('roles', function ($query) {
-            $query->where('name', 'Admin');
-        })->orderBy('id','DESC')->paginate(5);
+            $query->where('name', 'Admin')->orWhere('name', 'employee');
+        })->orderBy('id', 'DESC')->paginate(5);
+
 
 //يتم إنشاء مصفوفة جديدة باستخدام collect($user)، ويتم إضافة عنصر "age" الذي يحتوي على العمر المحسوب باستخدام merge(['age' => $age]).
 

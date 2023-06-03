@@ -198,10 +198,12 @@
                     Message Center
                 </h6>
             </br>
+                @can('Send Notification')
                     <a href="{{route('mail.create')}}" class="dropdown-item">
                         <i class="fas fa-envelope mr-2"></i>  send mail
                         <span class="float-right text-muted text-sm"> </span>
                     </a>
+                @endcan
                 <a class="dropdown-item text-center small text-gray-500" href="{{route('see')}}">Read More Messages</a>
 
                 </br>
@@ -212,7 +214,7 @@
                                 <span class="float-right text-sm {{ $notifications->read_at ? 'text-muted' : 'text-danger' }}"><i class="fas fa-star"></i></span>
 
                                 <div>  {{ $notifications->data['message']}}  {{$notifications->data['user_created']}}</div>
-                                <a href="{{route('mail.show',$notifications->data['mail_id'])}}" ><p class="text-sm">{{ $notifications->data['text']}}</p></a>
+                                <a href="{{route('mail.show' , $notifications->data['mail_id'])}}" ><p class="text-sm">{{$notifications->data['text']}}</p></a>
                                 <div class="small text-gray-500">{{$notifications->created_at}}</div>
                                 </div>
                         </a>

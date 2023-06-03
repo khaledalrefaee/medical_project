@@ -65,6 +65,9 @@
                 @error('email')
                 <div class="error-message">{{ $message }}</div>
                 @enderror
+                @error('status')
+                <div class="error-message">{{ $message }}</div>
+                @enderror
                 <div class="container-login100-form-btn">
                     <button class="login100-form-btn" type="submit">
                         Login

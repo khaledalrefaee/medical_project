@@ -101,7 +101,7 @@
                     <div class="col-md-6">
                         <strong>total : </strong>
                         <div class="input-group mb-3">
-                            <span class="input-group-text">$</span>
+                            <span class="input-group-text">SYP</span>
                             <input type="text" name="total"  class="form-control @error('total') is-invalid @enderror" aria-label="Amount (to the nearest dollar)" value="{{$Reservation->total}}">
                             <span class="input-group-text">.00</span>
                             @error('total')

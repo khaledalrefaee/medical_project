@@ -126,14 +126,14 @@
             <p><strong>Reservation time:</strong> {{ $Reservation->time }}</p>
             <p><strong>Birthday:</strong> {{ $Reservation->birthday }}</p>
             <p><strong>Status:</strong> {{ $Reservation->status }}</p>
-            <p><strong>Total:</strong> {{ $Reservation->total }} $</p>
+            <p><strong>Total:</strong> {{ $Reservation->total }} SYP</p>
             <div ><strong>Address:</strong></div>
             <p>{{ $Reservation->address }}</p>
         </div>
     </div>
 
     <div class="subtotal">
-        <h2>Subtotal: {{ $Reservation->total }} $</h2>
+        <h2>Subtotal: {{ $Reservation->total }} SYP</h2>
     </div>
 
     <div class="thanks">

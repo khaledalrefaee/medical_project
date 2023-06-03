@@ -30,7 +30,7 @@
                             <div class="input-group-append">
                                 <span class="input-group-text" >00963</span>
                             </div>
-                            <input type="number" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{$user->phone}}"  placeholder="number phone">
+                            <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"  value="{{$user->phone}}"  placeholder="number phone">
                             @error('phone')
                             <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                             @enderror

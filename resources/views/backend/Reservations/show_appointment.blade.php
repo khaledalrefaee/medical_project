@@ -47,7 +47,7 @@
                 </span>
                 </div>
                 <div class="col-md-6">
-                    <strong>Total:</strong> {{ $Reservation->total }}
+                    <strong>Total:</strong> {{ $Reservation->total }} SYP
                 </div>
 
                 <div class="text-center mb-3">

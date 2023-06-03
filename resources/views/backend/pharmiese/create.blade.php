@@ -20,7 +20,7 @@
                     <div class="col-md-6 mb-3">
                         <strong>Medicine Prise :</strong>
                             <div class="input-group mb-3">
-                                <span class="input-group-text">$</span>
+                                <span class="input-group-text">SYP</span>
                             <input type="text" class="form-control @error('prise') is-invalid @enderror" name="prise"  value="{{ old('prise') }}" placeholder="prise medicine">
                                 <span class="input-group-text">.00</span>
 

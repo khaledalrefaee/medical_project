@@ -12,14 +12,12 @@ class Mailnotification extends Notification
     use Queueable;
 
     private $mail_id;
-    private $user_created;
+    private $user_create;
     private $text;
-    /**
-     * Create a new notification instance.
-     *
-     * @return void
-     */
-    public function __construct($user_created,$text,$mail_id)
+
+
+
+    public function __construct($mail_id,$user_created,$text)
     {
         $this -> mail_id    = $mail_id;
         $this->user_created = $user_created;

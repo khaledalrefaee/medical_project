@@ -29,7 +29,7 @@
             @foreach($phamiese as $phamies)
                 <tr class="odd">
                     <td>{{$phamies->name}}</td>
-                    <td>{{$phamies->prise}}</td>
+                    <td>{{$phamies->prise}} SYP</td>
                     <td>{{$phamies->description}}</td>
                     <td>
 

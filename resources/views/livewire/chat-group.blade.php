@@ -24,10 +24,11 @@
                             @else
 
                                 <div class="incoming_msg">{{ $message->user->name }}
-                                    <div class="incoming_msg_img"> <img
-                                            src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                <div class="incoming_msg_img">
+                                    <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+
                                     <div class="received_msg">
-                                        <div class="received_withd_msg">
+                                    <div class="received_withd_msg">
                                             <p>{{ $message->message_text }}</p>
                                             <span
                                                 class="time_date">{{ $message->created_at->diffForHumans(null, false, false) }}</span>
@@ -56,9 +57,9 @@
             </div>
 
             <div class="d-flex justify-content-center mb-3">
-                @if (auth()->user()->email == 'admin@gmail.com')
+                @can('Delete all massage')
                     <a class="btn btn-primary" href="{{ url('delete_chat') }}">Delete All Messages</a>
-                @endif
+                @endcan
             </div>
         </div>
     </div>

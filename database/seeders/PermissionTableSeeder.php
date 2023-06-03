@@ -37,6 +37,10 @@ class PermissionTableSeeder extends Seeder
 
             'Show chart',
 
+            'Send Notification',
+
+            'Delete all massage',
+
             'Map',
 
             'nurse all',

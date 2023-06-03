@@ -30,41 +30,44 @@ class MailController extends Controller
      */
     public function create()
     {
-        return view ('backend.Mail.create');
+        return view('backend.Mail.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
         $request->validate([
-            'name'      =>   'required|email',
-            'text'      =>   'required',
+            'text' => 'required',
         ]);
         $mail = Mail::create([
-            'name' => $request->name,
             'text' => $request->text,
         ]);
 
-        $name = $request->input('name');
 
-        $user = User::where('email', $name)->first();
+
+        // اوصل للمستخدمين يلي عندهن صلاحية "admin" أو "employee" فقط
+        $users = User::whereHas('roles', function ($query) {
+            $query->where('name', 'Admin')
+                ->orWhere('name', 'employee');
+        })->where('id', '!=', auth()->user()->id)->get();
+
+        //هات الشخص يلي كريت البوست و هات اسمو مشان حط كريت تبعو
+
         $user_created = auth()->user()->name;
-        if ($user) {
-            $notification = new Mailnotification($user_created ,$mail->text,$mail->id );
-            $user->notify($notification);
+        // يلي معك id شايف البوست يلي تكريت خود
+        Notification::send($users, new Mailnotification($mail->id, $user_created, $mail->text));
 
-            toastr()->success('success send mail','success');
-            return redirect()->route('home');
-        } else {
-            return back()->withInput()->withErrors(['name' => 'Invalid email address']);
-        }
+        toastr()->success('success send Notification', 'success');
 
+        return redirect()->route('home');
     }
+
+
 
 
 

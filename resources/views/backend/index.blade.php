@@ -37,7 +37,7 @@
 
 
         <!-- Sidebar -->
-      @include('backend.partials.sidebar')
+
         <!-- /.sidebar -->
     </aside>
 

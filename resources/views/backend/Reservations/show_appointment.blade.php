@@ -47,7 +47,12 @@
                 </span>
                 </div>
                 <div class="col-md-6">
-                    <strong>Total:</strong> {{ $Reservation->total }} SYP
+                    <strong>Total:</strong>
+                    @if( $Reservation->total === Null)
+                        0.00 SYP
+                    @else
+                    {{ $Reservation->total }} SYP
+                    @endif
                 </div>
 
                 <div class="text-center mb-3">

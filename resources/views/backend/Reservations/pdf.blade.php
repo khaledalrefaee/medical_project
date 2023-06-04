@@ -21,7 +21,7 @@
             margin: 30px auto;
             padding: 30px;
             background-color: #ffffff;
-            border: 2px solid #4caf50;
+            border: 2px solid #00d3f5; /* تغيير لون الحدود */
             border-radius: 6px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.15);
         }
@@ -32,11 +32,15 @@
             margin-bottom: 30px;
         }
         .header img {
-            max-width: 150px;
+            max-width: 200px; /* تحديد عرض الصورة */
+            max-height: 150px; /* تحديد ارتفاع الصورة */
+            object-fit: contain; /* تحديد كيفية تناسب الصورة داخل الحاوية */
+            float: right; /* تحديد موقع الصورة على الجانب الأيمن */
+            margin-left: 20px; /* تحديد الهامش بين الصورة والعنوان */
         }
         .header h2 {
             font-size: 28px;
-            color: #4caf50;
+            color: #00d3f5; /* تغيير لون العنوان */
             margin: 0;
         }
         .invoice-details {
@@ -59,7 +63,7 @@
         }
         .invoice-details strong {
             font-weight: bold;
-            color: #4caf50;
+            color: #00d3f5; /* تغيير لون النص البارز */
         }
         .subtotal {
             display: flex;
@@ -68,7 +72,7 @@
         }
         .subtotal h2 {
             font-size: 28px;
-            color: #4caf50;
+            color: #00d3f5; /* تغيير لون الإجمالي */
             margin: 0;
         }
         .thanks {
@@ -78,7 +82,7 @@
         .thanks p {
             font-size: 20px;
             font-weight: bold;
-            color: #4caf50;
+            color: #00d3f5; /* تغيير لون الشكر */
             margin: 0;
         }
         .signature {
@@ -93,7 +97,7 @@
         .diagnosis {
             margin-bottom: 40px;
             font-size: 22px;
-            color: #4caf50;
+            color: #00d3f5; /* تغيير لون التشخيص */
             font-weight: bold;
         }
         @media (max-width: 768px) {
@@ -109,31 +113,42 @@
 <div class="invoice-container">
 
     <div class="header">
-        <img src="" alt="">
+        <img src="data:image/jpeg;base64,{{ base64_encode(file_get_contents(public_path('front_log/images/imag_02.jpeg'))) }}" alt="Your Image">
+
         <h2>My Clinic</h2>
     </div>
 
     <div class="invoice-details">
         <div class="left-column">
             <p><strong>Name:</strong> {{ $Reservation->name }}</p>
-            <p><strong>Email:</strong> {{ $Reservation->user->email }}</p>
+            <p><strong>Booked by :</strong> {{ $Reservation->user->name }}</p>
             <p><strong>Phone:</strong> {{ $Reservation->phone }}</p>
-            <p><strong>Diagnosis:</strong>{{ $Reservation->diagnosis }}</p>
+            <p><strong>Diagnosis:</strong> {{ $Reservation->diagnosis }}</p>
         </div>
         <div class="right-column">
             <br>
-            <h3><span style="color: #4caf50;">Reservation Date:</span> #{{ $Reservation->date}}</h3>
+            <h3><span style="color: #00d3f5;">Reservation Date:</span> #{{ $Reservation->date}}</h3>
             <p><strong>Reservation time:</strong> {{ $Reservation->time }}</p>
             <p><strong>Birthday:</strong> {{ $Reservation->birthday }}</p>
             <p><strong>Status:</strong> {{ $Reservation->status }}</p>
-            <p><strong>Total:</strong> {{ $Reservation->total }} SYP</p>
-            <div ><strong>Address:</strong></div>
-            <p>{{ $Reservation->address }}</p>
+            <p><strong>Total:</strong>
+                @if( $Reservation->total === Null)
+                    0.00 SYP
+                @else
+                    {{ $Reservation->total }} SYP
+                @endif</p>
+            <div ><p><strong>Address:</strong>  {{ $Reservation->address }}</p></div>
+
         </div>
     </div>
 
     <div class="subtotal">
-        <h2>Subtotal: {{ $Reservation->total }} SYP</h2>
+        <h2>Subtotal:
+            @if( $Reservation->total === Null)
+                0.00 SYP
+            @else
+                {{ $Reservation->total }} SYP
+            @endif</h2>
     </div>
 
     <div class="thanks">

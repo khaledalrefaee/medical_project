@@ -72,7 +72,7 @@
 
                 <div class="col-md-6 mb-3">
                     <strong>Birthday:</strong>
-                    <input type="date" class="form-control @error('date') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" placeholder="Birthday">
+                    <input type="date" class="form-control @error('birthday') is-invalid @enderror" name="birthday" value="{{ old('birthday') }}" placeholder="Birthday">
                     @error('birthday')
                     <div class="invalid-feedback" style="color: #8B0000;">{{ $message }}</div>
                     @enderror

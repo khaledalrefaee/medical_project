@@ -67,7 +67,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/chat', [ChatController::class, 'index'])->middleware(['auth'])->name('chat.index');
     Route::get('/chat/{senderId}/{receiverId}', [ChatController::class, 'showMessages'])->middleware(['auth'])->name('chat.show');
-    Route::post('/chat/send', [ChatController::class, 'sendMessage'])->middleware(['auth'])->name('chat.send');
+
+
+    Route::livewire('/send-message/{senderId}/{receiverId}', 'ChatSingle')->name('send-message');
 
 
     Route::get('map', [MapController::class, 'index'])->name('map');

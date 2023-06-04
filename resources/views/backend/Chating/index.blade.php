@@ -85,6 +85,7 @@
                     @endif
                 </div>
                 <div class="desc-contact">
+
                     <a href="{{ route('chat.show', ['senderId' => auth()->id(), 'receiverId' => $user->id]) }}">
                         <p class="name">{{ $user->name }}</p>
                     </a>

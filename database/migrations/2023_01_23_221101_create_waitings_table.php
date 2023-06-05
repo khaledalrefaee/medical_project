@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('gender_id')->constrained('genders')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('address');
             $table->date('birthday');
+            $table->string('status');
             $table->foreignId('doctor_id')->constrained('doctors')->cascadeOnUpdate()->cascadeOnDelete();
             $table->timestamps();
         });

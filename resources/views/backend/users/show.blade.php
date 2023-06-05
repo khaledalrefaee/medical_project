@@ -147,14 +147,13 @@
 
 
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDG9moWiWFp4yE6PDUWvUbDUQYRP-8ltRg&libraries=places&callback=initMap" async defer></script>
 
     <script>
         function initMap() {
             var location = { lat: {{$user->latitude}}, lng: {{$user->longitude}} }; // example location
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: location,
-                zoom: 20
+                zoom: 21
             });
 
             var marker = new google.maps.Marker({

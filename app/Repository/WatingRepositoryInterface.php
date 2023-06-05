@@ -20,6 +20,10 @@ interface WatingRepositoryInterface
 
     public function delete_wating($id);
 
+    public function ChngeStatusWating($id);
+
+    public function ChngeCancellingWating($id);
+
 ///
 ///
 ///

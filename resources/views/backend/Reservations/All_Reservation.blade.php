@@ -39,7 +39,21 @@
                                                     <td>{{$waiting->name}}  </td>
                                                     <td>{{$waiting->doctor->name}} </td>
                                                     <td> {{$waiting->created_at}}</td>
-                                                    <td> <span class="badge badge-pill badge-warning">waiting</span></td>
+                                                     <td><span class="badge
+                                                                                    @if($waiting->status === 'completed') badge-success
+                                                                                    @elseif($waiting->status === 'Cancelling') badge-danger
+                                                                                    @elseif($waiting->status === 'waiting') badge-warning
+                                                                                    @else badge-secondary
+                                                                                    @endif">
+
+                                                                                    @if($waiting->status === 'completed')
+                                                                      completed
+                                                                  @elseif($waiting->status === 'Cancelling')
+                                                                      Cancelling
+                                                                  @elseif($waiting->status === 'waiting')
+                                                                 waiting
+                                                                  @endif
+                                                                 </span></td>
                                                         <td>
                                                             @can('waiting delete')
                                                             <a href="{{route('delete.wating',$waiting->id)}}" class="btn btn-danger" title="Delete Data"> &nbsp;<i title=" Delete"  class="fa fa-trash"></i></a>
@@ -50,6 +64,11 @@
                                                             @can('waiting edit')
                                                             <a href="{{route('edit.waitin',$waiting->id)}}" class="btn btn-warning" title="edit Data"> &nbsp;<i class="fa fa-edit"></i> </a>
                                                             @endcan
+
+                                                                <a href="{{route('Change.Status.waiting',$waiting->id)}}"> <button type="button" class="btn btn-outline-success">completed</button></a>
+
+                                                                <a href="{{route('Change.Cancelling.waiting',$waiting->id)}}" ><button type="button" class="btn btn-outline-dark">Cancelling</button></a>
+
                                                         </td>
                                                     @endforeach
                                                 </tr>

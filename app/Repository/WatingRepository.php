@@ -16,10 +16,11 @@ class WatingRepository implements WatingRepositoryInterface
 {
     public function dailyAppointments()
     {
-        // Retrieve daily appointments for the current day
-        $Reservations = Reservation::whereDate('date', Carbon::today())->orderBy('id','DESC')->paginate(5);;
 
-        return view('backend.Reservations.daily-appointments', compact('Reservations'));
+        $Reservations = Reservation::whereDate('date', Carbon::today())->orderBy('id','DESC')->paginate(5);;
+        $waitings = Waiting::whereDate('created_at', Carbon::today())->orderBy('id','DESC')->paginate(5);;
+
+        return view('backend.Reservations.daily-appointments', compact('Reservations','waitings'));
     }
 
    public function getAll_wating_reservation()
@@ -49,7 +50,7 @@ class WatingRepository implements WatingRepositoryInterface
             $Waiting->address = $request->address;
             $Waiting->birthday = $request->birthday;
             $Waiting->doctor_id = $request->doctor_id;
-
+            $Waiting->status ='waiting';
             $Waiting->save();
             toastr()->success('success create Waiting','success');
             return redirect()->route('Reservations.all');
@@ -67,8 +68,8 @@ class WatingRepository implements WatingRepositoryInterface
         $waiting = Waiting::findorFail($id);
         $gender =Gender::all();
         $doctor =Doctor::all();
-        $clinc= Clinics::all();
-        return view('backend.Reservations.edit_Waiting',compact('waiting','gender','doctor','clinc'));
+
+        return view('backend.Reservations.edit_Waiting',compact('waiting','gender','doctor'));
     }
     public function update_waiting($request){
         try {
@@ -93,6 +94,19 @@ class WatingRepository implements WatingRepositoryInterface
         return redirect()->route('Reservations.all');
     }
 
+    public function ChngeStatusWating($id){
+        $waiting = Waiting::find($id);
+        $waiting->status = 'completed';
+        $waiting->save();
+        return redirect()->route('Reservations.all');
+    }
+
+    public function ChngeCancellingWating($id){
+        $waiting = Waiting::find($id);
+        $waiting->status = 'Cancelling';
+        $waiting->save();
+        return redirect()->route('Reservations.all');
+    }
 
     ///
     ///

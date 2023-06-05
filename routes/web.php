@@ -69,7 +69,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/chat/{senderId}/{receiverId}', [ChatController::class, 'showMessages'])->middleware(['auth'])->name('chat.show');
 
 
-    Route::livewire('/send-message/{senderId}/{receiverId}', 'ChatSingle')->name('send-message');
 
 
     Route::get('map', [MapController::class, 'index'])->name('map');
@@ -138,8 +137,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit/waiting/{id}',[ReservationController::class,'edit_waiting'])->name('edit.waitin');
     Route::post('/update/waiting/{id}',[ReservationController::class,'update_waiting'])->name('update.waiting');
     Route::get('delete/wating/{id}',[ReservationController::class,'delete_wating'])->name('delete.wating');
-
-
+    Route::get('/Change/Status/waiting/{id}',[ReservationController::class,'ChngeStatusWating'])->name('Change.Status.waiting');
+    Route::get('/Cancelling/Status/waiting/{id}',[ReservationController::class,'ChngeCancellingWating'])->name('Change.Cancelling.waiting');
 
 
     Route::get('/create/appointment',[ReservationController::class,'create_appointment'])->name('create.appointment');

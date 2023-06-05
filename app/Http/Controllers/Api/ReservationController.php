@@ -39,6 +39,8 @@ class ReservationController extends Controller
             'date' => 'required|date_format:Y-m-d|after:today',
             'phone' => 'required|regex:/^9\d{8}$/',
             'birthday' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
         ]);
 
         if ($validator->fails()) {
@@ -56,6 +58,8 @@ class ReservationController extends Controller
         $Reservation->birthday = $request->birthday;
         $Reservation->address = $request->address;
         $Reservation->doctor_id = $request->doctor_id;
+        $Reservation->latitude = $request->latitude;
+        $Reservation->longitude = $request->longitude;
         $Reservation->status = 'Pending';
 
         $Reservation->save();

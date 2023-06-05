@@ -43,6 +43,7 @@ class ReservationController extends Controller
 
     public function daily_reservation(){
         return $this->Wating->dailyAppointments();
+
     }
 
     public function index(){
@@ -76,6 +77,13 @@ class ReservationController extends Controller
       return $this->Wating->delete_wating($id);
     }
 
+    public function ChngeStatusWating($id){
+        return $this->Wating->ChngeStatusWating($id);
+    }
+
+    public function ChngeCancellingWating($id){
+        return $this->Wating->ChngeCancellingWating($id);
+    }
 
 
     ////

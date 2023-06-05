@@ -9,7 +9,7 @@ class Waiting extends Model
 {
     use HasFactory;
 
-    protected $fillable =['name','gender_id','address','birthday','doctor_id'];
+    protected $fillable =['name','gender_id','address','birthday','doctor_id','status'];
 
     public function gender(){
         return $this->belongsTo(Gender::class);

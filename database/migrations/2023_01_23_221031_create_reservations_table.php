@@ -24,6 +24,8 @@ return new class extends Migration
             $table->time('time');
             $table->date('date');
             $table->string('status');
+            $table->double('latitude')->nullable();
+            $table->double('longitude')->nullable();
             $table->text('diagnosis')->nullable();
             $table->string('total')->nullable();
             $table->softDeletes();

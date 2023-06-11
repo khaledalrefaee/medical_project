@@ -25,4 +25,6 @@ interface DoctoerRepositoryInterface
 
   public function Filter_Clinces($request);
 
+  public function restoreDoctor($id);
+
 }

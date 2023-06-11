@@ -16,12 +16,13 @@
                                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" aria-describedby="example2_info">
                                             <thead>
                                             <tr>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Doctor</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">Doctor email application </th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">name Clinic</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">specialization Doctor</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">phone Doctor</th>
-                                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending">email Doctor</th>
+                                                <th>name Doctor</th>
+                                                <th>Doctor email application </th>
+                                                <th>name Clinic</th>
+                                                <th>specialization Doctor</th>
+                                                <th>phone Doctor</th>
+                                                <th>email Doctor</th>
+                                                <th>restore Doctor</th>
 
 
 
@@ -38,7 +39,9 @@
                                                     <td>{{$detail->detail->specialization}}</td>
                                                     <td>{{$detail->detail->phone}}</td>
                                                     <td>{{$detail->detail->email}}</td>
-
+                                                    <td>                                                             
+                                                        <a href="{{route('restore.Doctor', $detail->id)}}">  <button type="button" class="btn btn btn-outline-info">restore</button></a>
+                                                    </td>
                                                     @endforeach
 
                                             </tr>

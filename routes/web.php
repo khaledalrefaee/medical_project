@@ -115,7 +115,9 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/update/doctor/{id}',[DoctorController::class,'update'])->name('update.doctor');
     Route::get('/delete/doctor/{id}',[DoctorController::class,'destroy'])->name('delete.doctor');
     Route::get('/show/delete/doctor',[DoctorController::class,'show_destroy'])->name('show.delete.doctor');
+    Route::get('/restore/Doctor/{id}',[DoctorController::class,'restoreDoctor'])->name('restore.Doctor');
 
+    
     Route::post('Filter_Clinces', [DoctorController::class,'Filter_Clinces'])->name('Filter_Clinces');
 
     //pharmese

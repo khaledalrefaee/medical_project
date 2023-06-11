@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Events\AppointmentAdded;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAppointment;
 use App\Models\Reservation;
@@ -20,7 +19,11 @@ class ReservationController extends Controller
         $reservations = Reservation::where('user_id', Auth::id())->orderBy('id', 'DESC')
             ->with('doctor')->get();
 
-        return response()->json($reservations, 200);
+        if ($reservations->isEmpty()) {
+            return response('No bookings found', 401);
+        } else {
+            return response()->json($reservations, 200);
+        }
     }
 
     public function store(Request $request)
@@ -36,7 +39,7 @@ class ReservationController extends Controller
                 })
             ],
             'doctor_id' => 'required|exists:doctors,id',
-            'date' => 'required|date_format:Y-m-d|after:today',
+            'date' => 'required|date_format:Y-m-d|after_or_equal:today',
             'phone' => 'required|regex:/^9\d{8}$/',
             'birthday' => 'required',
             'latitude' => 'required',
@@ -97,7 +100,7 @@ class ReservationController extends Controller
             $validator = Validator::make($request->all(), [
                 'name' => 'required',
                 'doctor_id' => 'required|exists:doctors,id',
-                'date' => 'required|date_format:Y-m-d|after:today',
+                'date' => 'required|date_format:Y-m-d|after_or_equal:today',
                 'time' => [
                     'required',
                     'date_format:H:i',

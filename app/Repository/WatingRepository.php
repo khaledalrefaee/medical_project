@@ -53,9 +53,9 @@ class WatingRepository implements WatingRepositoryInterface
             $Waiting->status ='waiting';
             $Waiting->save();
             toastr()->success('success create Waiting','success');
-            return redirect()->route('Reservations.all');
+            return redirect()->route('daily.reservation');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
+            return redirect()->back()->with('error' .$e->getMessage());
         }
     }
     public function show_waiting($id){
@@ -84,7 +84,7 @@ class WatingRepository implements WatingRepositoryInterface
             toastr()->warning('You are edit Waiting','warning');
             return redirect()->route('Reservations.all');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error deleting doctor and details: '.$e->getMessage());
+            return redirect()->back()->with('error' .$e->getMessage());
         }
     }
     public function delete_wating($id){
@@ -98,14 +98,14 @@ class WatingRepository implements WatingRepositoryInterface
         $waiting = Waiting::find($id);
         $waiting->status = 'completed';
         $waiting->save();
-        return redirect()->route('Reservations.all');
+        return redirect()->back();
     }
 
     public function ChngeCancellingWating($id){
         $waiting = Waiting::find($id);
         $waiting->status = 'Cancelling';
         $waiting->save();
-        return redirect()->route('Reservations.all');
+        return redirect()->back();
     }
 
     ///
@@ -132,6 +132,8 @@ class WatingRepository implements WatingRepositoryInterface
             $Reservation->birthday = $request->birthday;
             $Reservation->address =   $request->address;
             $Reservation->doctor_id = $request->doctor_id;
+            $Reservation->latitude = '33.52207565912137';
+            $Reservation->longitude = '36.290863319533315';
             $Reservation->status =   'Pending';
 
             $Reservation->save();
@@ -164,7 +166,7 @@ class WatingRepository implements WatingRepositoryInterface
         $request->validate([
             'name' => 'required',
             'doctor_id' => 'required',
-            'date' => 'required|date_format:Y-m-d|after:today',
+            'date' => 'required|date_format:Y-m-d|after_or_equal:today',
             'time' => ['required',
                 Rule::unique('reservations')->where(function ($query) use ($request) {
                     return $query->where('doctor_id', $request->doctor_id)
@@ -220,7 +222,7 @@ class WatingRepository implements WatingRepositoryInterface
         $Reservation = Reservation::find($id);
         $Reservation->status = 'completed';
         $Reservation->save();
-        return redirect()->route('Reservations.all');
+        return redirect()->back();
     }
 
 

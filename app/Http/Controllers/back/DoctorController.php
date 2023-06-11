@@ -75,4 +75,8 @@ class DoctorController extends Controller
 
       return $this->Doctoer->Filter_Clinces($request);
     }
+    public function restoreDoctor($id){
+
+        return $this->Doctoer->restoreDoctor($id);
+      }
 }

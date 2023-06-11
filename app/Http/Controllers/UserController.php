@@ -17,9 +17,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = User::orderBy('id','DESC')->paginate(4);
-        return view('users.index',compact('data'))
-            ->with('i', ($request->input('page', 1) - 1) * 5);
-
+        return view('users.index',compact('data'));
     }
 
 
@@ -85,7 +83,7 @@ class UserController extends Controller
             'gender_id'          =>  'required',
             'address'            =>  'required',
             'birthday'           =>  'required',
-            'status'            =>'required',
+            'status'            =>     'required',
 
         ]);
 

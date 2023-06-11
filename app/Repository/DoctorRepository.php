@@ -164,4 +164,17 @@ class DoctorRepository implements DoctoerRepositoryInterface
         return view('backend.Doctor.all_doctor',compact('clinic'))->withDetails($search);
     }
 
+    public function restoreDoctor($id)
+    {
+    $deletedDetails = Doctor::withTrashed()->findOrFail($id);
+    $deletedDetails->restore();
+    $deletedDetails->detail()->withTrashed()->restore();
+    // استعادة جميع المواعيد المحذوفة المرتبطة بالدكتور
+    $deletedDetails->reservation()->withTrashed()->restore();
+    $deletedDetails->clinic()->withTrashed()->restore();
+
+    return redirect()->back()->with('success', 'تم استعادة الدكتور بنجاح');
+    }
+
+
 }

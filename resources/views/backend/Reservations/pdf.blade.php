@@ -123,7 +123,7 @@
             <p><strong>Name:</strong> {{ $Reservation->name }}</p>
             <p><strong>Booked by :</strong> {{ $Reservation->user->name }}</p>
             <p><strong>Phone:</strong> {{ $Reservation->phone }}</p>
-            <p><strong>Diagnosis:</strong> {{ $Reservation->diagnosis }}</p>
+            <p><strong>Diagnosis:</strong> {!! nl2br($Reservation->diagnosis) !!}</p>
         </div>
         <div class="right-column">
             <br>

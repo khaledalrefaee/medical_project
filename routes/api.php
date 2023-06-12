@@ -9,6 +9,9 @@ use App\Http\Controllers\Api\PharmiseController;
 use App\Http\Controllers\Api\ProfileContoller;
 use App\Http\Controllers\Api\ReservationController;
 use App\Http\Controllers\Api\TimeController;
+use App\Http\Controllers\Api\ResetPasswordContoller;
+use App\Http\Controllers\Api\ForgetpasswordController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +30,10 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
+
+
+Route::post('password/forgot_password',[ForgetpasswordController::class,'forgotpassword']);
+Route::post('password/reset',[ResetPasswordContoller::class,'reset_password']);
 
 Route::post('/login',[AuthController::class,'login']);
 

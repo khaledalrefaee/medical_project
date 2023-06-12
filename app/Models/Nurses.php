@@ -10,5 +10,5 @@ class Nurses extends Model
 
     use HasFactory;
 
-    protected $fillable =['name','phone','description','image'];
+    protected $fillable =['name','phone','description'];
 }

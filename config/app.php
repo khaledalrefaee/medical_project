@@ -185,6 +185,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Srmklive\PayPal\Providers\PayPalServiceProvider::class,
+        Ichtrojan\Otp\OtpServiceProvider::class,
         /*
          * Package Service Providers...
          */
@@ -217,6 +218,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
+        Ichtrojan\Otp\OtpServiceProvider::class,
     ])->toArray(),
 
 ];
